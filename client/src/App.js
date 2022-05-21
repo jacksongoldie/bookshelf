@@ -1,17 +1,10 @@
-import { useState, useEffect } from "react";
+import Home from "./components/Home";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    fetch("/me")
-      .then((r) => r.json())
-      .then((data) => setCount(data.key));
-  }, []);
 
   return (
     <div className="App">
-      <h1>{count}</h1>
+      <Home />
     </div>
   );
 }
