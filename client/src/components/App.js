@@ -1,4 +1,4 @@
-import Header from "./Header";
+import NavBar from './NavBar'
 import Home from "./home/Home";
 import MyShelf from "./MyShelf";
 import Browse from './browse/Browse';
@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <NavBar />
 
       <Routes>
         <Route path='/' element={<Home />} />
