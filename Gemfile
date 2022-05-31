@@ -24,6 +24,9 @@ gem "puma", "~> 5.0"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
+# devise setup with jwt
+gem 'devise'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
@@ -48,3 +51,6 @@ end
 
 
 gem "active_model_serializers", "~> 0.10.13"
+
+gem "devise-jwt", "~> 0.9.0"
+gem "rack-cors", "~> 1.1"

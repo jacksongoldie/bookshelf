@@ -4,10 +4,7 @@ import Button from 'react-bootstrap/Button';
 
 function BrowseSearch({ onSetSearch }) {
 
-    const [input, setInput] = useState({
-        author: '',
-        keyword: ''
-    })
+    const [input, setInput] = useState('')
 
     function handleSubmit(e){
         e.preventDefault();
@@ -15,7 +12,7 @@ function BrowseSearch({ onSetSearch }) {
     }
 
     function handleChange(e){
-        setInput({...input, [e.target.name]: e.target.value})
+        setInput(e.target.value)
     }
 
   return (
@@ -23,11 +20,7 @@ function BrowseSearch({ onSetSearch }) {
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="keyword">
                 <Form.Label>Keyword</Form.Label>
-                <Form.Control type="text" placeholder="Search by keywords..." name='keyword' value={input.keyword} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="author">
-                <Form.Label>Author</Form.Label>
-                <Form.Control type="text" placeholder="Search by author..." name='author' value={input.author} onChange={handleChange} />
+                <Form.Control type="text" placeholder="Search by keywords..." name='keyword' value={input} onChange={handleChange} />
             </Form.Group>
 
             {/* <Form.Group className="mb-3" controlId="formBasicPassword">

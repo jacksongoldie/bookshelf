@@ -2,12 +2,12 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 
-function HomeCard() {
+function HomeCard({x}) {
   return (
     <div>
         <Col>
         <Card className="text-center my-3">
-        <Card.Header>Header</Card.Header>
+        <Card.Header>{x}</Card.Header>
         <Card.Body>
             <Card.Title>Special title treatment</Card.Title>
             <Card.Text>
