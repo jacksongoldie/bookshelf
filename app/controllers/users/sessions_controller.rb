@@ -1,6 +1,19 @@
 class Users::SessionsController < Devise::SessionsController
     respond_to :json
 
+    # The Sessions Controller is where a user will authenticate his/her credentials and it will assign the JWT to the user if successful.
+
+    def create
+        user = User.find_by_email(params[:email])
+        if user && user.valid_password?(params[:password])
+          token = user.generate_jwt
+          render json: token.to_json
+        else
+          render json: { errors: { 'email or password' => ['is invalid'] } }, status: :unprocessable_entity
+        end
+
+      end
+
     private
 
     def respond_with(_resource, _opts = {})
