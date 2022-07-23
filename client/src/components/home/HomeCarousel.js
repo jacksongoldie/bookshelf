@@ -1,6 +1,6 @@
-import carouselstarterphoto1 from '/home/goldi/Development/code/Mod5/bookshelf/client/src/assets/carouselstarterphoto1.png'
-import carouselstarterphoto2 from '/home/goldi/Development/code/Mod5/bookshelf/client/src/assets/carouselstarterphoto2.png'
-import carouselstarterphoto3 from '/home/goldi/Development/code/Mod5/bookshelf/client/src/assets/carouselstarterphoto3.png'
+import carouselstarterphoto1 from '../assets/carouselstarterphoto1.png'
+import carouselstarterphoto2 from '../assets/carouselstarterphoto2.png'
+import carouselstarterphoto3 from '../assets/carouselstarterphoto3.png'
 import Carousel from 'react-bootstrap/Carousel';
 import Ratio from 'react-bootstrap/Ratio';
 

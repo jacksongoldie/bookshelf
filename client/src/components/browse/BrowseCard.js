@@ -1,5 +1,5 @@
 import BrowseCardButton from './BrowseCardButton';
-import defaultPhoto from '/home/goldi/Development/code/Mod5/bookshelf/client/src/assets/booksPhoto.jpg';
+import defaultPhoto from '../assets/booksPhoto.jpg';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Stack from 'react-bootstrap/Stack';

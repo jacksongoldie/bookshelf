@@ -1,7 +1,7 @@
 import { LinkContainer } from 'react-router-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import account from '../assets/account.png'
+import account from './assets/account.png'
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 

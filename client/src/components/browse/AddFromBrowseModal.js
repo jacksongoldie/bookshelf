@@ -1,5 +1,5 @@
 import AddFromBrowseForm from './AddFromBrowseForm';
-import defaultPhoto from '/home/goldi/Development/code/Mod5/bookshelf/client/src/assets/booksPhoto.jpg'
+import defaultPhoto from '../assets/booksPhoto.jpg'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
