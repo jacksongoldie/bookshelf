@@ -1,8 +1,6 @@
 import Button from "react-bootstrap/esm/Button";
 
 function BrowsePagination({ books, index, onSetIndex, currentPage, onSetCurrentPage }) {
-    
-    console.log(books)
 
     function handleForwardClick(){
         console.log(index, currentPage)

@@ -3,7 +3,7 @@ import BrowseCards from "./BrowseCards";
 import BrowsePagination from "./BrowsePagination";
 import { useEffect, useState } from 'react';
 
-function Browse() {
+function Browse({ onSetUserBooks }) {
 
   //search is variable used for query paramaters in fetch, input is variable from BrowseSearch.js form that sets search
   const [search, setSearch] = useState('')
@@ -20,20 +20,14 @@ function Browse() {
       setSearchedBooks(data.items)
       console.log('total items ' + data.totalItems)
     })
+    //ADD CATCH ERRORS
   }, [search, index])
-
-
-  console.log('index ' + index)
-  console.log('page ' + currentPage)
-  console.log(searchedBooks)
 
   function onSetSearch(input){
     setSearch(input.replace(/ /g, '+'))
     setCurrentPage(1)
     setIndex(0)
   }
-
-  console.log(search)
 
   function onSetIndex(newIndex){
     setIndex(newIndex)
@@ -47,7 +41,7 @@ function Browse() {
     <div style={{ margin: '50px' }}>
       <BrowseSearch onSetSearch={onSetSearch} search={search} />
         <div style={{ marginTop: '50px' }}>
-          <BrowseCards books={searchedBooks} />
+          <BrowseCards books={searchedBooks} onSetUserBooks={onSetUserBooks} />
           <BrowsePagination books={searchedBooks} index={index} onSetIndex={onSetIndex} currentPage={currentPage} onSetCurrentPage={onSetCurrentPage} />
         </div>
     </div>
