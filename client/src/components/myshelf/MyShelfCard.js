@@ -10,7 +10,7 @@ function MyShelfCard({ book }) {
     <div>
         <Card border="success" style={{ width: '18rem' }}>
         <Card.Header>{book.googleData.title}</Card.Header>
-        {book.googleData.image ? <Card.Img style={{ height: '350px' }} variant="top" src={book.googleData.image} /> : <Card.Img variant="top" src={defaultPhoto} />}
+        {book.googleData.img ? <Card.Img style={{ height: '350px' }} variant="top" src={book.googleData.img} /> : <Card.Img variant="top" src={defaultPhoto} />}
         <Card.Body>
           <Card.Title>{star.repeat(book.userReview.rate)}</Card.Title>
           <Card.Text>
