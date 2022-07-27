@@ -5,8 +5,6 @@ import Modal from 'react-bootstrap/Modal';
 
 function AddFromBrowseModal({ handleClose, show, book, onSetUserBooks }) {
 
-    console.log(book)
-
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -19,7 +17,7 @@ function AddFromBrowseModal({ handleClose, show, book, onSetUserBooks }) {
 
         {book.volumeInfo.imageLinks ? <> <img src={book.volumeInfo.imageLinks.thumbnail} className="rounded mx-auto d-block" alt={book.volumeInfo.title + ' thumbnail'} /> </> : <img className="rounded mx-auto d-block" height='200px' src={defaultPhoto} alt='default thumbnail' />}
 
-            <AddFromBrowseForm handleClose={handleClose} book={book} onSetUserBooks={onSetUserBooks} />
+            <AddFromBrowseForm handleClose={handleClose} book={book} bookInfoFromGoogle={book.volumeInfo} onSetUserBooks={onSetUserBooks} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={handleClose}>

@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
-    console.log(onSetUserBooks)
+    console.log(book)
 
     const navigate = useNavigate();
 
@@ -15,6 +15,7 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
         google_id: book.id,
         title: book.volumeInfo.title,
         img: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : null,
+        mature: book.volumeInfo.maturityRating === 'MATURE' ? true : false
     })
     const [userData, setUserData] = useState({
         categories: [],
@@ -138,6 +139,5 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
     </div>
   )
 }
-//1 - next 2 -next/back 3 back
 
 export default AddFromBrowseForm;

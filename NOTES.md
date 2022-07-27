@@ -45,3 +45,5 @@ Depending on your application's configuration some manual setup may be required:
        rails g devise:views
        
      * Not required *
+
+

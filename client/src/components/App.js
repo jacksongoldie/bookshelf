@@ -14,6 +14,11 @@ function App() {
     setUserBooks([book, ...userBooks])
   }
 
+  function onDeleteUserBook(bookId){
+    const books = userBooks.filter((book) => book.googleData.google_id !== bookId)
+    setUserBooks(books)
+  }
+
   return (
     <div className="App">
       <NavBar />
@@ -21,7 +26,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/browse' element={<Browse onSetUserBooks={onSetUserBooks} /> } />
-        <Route path='/myshelf' element={<MyShelf userBooks={userBooks} /> } />
+        <Route path='/myshelf' element={<MyShelf userBooks={userBooks} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
         <Route path='/account' element={<Account /> } />
       </Routes>
     </div>
