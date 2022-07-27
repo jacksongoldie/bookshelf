@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+puts "Seeding."
+
+b = Book.create(title: 'Book')
+
+a = Author.create(name: 'Author')
+a2 = Author.create(name: 'Author2')
+
+b.authors.push(a)
+
+
+puts "Done Seeding."

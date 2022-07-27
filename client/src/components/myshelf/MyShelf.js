@@ -17,7 +17,7 @@ function MyShelf({ userBooks, onSetUserBooks, onDeleteUserBook }) {
         <Col><MyShelfSearch /></Col>
         </Row>
       </div>
-      <div style={{ margin: '1em' }} className="d-flex justify-content-center">
+      <div style={{ margin: '1em' }}>
         <MyShelfCards userBooks={userBooks} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} />
       </div>
     </div>

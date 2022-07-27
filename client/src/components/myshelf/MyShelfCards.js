@@ -1,5 +1,6 @@
 import MyShelfCard from "./MyShelfCard";
 import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
 function MyShelfCards({ userBooks, onSetUserBooks, onDeleteUserBook }) {
     console.log(userBooks)
@@ -7,9 +8,11 @@ function MyShelfCards({ userBooks, onSetUserBooks, onDeleteUserBook }) {
 
   return (
     <div>
-      <Row xs={1} md={3} lg={3}>
-        {allUserBooks}
-      </Row>
+      <Container>
+        <Row xs={1} md={3} lg={3}>
+          {allUserBooks}
+        </Row>
+      </Container>
     </div>
   )
 };
