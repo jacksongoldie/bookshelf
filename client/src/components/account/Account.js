@@ -3,6 +3,8 @@ import Login from "./Login";
 import AccountInfo from "./AccountInfo";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function Account() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -21,16 +23,22 @@ function Account() {
   
   return (
     <div>
-      <div>
+      <div style={{ margin: '50px'}}>
+        <Row className="justify-content-center">
         { loggedIn ? 
         <>
+        <Col md='auto'>
         <AccountInfo />
-        <Button variant='success' onClick={() => {setLoggedIn((mUV) => !mUV); resetAccountPage()}}> Logout </Button> 
+        <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => {setLoggedIn((mUV) => !mUV); resetAccountPage()}}> Logout </Button>
+        </Col>
         </>:
         <>
-        {showSignUpForm ? <SignUp onSetLoggedIn={onSetLoggedIn} /> : <Button variant='success' onClick={() => setShowSignUpForm((mUV) => !mUV)}>SignUp</Button>}
-        {showLoginForm ? <Login onSetLoggedIn={onSetLoggedIn} resetAccountPage={resetAccountPage} /> : <Button variant='success' onClick={() => setShowLoginForm((mUV) => !mUV)}>Login</Button>}
+        <Col md='auto'>
+        {showSignUpForm ? <SignUp onSetLoggedIn={onSetLoggedIn} /> : <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowSignUpForm((mUV) => !mUV)}>SignUp</Button>}
+        {showLoginForm ? <Login onSetLoggedIn={onSetLoggedIn} resetAccountPage={resetAccountPage} /> : <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowLoginForm((mUV) => !mUV)}>Login</Button>}
+        </Col>
         </> }
+        </Row>
       </div>
     </div>
   )

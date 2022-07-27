@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
+import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 
 function Login({ onSetLoggedIn, resetAccountPage }) {
@@ -31,17 +32,21 @@ function Login({ onSetLoggedIn, resetAccountPage }) {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="text" name='password' value={formData.password} onChange={handleChange} />
             </Form.Group>
+            <Form.Group>
             <Button variant="success" type="submit">
                 Login
             </Button>
+            </Form.Group>
         </Form>
-
+        <br />
+        <Stack direction='horizontal' gap={2}>
         <Button variant="success">
             Sign Up
         </Button>
         <Button variant="success" onClick={resetAccountPage}>
             Go Back
         </Button>
+        </Stack>
         
     </div>
   )
