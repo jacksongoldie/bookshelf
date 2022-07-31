@@ -2,7 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     respond_to :json
 
     #The Registrations Controller is where a user will create his/her credentials, and it will assign the JWT to the user once complete.
-    
+
     def create
         user = User.new(sign_up_params)
 

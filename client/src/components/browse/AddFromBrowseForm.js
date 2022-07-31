@@ -41,16 +41,20 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
         e.preventDefault();
         setModalPage(4)
         const book = {
-            googleData: googleData,
-            userData: userData,
-            modalInfoFromUser: modalInfoFromUser,
-            userReview: userReview
+            title: googleData.title,
+            img: googleData.img,
+            mature: googleData,
+            google_id: googleData.id,
+            user_input: {
+                categories: userData.categories,
+                tags: userData.tags,
+                ages: userData.ages,
+                spice: userData.spice,
+                violence: userData.violence,
+                language: userData.language
+            },
+            review: userReview
         }
-        console.log(googleData)  
-        console.log(userData)
-        console.log(modalInfoFromUser)
-        console.log(userReview)
-        console.log(book)
         onSetUserBooks(book)
     }
 

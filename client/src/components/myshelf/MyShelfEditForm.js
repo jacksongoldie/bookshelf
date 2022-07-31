@@ -12,7 +12,7 @@ function MyShelfEditForm({ book, onSetUserBooks }) {
     const AGES = ["School Aged Children", "Tweens", "Teens", "Young Adults", "Not Suitable for Children"]
 
     const [googleData, setGoogleData] = useState({
-        google_id: book.googleData.google_id,
+        google_id: book.google_id,
         title: book.googleData.title,
         img: book.googleData.img ? book.googleData.img : null,
         mature: book.googleData.mature
@@ -83,10 +83,19 @@ function MyShelfEditForm({ book, onSetUserBooks }) {
         debugger;
         e.preventDefault();
         const updatedBook = {
-            googleData: googleData,
-            userData: userData,
-            modalInfoFromUser: modalInfoFromUser,
-            userReview: userReview
+            title: googleData.title,
+            img: googleData.img,
+            mature: googleData,
+            google_id: googleData.id,
+            user_input: {
+                categories: userData.categories,
+                tags: userData.tags,
+                ages: userData.ages,
+                spice: userData.spice,
+                violence: userData.violence,
+                language: userData.language
+            },
+            review: userReview
         }
         onSetUserBooks(updatedBook)
     }

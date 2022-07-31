@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :members, only: [:index, :show]
+  resources :members do
+    resources :books
+  end
+  resources :reviews, only: [:index]
+  resources :ages, only: [:index]
+  resources :tags, only: [:index]
+  resources :categories, only: [:index]
   resources :books
   resources :profiles
   devise_for :users,

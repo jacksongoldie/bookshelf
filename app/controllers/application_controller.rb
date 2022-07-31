@@ -1,14 +1,29 @@
 class ApplicationController < ActionController::API
+
+    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
     respond_to :json
     before_action :process_token
 
     #The Application Controller is where we will process a JWT when a user sends a request to our API. It's vital to keep in mind that the Application Controller is not concerned with credentials - it simply checks for a valid JWT.
-
+    
+    def current_user
+        User.find(9)
+    end
+    
     private
+  
+    def record_invalid(invalid)
+      render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+    end
+  
+    def record_not_found
+      render json: { errors: 'Record not found' }, status: :not_found
+    end
 
     # Check for auth headers - if present, decode or send unauthorized response (called always to allow current_user)
     def process_token
-        byebug
         if request.headers['Authorization'].present?
         begin
             jwt_payload = JWT.decode(request.headers['Authorization'].split(' ')[1], Rails.application.secrets.secret_key_base).first

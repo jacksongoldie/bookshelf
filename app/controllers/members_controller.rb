@@ -1,16 +1,19 @@
 class MembersController < ApplicationController
-    before_action :authenticate_user!
+    #before_action :authenticate_user!
+
+    def index
+        render json: User.all, status: :ok
+    end
 
     def show
-        
-        render json: {
-            message: 'you are in!',
-            user: user
-        }
+        render json: user, status: :ok
     end
 
     private
 
+    def user
+        User.find(params[:id])
+    end
     # def get_user_from_token
     #     # jwt_payload = JWT.decode(request.headers['Authorization'].split(' ')[1],
     #     #                          Rails.application.credentials.devise[:jwt_secret_key]).first

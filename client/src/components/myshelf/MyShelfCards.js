@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 
 function MyShelfCards({ userBooks, onSetUserBooks, onDeleteUserBook }) {
     console.log(userBooks)
-    const allUserBooks = userBooks.map((book) => <MyShelfCard book={book} key={book.googleData.google_id} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} />);
+    const allUserBooks = userBooks.map((book) => <MyShelfCard book={book} key={book.google_id} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} />);
 
   return (
     <div>

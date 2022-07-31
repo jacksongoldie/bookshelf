@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_27_213821) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_28_212721) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ages", force: :cascade do |t|
+    t.string "range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -38,6 +44,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_213821) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "jwt_denylist", force: :cascade do |t|
     t.string "jti", null: false
     t.datetime "exp", null: false
@@ -57,6 +69,69 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_213821) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rate"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_input_id", null: false
+    t.index ["user_input_id"], name: "index_reviews_on_user_input_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_books", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_user_books_on_book_id"
+    t.index ["user_id"], name: "index_user_books_on_user_id"
+  end
+
+  create_table "user_input_ages", force: :cascade do |t|
+    t.bigint "age_id"
+    t.bigint "user_input_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["age_id"], name: "index_user_input_ages_on_age_id"
+    t.index ["user_input_id"], name: "index_user_input_ages_on_user_input_id"
+  end
+
+  create_table "user_input_categories", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "user_input_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_user_input_categories_on_category_id"
+    t.index ["user_input_id"], name: "index_user_input_categories_on_user_input_id"
+  end
+
+  create_table "user_input_tags", force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "user_input_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_user_input_tags_on_tag_id"
+    t.index ["user_input_id"], name: "index_user_input_tags_on_user_input_id"
+  end
+
+  create_table "user_inputs", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "spice"
+    t.integer "violence"
+    t.integer "language"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_user_inputs_on_book_id"
+    t.index ["user_id"], name: "index_user_inputs_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -72,4 +147,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_213821) do
   add_foreign_key "book_authors", "authors"
   add_foreign_key "book_authors", "books"
   add_foreign_key "profiles", "users"
+  add_foreign_key "reviews", "user_inputs"
+  add_foreign_key "user_books", "books"
+  add_foreign_key "user_books", "users"
+  add_foreign_key "user_input_ages", "ages"
+  add_foreign_key "user_input_ages", "user_inputs"
+  add_foreign_key "user_input_categories", "categories"
+  add_foreign_key "user_input_categories", "user_inputs"
+  add_foreign_key "user_input_tags", "tags"
+  add_foreign_key "user_input_tags", "user_inputs"
+  add_foreign_key "user_inputs", "books"
+  add_foreign_key "user_inputs", "users"
 end

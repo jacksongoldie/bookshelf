@@ -35,7 +35,7 @@ function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBoo
         <Modal.Title>Edit</Modal.Title>
         </Modal.Header>
                     <Modal.Body>
-                    {book.googleData.img ? <> <img src={book.googleData.img} className="rounded mx-auto d-block" height='80px' alt={book.googleData.title + ' thumbnail'} /> </> : <img className="rounded mx-auto d-block" height='80px' src={defaultPhoto} alt='default thumbnail' />}
+                    {book.img ? <> <img src={book.img} className="rounded mx-auto d-block" height='80px' alt={book.title + ' thumbnail'} /> </> : <img className="rounded mx-auto d-block" height='80px' src={defaultPhoto} alt='default thumbnail' />}
                     </Modal.Body>
                 <Modal.Body>
                     <MyShelfEditForm book={book} bookInfoFromGoogle={book.googleData} onSetUserBooks={onSetUserBooks} />

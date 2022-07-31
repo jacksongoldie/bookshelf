@@ -10,6 +10,12 @@ function App() {
 
   const [userBooks, setUserBooks] = useState([])
 
+  useEffect(() => {
+    fetch('/members/9/books')
+    .then((r) => r.json())
+    .then(setUserBooks)
+  }, [])
+
   function onSetUserBooks(book){
     setUserBooks([book, ...userBooks])
   }
