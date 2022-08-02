@@ -13,7 +13,6 @@ function MyShelfButtons({ book, onSetUserBooks, onDeleteUserBook }) {
     const handleClose = () => setShow(false);
 
     function handleDelete(){
-      debugger;
       setIsDeleting((mUV) => !mUV)
       handleShow();
     }

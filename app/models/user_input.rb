@@ -12,4 +12,5 @@ class UserInput < ApplicationRecord
   accepts_nested_attributes_for :ages
   accepts_nested_attributes_for :tags
   accepts_nested_attributes_for :categories
+  accepts_nested_attributes_for :review
 end

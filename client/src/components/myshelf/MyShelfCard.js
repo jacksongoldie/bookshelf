@@ -14,9 +14,9 @@ function MyShelfCard({ book, onSetUserBooks, onDeleteUserBook }) {
         <Card.Body>
         <Card.Title>{book.title}</Card.Title>
           {book.img ? <Card.Img style={{ height: '150px', width: '150px' }} src={book.img} /> : <Card.Img variant="top" src={null} />}
-          <Card.Text>{star.repeat(book.rate)}</Card.Text>
+          <Card.Text>{star.repeat(book.review.rate)}</Card.Text>
             <Card.Text>
-              {book.text ? book.text.slice(0,250) : null}
+              {book.review.text ? book.review.text.slice(0,250) : null}
             </Card.Text>
           <MyShelfButtons book={book} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} />
         </Card.Body>

@@ -13,27 +13,27 @@ function MyShelfEditForm({ book, onSetUserBooks }) {
 
     const [googleData, setGoogleData] = useState({
         google_id: book.google_id,
-        title: book.googleData.title,
-        img: book.googleData.img ? book.googleData.img : null,
-        mature: book.googleData.mature
+        title: book.title,
+        img: book.img ? book.img : null,
+        mature: book.mature
     })
     const [userData, setUserData] = useState({
-        categories: book.userData.categories,
-        tags: book.userData.tags
+        categories: book.user_input.categories,
+        tags: book.user_input.tags
     })
     console.log(userData)
     //set category modal questions to empty object and set with name/value??
     const [modalInfoFromUser, setModalInfoFromUser] = useState({
-        spice: book.modalInfoFromUser.spice,
-        violence: book.modalInfoFromUser.violence,
-        language: book.modalInfoFromUser.violence,
-        ages: book.modalInfoFromUser.ages
+        spice: book.user_input.spice,
+        violence: book.user_input.violence,
+        language: book.user_input.violence,
+        ages: book.user_input.ages
     });
     
     //review will create new review for book and user on submit
     const [userReview, setUserReview] = useState({
-        text: book.userReview.text,
-        rate: book.userReview.rate
+        text: book.review.text,
+        rate: book.review.rate
     })
 
     function handleChange(e){
@@ -82,22 +82,24 @@ function MyShelfEditForm({ book, onSetUserBooks }) {
     function handleSubmit(e){
         debugger;
         e.preventDefault();
-        const updatedBook = {
+        const book = {
             title: googleData.title,
             img: googleData.img,
-            mature: googleData,
-            google_id: googleData.id,
-            user_input: {
-                categories: userData.categories,
-                tags: userData.tags,
-                ages: userData.ages,
-                spice: userData.spice,
-                violence: userData.violence,
-                language: userData.language
-            },
-            review: userReview
+            mature: googleData.mature,
+            google_id: googleData.id
         }
-        onSetUserBooks(updatedBook)
+        // const updatedBook = {
+        //     user_input: {
+        //         categories: userData.categories,
+        //         tags: userData.tags,
+        //         ages: modalInfoFromUser.ages,
+        //         spice: modalInfoFromUser.spice,
+        //         violence: modalInfoFromUser.violence,
+        //         language: modalInfoFromUser.language
+        //     },
+        //     review: userReview
+        // }
+        
     }
   return (
     <div>
@@ -121,7 +123,7 @@ function MyShelfEditForm({ book, onSetUserBooks }) {
                 <Form.Label>Tags</Form.Label>
                     <Form.Control type="textarea" name='tags' value={userData.tags} onChange={handleChange} />
             </Form.Group>
-            {book.googleData.mature ?
+            {book.mature ?
             <Form.Group className="mb-3" controlId="modalInfoFromUser">
             <Form.Label>Spicy Level</Form.Label>
                 <Form.Control type="range" className="form-range" min={1} max={3} name='spice' value={modalInfoFromUser.spice} onChange={handleChange} />

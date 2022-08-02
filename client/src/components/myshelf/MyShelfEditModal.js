@@ -9,7 +9,7 @@ function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBoo
     function handleDelete(){
         console.log('in delete')
         //WILL NEED TO CHANGE TO NEW ID
-        onDeleteUserBook(book.googleData.google_id)
+        onDeleteUserBook(book.google_id)
     }
 
     function handleCancel(){
@@ -38,7 +38,7 @@ function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBoo
                     {book.img ? <> <img src={book.img} className="rounded mx-auto d-block" height='80px' alt={book.title + ' thumbnail'} /> </> : <img className="rounded mx-auto d-block" height='80px' src={defaultPhoto} alt='default thumbnail' />}
                     </Modal.Body>
                 <Modal.Body>
-                    <MyShelfEditForm book={book} bookInfoFromGoogle={book.googleData} onSetUserBooks={onSetUserBooks} />
+                    <MyShelfEditForm book={book} onSetUserBooks={onSetUserBooks} />
                 </Modal.Body>
         <Modal.Footer>
             <Button variant="success" onClick={handleClose}> Cancel </Button>

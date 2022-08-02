@@ -21,7 +21,7 @@ function App() {
   }
 
   function onDeleteUserBook(bookId){
-    const books = userBooks.filter((book) => book.googleData.google_id !== bookId)
+    const books = userBooks.filter((book) => book.google_id !== bookId)
     setUserBooks(books)
   }
 

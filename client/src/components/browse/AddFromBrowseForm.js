@@ -14,6 +14,7 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
     const [googleData, setGoogleData] = useState({
         google_id: book.id,
         title: book.volumeInfo.title,
+        authors: book.volumeInfo.authors,
         img: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : null,
         mature: book.volumeInfo.maturityRating === 'MATURE' ? true : false
     })
@@ -43,19 +44,34 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
         const book = {
             title: googleData.title,
             img: googleData.img,
-            mature: googleData,
-            google_id: googleData.id,
-            user_input: {
-                categories: userData.categories,
-                tags: userData.tags,
-                ages: userData.ages,
-                spice: userData.spice,
-                violence: userData.violence,
-                language: userData.language
-            },
-            review: userReview
+            mature: googleData.mature,
+            google_id: googleData.id
         }
-        onSetUserBooks(book)
+        fetch('/books', {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(book)
+        })
+        .then((r) => r.json())
+        .then((b) => console.log(b))
+        // const book = {
+        //     title: googleData.title,
+        //     img: googleData.img,
+        //     mature: googleData.mature,
+        //     google_id: googleData.google_id,
+        //     authors: googleData.authors,
+        //     user_input: {
+        //         categories: userData.categories,
+        //         tags: userData.tags,
+        //         ages: modalInfoFromUser.ages,
+        //         spice: modalInfoFromUser.spice,
+        //         violence: modalInfoFromUser.violence,
+        //         language: modalInfoFromUser.language
+        //     },
+        //     review: userReview
+        // }
     }
 
     function handleChange(e){

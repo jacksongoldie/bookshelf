@@ -8,5 +8,7 @@ class Book < ApplicationRecord
     has_many :ages, through: :user_inputs
     has_many :tags, through: :user_inputs
     has_many :reviews, through: :user_inputs
+
+    accepts_nested_attributes_for :authors
 end
 
