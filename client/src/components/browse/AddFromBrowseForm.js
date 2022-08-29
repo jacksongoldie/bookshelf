@@ -6,7 +6,7 @@ import ModalForm3 from './ModalForm3';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
+function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages }) {
     console.log(book)
 
     const navigate = useNavigate();
@@ -14,10 +14,11 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
     const [googleData, setGoogleData] = useState({
         google_id: book.id,
         title: book.volumeInfo.title,
-        authors: book.volumeInfo.authors,
+        book_authors_attributes: book.volumeInfo.authors.map((a) =>{ return { author_attributes: {name: a}}}),
         img: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : null,
         mature: book.volumeInfo.maturityRating === 'MATURE' ? true : false
     })
+    console.log(googleData.authors)
     const [userData, setUserData] = useState({
         categories: [],
         tags: []
@@ -32,7 +33,7 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
     
     //review will create new review for book and user on submit
     const [userReview, setUserReview] = useState({
-        text: "",
+        text: '',
         rate: 0
     })
 
@@ -41,38 +42,44 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
     function handleSubmit(e){
         e.preventDefault();
         setModalPage(4)
-        const book = {
-            title: googleData.title,
-            img: googleData.img,
-            mature: googleData.mature,
-            google_id: googleData.id
-        }
+
         fetch('/books', {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json'
             },
-            body: JSON.stringify(book)
+            body: JSON.stringify(googleData)
         })
         .then((r) => r.json())
-        .then((b) => console.log(b))
-        // const book = {
-        //     title: googleData.title,
-        //     img: googleData.img,
-        //     mature: googleData.mature,
-        //     google_id: googleData.google_id,
-        //     authors: googleData.authors,
-        //     user_input: {
-        //         categories: userData.categories,
-        //         tags: userData.tags,
-        //         ages: modalInfoFromUser.ages,
-        //         spice: modalInfoFromUser.spice,
-        //         violence: modalInfoFromUser.violence,
-        //         language: modalInfoFromUser.language
-        //     },
+        .then((b) => {
+            debugger
+//******CHANGE ID HERE********************************************************************* */
+                    const userInputs = {
+                        categories_attributes: userData.categories,
+                        tags_attributes: userData.tags.split(' ').map((t) => {return {text: t}}),
+                        ages_attributes: modalInfoFromUser.ages,
+                        spice: modalInfoFromUser.spice,
+                        violence: modalInfoFromUser.violence,
+                        language: modalInfoFromUser.language,
+                        book_id: b.id,
+                        user_id: 9,
+                        review: userReview
+                    }
+                    fetch(`/user_inputs`,{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type':'application/json'
+                        },
+                        body: JSON.stringify(userInputs)})
+                        .then((r) => r.json())
+                        .then((u) => {
+                            b.user_inputs.push(u)
+                            b.user_input_id = u.id
+                            onSetUserBooks(b)
+                        })
+                    })
+                }
         //     review: userReview
-        // }
-    }
 
     function handleChange(e){
         //determine data group
@@ -87,7 +94,8 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
                         setUserData({...userData, categories: replacementArray})
                     }
                     else{
-                        setUserData({...userData, [e.target.name]: [...userData[e.target.name], e.target.value]})
+                        const cat = categories.find((c) => c.name === e.target.value)
+                        setUserData({...userData, categories: [...userData.categories, cat]})
                     }
                 }
                 else{
@@ -96,14 +104,14 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
                 }
                 break
             case 'modalInfoFromUser':
-                //debugger;
                 if(e.target.name === 'ages'){
                     if (modalInfoFromUser.ages.includes(e.target.value)){
                         const replacementArray = modalInfoFromUser.ages.filter((age) => age !== e.target.value)
                         setModalInfoFromUser({...modalInfoFromUser, [e.target.name]: replacementArray})
                     }
                     else{
-                        setModalInfoFromUser({...modalInfoFromUser, [e.target.name]: [...modalInfoFromUser[e.target.name], e.target.value]})
+                        const age = ages.find((a) => a.range === e.target.value)
+                        setModalInfoFromUser({...modalInfoFromUser, ages: [...modalInfoFromUser.ages, age]})
                     }
                 }
                 else{
@@ -122,9 +130,9 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks }) {
         //determine data group
         switch(modalPage){
             case 1:
-                return <ModalForm1 handleChange={handleChange} googleData={googleData} userData={userData} />
+                return <ModalForm1 handleChange={handleChange} categories={categories} googleData={googleData} userData={userData} />
             case 2:
-                return <ModalForm2 handleChange={handleChange} setModalPage={setModalPage} modalInfoFromUser={modalInfoFromUser} book={book} />
+                return <ModalForm2 handleChange={handleChange} setModalPage={setModalPage} modalInfoFromUser={modalInfoFromUser} book={book} ages={ages} />
             case 3:
                 return (
                 <>

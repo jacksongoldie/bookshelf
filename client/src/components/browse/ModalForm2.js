@@ -1,10 +1,9 @@
 import Form from 'react-bootstrap/Form';
 
-function ModalForm2({ book, handleChange, modalInfoFromUser, setModalPage }) {
+function ModalForm2({ book, handleChange, modalInfoFromUser, setModalPage, ages }) {
     console.log(book.volumeInfo.maturityRating)
     console.log(modalInfoFromUser.ages)
 
-    const options = ["School Aged Children", "Tweens", "Teens", "Young Adults", "Not Suitable for Children"]
 
     const matureRatingQuestions = () => {
        return( <>
@@ -33,12 +32,13 @@ function ModalForm2({ book, handleChange, modalInfoFromUser, setModalPage }) {
                     <Form.Group className="mb-3" controlId="modalInfoFromUser">
                     <Form.Label>Recommended Reader Ages</Form.Label>
                         <Form.Control as='checkbox' multiple value={modalInfoFromUser.ages} onChange={handleChange} >
-                            {options.map((option) => <Form.Check 
+                            {ages.map((option) => <Form.Check 
                                 type="switch"
                                 name='ages'
-                                key={option}
-                                label={option}
-                                value={option}
+                                key={option.id}
+                                label={option.range}
+                                defaultChecked={modalInfoFromUser.ages.find((a) => a.id === option.id)}
+                                value={option.range}
                             />)}
                         </Form.Control>
                         </Form.Group>

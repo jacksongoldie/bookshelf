@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :books
   end
   resources :reviews, only: [:index]
+  resources :user_inputs, only: [:show, :create, :update]
   resources :ages, only: [:index]
   resources :tags, only: [:index]
   resources :categories, only: [:index]

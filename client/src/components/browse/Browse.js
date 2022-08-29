@@ -3,7 +3,7 @@ import BrowseCards from "./BrowseCards";
 import BrowsePagination from "./BrowsePagination";
 import { useEffect, useState } from 'react';
 
-function Browse({ onSetUserBooks }) {
+function Browse({ onSetUserBooks, categories, ages }) {
 
   //search is variable used for query paramaters in fetch, input is variable from BrowseSearch.js form that sets search
   const [search, setSearch] = useState('')
@@ -13,7 +13,6 @@ function Browse({ onSetUserBooks }) {
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect (() => {
-    console.log(search)
     fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}&printType=books&startIndex=${index}&maxResults=24&key=AIzaSyCAzfvCo4D0qLG1hV8WfEYpNC8rhtk7rQY`)
     .then((r) => r.json())
     .then((data) => {
@@ -41,7 +40,7 @@ function Browse({ onSetUserBooks }) {
     <div style={{ margin: '50px' }}>
       <BrowseSearch onSetSearch={onSetSearch} search={search} />
         <div style={{ marginTop: '50px' }}>
-          <BrowseCards books={searchedBooks} onSetUserBooks={onSetUserBooks} />
+          <BrowseCards books={searchedBooks} onSetUserBooks={onSetUserBooks} categories={categories} ages={ages} />
           <BrowsePagination books={searchedBooks} index={index} onSetIndex={onSetIndex} currentPage={currentPage} onSetCurrentPage={onSetCurrentPage} />
         </div>
     </div>

@@ -1,5 +1,6 @@
 class BookSerializer < ActiveModel::Serializer
   attributes :id, :title, :google_id, :mature, :img
+  has_many :authors
   has_many :user_inputs
 
   # def spice

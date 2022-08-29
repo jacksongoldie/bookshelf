@@ -1,18 +1,14 @@
 class UserBooksSerializer < ActiveModel::Serializer
-  attributes :id, :title, :img, :mature, :google_id, :authors_string, :user_input, :review
+  attributes :id, :title, :img, :mature, :google_id, :authors_string, :user_input_id
+  has_many :user_inputs, each_serializer: UserInputSerializer
 
   def authors_string
     authors = object.authors.map {|a| a.name}
     authors.join(', ')
   end
 
-  def user_input
-    object.user_inputs.find_by(user_id: 9)
+  def user_input_id
+    uI = UserInput.where(book_id: object.id, user_id: 9 )
+    uI[0].id
   end
-
-  def review
-    Review.first
-    # user_input.review.text
-  end
-
 end

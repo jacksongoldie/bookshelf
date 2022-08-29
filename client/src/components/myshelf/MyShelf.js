@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-function MyShelf({ userBooks, onSetUserBooks, onDeleteUserBook }) {
+function MyShelf({ userBooks, onSetUserBooks, onDeleteUserBook, categories, ages }) {
 
 
   return (
@@ -17,7 +17,7 @@ function MyShelf({ userBooks, onSetUserBooks, onDeleteUserBook }) {
         </Row>
       </div>
       <div style={{ margin: '1em' }}>
-        <MyShelfCards userBooks={userBooks} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} />
+        <MyShelfCards userBooks={userBooks} ages={ages} categories={categories} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} />
       </div>
     </div>
   )

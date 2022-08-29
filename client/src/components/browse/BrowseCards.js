@@ -1,10 +1,10 @@
 import BrowseCard from './BrowseCard';
 import Row from 'react-bootstrap/Row';
 
-function BrowseCards({ books, onSetUserBooks }) {
+function BrowseCards({ books, onSetUserBooks, categories, ages }) {
 
   function browseCardsToDisplay(){
-    return books.map((book) => <BrowseCard key={book.id} book={book} onSetUserBooks={onSetUserBooks} />)
+    return books.map((book) => <BrowseCard key={book.id} book={book} onSetUserBooks={onSetUserBooks} categories={categories} ages={ages} />)
   }
 
   return (

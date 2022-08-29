@@ -3,7 +3,7 @@ import defaultPhoto from '../assets/booksPhoto.jpg'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function AddFromBrowseModal({ handleClose, show, book, onSetUserBooks }) {
+function AddFromBrowseModal({ handleClose, show, book, onSetUserBooks, categories, ages }) {
 
   return (
     <>
@@ -13,11 +13,9 @@ function AddFromBrowseModal({ handleClose, show, book, onSetUserBooks }) {
         </Modal.Header>
         <Modal.Body>
 
-        {/* <img src={book.volumeInfo.imageLinks.thumbnail} className="rounded mx-auto d-block" alt={book.volumeInfo.title + ' thumbnail'} /> */}
-
         {book.volumeInfo.imageLinks ? <> <img src={book.volumeInfo.imageLinks.thumbnail} className="rounded mx-auto d-block" alt={book.volumeInfo.title + ' thumbnail'} /> </> : <img className="rounded mx-auto d-block" height='200px' src={defaultPhoto} alt='default thumbnail' />}
 
-            <AddFromBrowseForm handleClose={handleClose} book={book} bookInfoFromGoogle={book.volumeInfo} onSetUserBooks={onSetUserBooks} />
+            <AddFromBrowseForm handleClose={handleClose} book={book} categories={categories} ages={ages} onSetUserBooks={onSetUserBooks} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={handleClose}>

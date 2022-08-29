@@ -9,14 +9,25 @@ import { Routes, Route } from 'react-router-dom';
 function App() {
 
   const [userBooks, setUserBooks] = useState([])
+  const [categories, setCategories] = useState([])
+  const [ages, setAges] = useState([])
 
   useEffect(() => {
     fetch('/members/9/books')
     .then((r) => r.json())
     .then(setUserBooks)
-  }, [])
 
+    fetch('/categories')
+    .then((r) => r.json())
+    .then(setCategories)
+
+    fetch('/ages')
+    .then((r) => r.json())
+    .then(setAges)
+  }, [])
+  
   function onSetUserBooks(book){
+    debugger
     setUserBooks([book, ...userBooks])
   }
 
@@ -31,8 +42,8 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/browse' element={<Browse onSetUserBooks={onSetUserBooks} /> } />
-        <Route path='/myshelf' element={<MyShelf userBooks={userBooks} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
+        <Route path='/browse' element={<Browse onSetUserBooks={onSetUserBooks} categories={categories} ages={ages} /> } />
+        <Route path='/myshelf' element={<MyShelf userBooks={userBooks} ages={ages} categories={categories} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
         <Route path='/account' element={<Account /> } />
       </Routes>
     </div>

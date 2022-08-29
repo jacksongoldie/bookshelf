@@ -12,17 +12,8 @@ class BooksController < ApplicationController
     def create
         debugger
         book = Book.find_or_create_by(book_params)
-        #WILL NEED TO UPDATE TO CURRENT USERS ID
-        #book.user_inputs.create(user_id: 9, categories: params[:categories])
-        render json: book, include: :authors, status: :created
+        render json: book, status: :created
     end
-    # { IF NOT EXIST Book.create(title, img, google_id, mature)
-        # book.author.create()
-        #********************************************************
-    # Book.last.user_inputs.find(6).categories << Category.first
-    # ELSE 
-
-    # book.userData.create()}
 
     private
 
@@ -31,6 +22,6 @@ class BooksController < ApplicationController
     end
 
     def book_params
-        params.permit(:book, :title, :img, :mature, :google_id, :spice, :violence, :language, authors: [])
+        params.require(:book).permit(:title, :img, :mature, :google_id, book_authors_attributes: [{ author_attributes: :name}])
     end
 end
