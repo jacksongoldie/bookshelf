@@ -11,7 +11,20 @@ class BooksController < ApplicationController
 
     def create
         debugger
-        book = Book.find_or_create_by(book_params)
+        book = Book.find_by(google_id: book_params[:google_id])
+
+        if !book
+            book = Book.create!({
+            title: book_params[:title],
+            img: book_params[:img],
+            mature: book_params[:mature],
+            google_id: book_params[:google_id]
+            })
+        ####AUTHOR FIND/CREATE BY HERE INSTEAD OF OWN FETCH?
+            book_params[:book_authors_attributes].map {|a| 
+            book.authors << Author.find(a[:id])
+            }
+        end
         render json: book, status: :created
     end
 
@@ -22,6 +35,6 @@ class BooksController < ApplicationController
     end
 
     def book_params
-        params.require(:book).permit(:title, :img, :mature, :google_id, book_authors_attributes: [{ author_attributes: :name}])
+        params.require(:book).permit(:title, :img, :mature, :google_id, book_authors_attributes: [:id, :name])
     end
 end

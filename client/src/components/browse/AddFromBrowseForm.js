@@ -14,11 +14,9 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
     const [googleData, setGoogleData] = useState({
         google_id: book.id,
         title: book.volumeInfo.title,
-        book_authors_attributes: book.volumeInfo.authors.map((a) =>{ return { author_attributes: {name: a}}}),
         img: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : null,
         mature: book.volumeInfo.maturityRating === 'MATURE' ? true : false
     })
-    console.log(googleData.authors)
     const [userData, setUserData] = useState({
         categories: [],
         tags: []
@@ -43,42 +41,59 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
         e.preventDefault();
         setModalPage(4)
 
-        fetch('/books', {
+        const authors = book.volumeInfo.authors ? book.volumeInfo.authors : ['unlisted']
+
+        fetch('/authors', {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json'
             },
-            body: JSON.stringify(googleData)
+            body: JSON.stringify({name: authors})
         })
         .then((r) => r.json())
-        .then((b) => {
-            debugger
-//******CHANGE ID HERE********************************************************************* */
-                    const userInputs = {
-                        categories_attributes: userData.categories,
-                        tags_attributes: userData.tags.split(' ').map((t) => {return {text: t}}),
-                        ages_attributes: modalInfoFromUser.ages,
-                        spice: modalInfoFromUser.spice,
-                        violence: modalInfoFromUser.violence,
-                        language: modalInfoFromUser.language,
-                        book_id: b.id,
-                        user_id: 9,
-                        review: userReview
-                    }
-                    fetch(`/user_inputs`,{
-                        method: 'POST',
-                        headers: {
-                            'Content-Type':'application/json'
-                        },
-                        body: JSON.stringify(userInputs)})
-                        .then((r) => r.json())
-                        .then((u) => {
-                            b.user_inputs.push(u)
-                            b.user_input_id = u.id
-                            onSetUserBooks(b)
+        .then((a) => {
+            const bookToSubmit = {...googleData, book_authors_attributes: a}
+            console.log(bookToSubmit)
+            debugger;
+            fetch('/books', {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(bookToSubmit)
+            })
+            .then((r) => r.json())
+            .then((b) => {
+                debugger
+    //******CHANGE ID HERE********************************************************************* */
+                        const userInputs = {
+                            user_input_categories_attributes: userData.categories,
+                            user_input_tags_attributes: userData.tags.split(' ').map((t) => {return {text: t}}),
+                            user_input_ages_attributes: modalInfoFromUser.ages,
+                            spice: modalInfoFromUser.spice,
+                            violence: modalInfoFromUser.violence,
+                            language: modalInfoFromUser.language,
+                            book_id: b.id,
+                            user_id: 9,
+                            review: userReview
+                        }
+                        fetch(`/user_inputs`,{
+                            method: 'POST',
+                            headers: {
+                                'Content-Type':'application/json'
+                            },
+                            body: JSON.stringify(userInputs)})
+                            .then((r) => r.json())
+                            .then((u) => {
+                                b.user_inputs.push(u)
+                                b.user_input_id = u.id
+                                onSetUserBooks(b)
+                            })
                         })
-                    })
-                }
+                    }
+       )
+    }
+        
         //     review: userReview
 
     function handleChange(e){

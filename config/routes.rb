@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   resources :reviews, only: [:index]
   resources :user_inputs, only: [:show, :create, :update]
   resources :ages, only: [:index]
-  resources :tags, only: [:index]
+  resources :tags, only: [:index, :create]
   resources :categories, only: [:index]
   resources :books
+  resources :authors, only: [:create]
   resources :profiles
   devise_for :users,
               controllers: {

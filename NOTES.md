@@ -50,3 +50,7 @@ Depending on your application's configuration some manual setup may be required:
 
 
 **not suitable for children value isn't updating
+
+AUGUST 29
+------------
+How do I keep from running sudo service postgresql start every time I exit VS code?

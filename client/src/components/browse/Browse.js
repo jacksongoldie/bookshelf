@@ -3,7 +3,7 @@ import BrowseCards from "./BrowseCards";
 import BrowsePagination from "./BrowsePagination";
 import { useEffect, useState } from 'react';
 
-function Browse({ onSetUserBooks, categories, ages }) {
+function Browse({ onSetUserBooks, userBooks, categories, ages }) {
 
   //search is variable used for query paramaters in fetch, input is variable from BrowseSearch.js form that sets search
   const [search, setSearch] = useState('')
@@ -40,7 +40,7 @@ function Browse({ onSetUserBooks, categories, ages }) {
     <div style={{ margin: '50px' }}>
       <BrowseSearch onSetSearch={onSetSearch} search={search} />
         <div style={{ marginTop: '50px' }}>
-          <BrowseCards books={searchedBooks} onSetUserBooks={onSetUserBooks} categories={categories} ages={ages} />
+          <BrowseCards books={searchedBooks} userBooks={userBooks} onSetUserBooks={onSetUserBooks} categories={categories} ages={ages} />
           <BrowsePagination books={searchedBooks} index={index} onSetIndex={onSetIndex} currentPage={currentPage} onSetCurrentPage={onSetCurrentPage} />
         </div>
     </div>

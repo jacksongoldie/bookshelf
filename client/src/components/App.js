@@ -42,7 +42,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/browse' element={<Browse onSetUserBooks={onSetUserBooks} categories={categories} ages={ages} /> } />
+        <Route path='/browse' element={<Browse onSetUserBooks={onSetUserBooks} userBooks={userBooks} categories={categories} ages={ages} /> } />
         <Route path='/myshelf' element={<MyShelf userBooks={userBooks} ages={ages} categories={categories} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
         <Route path='/account' element={<Account /> } />
       </Routes>

@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Stack from 'react-bootstrap/Stack';
 
 
-function BrowseCard({ book, onSetUserBooks, categories, ages }) {
+function BrowseCard({ book, onSetUserBooks, userBooks, categories, ages }) {
     
   return (
     <div>
@@ -18,7 +18,7 @@ function BrowseCard({ book, onSetUserBooks, categories, ages }) {
                     <Card.Text style={{ height: '20em'}}>
                     {book.searchInfo ? book.searchInfo.textSnippet.slice(0,250) : null}
                     </Card.Text>
-                  <BrowseCardButton book={book} onSetUserBooks={onSetUserBooks} categories={categories} ages={ages} />  
+                  <BrowseCardButton book={book} userBooks={userBooks} onSetUserBooks={onSetUserBooks} categories={categories} ages={ages} />  
                 </Stack>
             </Card.Body>
         </Card>

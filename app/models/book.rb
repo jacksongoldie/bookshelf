@@ -8,12 +8,9 @@ class Book < ApplicationRecord
     has_many :ages, through: :user_inputs
     has_many :tags, through: :user_inputs
     has_many :reviews, through: :user_inputs
-    
-  def book_author_attributes=(book_author_attributes)
-    byebug 
-    book_author_attributes.each do |a|
-      book_authors.build(a)
-    end
-  end
+
+    accepts_nested_attributes_for :book_authors
+
+    validates :google_id, uniqueness: true
 end
 
