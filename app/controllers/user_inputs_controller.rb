@@ -5,7 +5,6 @@ class UserInputsController < ApplicationController
     end
 
     def create
-        debugger
         input =  UserInput.create!({
 ####################CHANGE USER TO CURRENT USER??
             user_id: user_input_params[:user_id],
@@ -23,9 +22,16 @@ class UserInputsController < ApplicationController
             input.ages << age
         }
         user_input_params[:user_input_tags_attributes].map {|t| 
-            tag = Tag.create!({text: t[:text]})
+            tag = Tag.find_or_create_by!({text: t[:text]})
             input.tags << tag
         }
+        if user_input_params[:review_attributes]
+            Review.create!({
+                text: user_input_params[:review_attributes][:text], 
+                rate: user_input_params[:review_attributes][:rate],
+                user_input_id: input.id
+            })
+        end
         
         render json: input, status: :created
     end
@@ -51,6 +57,6 @@ class UserInputsController < ApplicationController
     end
 
     def user_input_params
-        params.require(:user_input).permit(:user_id, :book_id, :spice, :violence, :language, user_input_categories_attributes:[:name, :id], user_input_ages_attributes: [:range, :id], user_input_tags_attributes: [:text], user_input_review_attributes: [:rate, :text])
+        params.require(:user_input).permit(:user_id, :book_id, :spice, :violence, :language, user_input_categories_attributes:[:name, :id], user_input_ages_attributes: [:range, :id], user_input_tags_attributes: [:id, :text], review_attributes: [:rate, :text])
     end
 end

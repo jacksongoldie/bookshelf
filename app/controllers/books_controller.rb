@@ -10,7 +10,6 @@ class BooksController < ApplicationController
     end
 
     def create
-        debugger
         book = Book.find_by(google_id: book_params[:google_id])
 
         if !book
