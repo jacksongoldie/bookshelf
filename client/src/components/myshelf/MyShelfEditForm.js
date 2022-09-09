@@ -2,7 +2,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from 'react';
 
-function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChange, review, handleSubmit }) {
+function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChange, handleSubmit }) {
+
+    console.log(categories, userInputsToEdit.categories)
 
     // const [googleData, setGoogleData] = useState({
     //     google_id: book.google_id,
@@ -39,10 +41,11 @@ function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChang
             </Form.Group>
             <Form.Group className="mb-3" controlId="userData">
                 <Form.Label>Main Character Representation</Form.Label>
-                    <Form.Control as='checkbox' multiple name='categories' value={userInputsToEdit.categories} onChange={handleChange}>
+                    <Form.Control as='checkbox' multiple name='categories' value={userInputsToEdit.categories} onChange={(e) => handleChange(e, 'userData')}>
                         {categories.map((option) => <Form.Check 
                             type="switch"
                             name='categories'
+                            id={option.id}
                             key={option.id}
                             label={option.name}
                             defaultChecked={userInputsToEdit.categories.find((c) => c.id === option.id)}
@@ -50,7 +53,7 @@ function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChang
                         />)}
                     </Form.Control>
                 {/* <Form.Label>Tags</Form.Label>
-                    <Form.Control type="textarea" name='tags' value={userInputsToEdit.tags[0].text} onChange={handleChange} /> */}
+                    <Form.Control type="textarea" name='tags' value={userInputsToEdit.tags.map((t) => `${t.text} `).join('')} onChange={handleChange} /> */}
             </Form.Group>
             {book.mature ?
             <Form.Group className="mb-3" controlId="modalInfoFromUser">
@@ -68,23 +71,24 @@ function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChang
             </Form.Group>:
             <Form.Group className="mb-3" controlId="userInputsToEdit">
             <Form.Label>Recommended Reader Ages</Form.Label>
-                <Form.Control as='checkbox' multiple value={userInputsToEdit.ages} onChange={handleChange} >
+                <Form.Control as='checkbox' multiple value={userInputsToEdit.ages} onChange={(e) => handleChange(e, 'userInputsToEdit')} >
                     {ages.map((option) => <Form.Check 
                         type="switch"
                         name='ages'
-                        key={option.id}
+                        id={option.id}
                         label={option.range}
                         defaultChecked={userInputsToEdit.ages.find((a) => a.id === option.id)}
                         value={option.range}
+                        key={option.id}
                     />)}
                 </Form.Control>
                 </Form.Group>}
-            <Form.Group className="mb-3" controlId="review">
+            <Form.Group className="mb-3" controlId="userInputsToEdit">
                 <Form.Label>Review</Form.Label>
-                    <Form.Control type="textarea" name='text' value={review.text} onChange={handleChange} />
+                    <Form.Control type="textarea" name='text' value={userInputsToEdit.review.text} onChange={(e)=>handleChange(e, 'userInputsToEdit')} />
                     <Form.Label>Rate</Form.Label>
-                    <Form.Control type="range" className="form-range" min={1} max={5} name='rate' value={review.rate} onChange={handleChange} />
-                    <Form.Label>{review.rate}</Form.Label>
+                    <Form.Control type="range" className="form-range" min={1} max={5} name='rate' value={userInputsToEdit.review.rate} onChange={(e)=>handleChange(e, 'userInputsToEdit')} />
+                    <Form.Label>{userInputsToEdit.review.rate}</Form.Label>
             </Form.Group>
             <Button type='Submit' variant='success'> Submit </Button>
         </Form>

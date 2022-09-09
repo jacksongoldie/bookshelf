@@ -8,8 +8,6 @@ function BrowseCardButton({ book, onSetUserBooks, userBooks, categories, ages })
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-
-    console.log(userBooks, book)
     
   return (
     <div>

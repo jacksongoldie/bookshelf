@@ -22,7 +22,7 @@ function ModalForm2({ book, handleChange, modalInfoFromUser, setModalPage, ages 
             </Form.Group>
         </>
     )}
-
+console.log(modalInfoFromUser.ages)
     function modalQuestions(){
         switch(book.volumeInfo.maturityRating){
             case "MATURE":
@@ -42,7 +42,7 @@ function ModalForm2({ book, handleChange, modalInfoFromUser, setModalPage, ages 
                             />)}
                         </Form.Control>
                         </Form.Group>
-                        {modalInfoFromUser.ages.includes('Not Suitable for Children') ?
+                        {modalInfoFromUser.ages.find((a) => a.range === 'Not Suitable for Children') ?
                         matureRatingQuestions() :
                         null}
                         </>)

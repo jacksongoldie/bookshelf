@@ -23,9 +23,9 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
     })
     //set category modal questions to empty object and set with name/value??
     const [modalInfoFromUser, setModalInfoFromUser] = useState({
-        spice: 0,
-        violence: 0,
-        language: 0,
+        spice: null,
+        violence: null,
+        language: null,
         ages: []
     });
     
@@ -68,14 +68,15 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
     //******CHANGE ID HERE********************************************************************* */
                         const userInputs = {
                             user_input_categories_attributes: userData.categories,
-                            user_input_tags_attributes: userData.tags.split(' ').map((t) => {return {text: t}}),
+                            user_input_tags_attributes: userData.tags.length > 0 ? userData.tags.split(' ').map((t) => {return {text: t}}) : [],
+                            //user_input_tags_attributes: userData.tags.length > 0 ? userData.tags : [],
                             user_input_ages_attributes: modalInfoFromUser.ages,
                             spice: modalInfoFromUser.spice,
                             violence: modalInfoFromUser.violence,
                             language: modalInfoFromUser.language,
                             book_id: b.id,
                             user_id: 9,
-                            review: userReview
+                            review_attributes: userReview
                         }
                         fetch(`/user_inputs`,{
                             method: 'POST',
@@ -93,8 +94,6 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
                     }
        )
     }
-        
-        //     review: userReview
 
     function handleChange(e){
         //determine data group

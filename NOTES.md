@@ -54,3 +54,5 @@ Depending on your application's configuration some manual setup may be required:
 AUGUST 29
 ------------
 How do I keep from running sudo service postgresql start every time I exit VS code?
+*categories on MyShelfEditForm option.id set to key isn't working, can't send ID back to db
+Fix age, cat, tag serializers so they don't give created at and updated at when going to update user_input_params
