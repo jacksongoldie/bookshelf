@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
     def index
-        books = Book.all.order(title: :asc)
+        books = current_user.books.order(title: :asc)
         render json: books, each_serializer: UserBooksSerializer, status: :ok
     end
 
@@ -24,6 +24,7 @@ class BooksController < ApplicationController
             book.authors << Author.find(a[:id])
             }
         end
+        current_user.books << book
         render json: book, status: :created
     end
 

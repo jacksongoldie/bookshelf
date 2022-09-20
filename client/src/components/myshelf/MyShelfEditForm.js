@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChange, handleSubmit }) {
 
-    console.log(categories, userInputsToEdit.categories)
+    console.log(userInputsToEdit)
 
     // const [googleData, setGoogleData] = useState({
     //     google_id: book.google_id,
@@ -55,20 +55,36 @@ function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChang
                 {/* <Form.Label>Tags</Form.Label>
                     <Form.Control type="textarea" name='tags' value={userInputsToEdit.tags.map((t) => `${t.text} `).join('')} onChange={handleChange} /> */}
             </Form.Group>
-            {book.mature ?
+            {userInputsToEdit.ages.find((a) => a.range === 'Not Suitable for Children') ?
+            <>
+            <Form.Group className="mb-3" controlId="userInputsToEdit">
+            <Form.Label>Recommended Reader Ages</Form.Label>
+                <Form.Control as='checkbox' multiple value={userInputsToEdit.ages} onChange={(e) => handleChange(e, 'userInputsToEdit')} >
+                    {ages.map((option) => <Form.Check 
+                        type="switch"
+                        name='ages'
+                        id={option.id}
+                        label={option.range}
+                        defaultChecked={userInputsToEdit.ages.find((a) => a.id === option.id)}
+                        value={option.range}
+                        key={option.id}
+                    />)}
+                </Form.Control>
+                </Form.Group>
             <Form.Group className="mb-3" controlId="modalInfoFromUser">
             <Form.Label>Spicy Level</Form.Label>
-                <Form.Control type="range" className="form-range" min={1} max={3} name='spice' value={userInputsToEdit.spice} onChange={handleChange} />
+                <Form.Control type="range" className="form-range" min={1} max={3} name='spice' value={userInputsToEdit.spice} onChange={(e)=>handleChange(e, 'modalInfoFromUser')} />
                 <Form.Label>{userInputsToEdit.spice}</Form.Label>
                 <br />
             <Form.Label>Violence</Form.Label>
-                <Form.Control type="range" className="form-range" min={1} max={3} name='violence' value={userInputsToEdit.violence} onChange={handleChange} />
+                <Form.Control type="range" className="form-range" min={1} max={3} name='violence' value={userInputsToEdit.violence} onChange={(e)=>handleChange(e, 'modalInfoFromUser')} />
                 <Form.Label>{userInputsToEdit.violence}</Form.Label>
                 <br />
             <Form.Label>Language</Form.Label>
-                <Form.Control type="range" className="form-range" min={1} max={3} name='language' value={userInputsToEdit.language} onChange={handleChange} />
+                <Form.Control type="range" className="form-range" min={1} max={3} name='language' value={userInputsToEdit.language} onChange={(e)=>handleChange(e, 'modalInfoFromUser')} />
                 <Form.Label>{userInputsToEdit.language}</Form.Label>
-            </Form.Group>:
+            </Form.Group> 
+            </>:
             <Form.Group className="mb-3" controlId="userInputsToEdit">
             <Form.Label>Recommended Reader Ages</Form.Label>
                 <Form.Control as='checkbox' multiple value={userInputsToEdit.ages} onChange={(e) => handleChange(e, 'userInputsToEdit')} >

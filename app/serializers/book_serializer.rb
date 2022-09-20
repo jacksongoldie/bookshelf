@@ -4,7 +4,6 @@ class BookSerializer < ActiveModel::Serializer
   has_many :user_inputs
 
   def spice
-    debugger;
     array = object.user_inputs.map {|i| i.spice}
     array = array.compact
     if array.length > 0

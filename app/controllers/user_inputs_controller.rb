@@ -5,9 +5,8 @@ class UserInputsController < ApplicationController
     end
 
     def create
-        debugger
         input =  UserInput.create!({
-####################CHANGE USER TO CURRENT USER??
+####################CHANGE USER TO CURRENT USER/Before action to make sure user is the logged in user
             user_id: user_input_params[:user_id],
             book_id: user_input_params[:book_id],
             spice: user_input_params[:spice],
@@ -38,7 +37,6 @@ class UserInputsController < ApplicationController
     end
 
     def update
-        debugger
         user_input.update!({
             spice: user_input_params[:spice],
             violence: user_input_params[:violence],
@@ -69,6 +67,13 @@ class UserInputsController < ApplicationController
         render json: user_input, status: :created
     end
 
+    def destroy
+        book = current_user.books.find(book_id)
+        current_user.books.delete(book)
+        user_input.destroy
+        head :no_content
+    end
+
     private
 
     def user_input
@@ -77,7 +82,7 @@ class UserInputsController < ApplicationController
 
     def user_input_params
         #removed user_input_tags_attributes to add tag updates later!
-        params.require(:user_input).permit(:user_id, :book_id, :spice, :violence, :language, user_input_categories_attributes:[:name, :id], user_input_ages_attributes: [:range, :id], review_attributes: [:rate, :text])
+        params.require(:user_input).permit(:user_id, :book_id, :spice, :violence, :language, user_input_categories_attributes:[:name, :id], user_input_ages_attributes: [:range, :id], user_input_tags_attributes:[:text, :id], review_attributes: [:rate, :text])
     end
 end
 

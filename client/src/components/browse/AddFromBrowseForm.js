@@ -7,7 +7,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages }) {
-    console.log(book)
 
     const navigate = useNavigate();
 
@@ -23,16 +22,16 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
     })
     //set category modal questions to empty object and set with name/value??
     const [modalInfoFromUser, setModalInfoFromUser] = useState({
-        spice: null,
-        violence: null,
-        language: null,
+        spice: '',
+        violence: '',
+        language: '',
         ages: []
     });
     
     //review will create new review for book and user on submit
     const [userReview, setUserReview] = useState({
         text: '',
-        rate: 0
+        rate: ''
     })
 
     const [modalPage, setModalPage] = useState(1)
@@ -102,9 +101,10 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
                 setGoogleData({...googleData, [e.target.name]: e.target.value});
                 break
             case 'userData':
+                //debugger;
                 if(e.target.name === 'categories'){
-                    if (userData.categories.includes(e.target.value)){
-                        const replacementArray = userData.categories.filter((c) => c !== e.target.value)
+                    if (userData.categories.find((c) => c.name === e.target.value)){
+                        const replacementArray = userData.categories.filter((c) => c.name !== e.target.value)
                         setUserData({...userData, categories: replacementArray})
                     }
                     else{
@@ -118,9 +118,10 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
                 }
                 break
             case 'modalInfoFromUser':
+                //debugger;
                 if(e.target.name === 'ages'){
-                    if (modalInfoFromUser.ages.includes(e.target.value)){
-                        const replacementArray = modalInfoFromUser.ages.filter((age) => age !== e.target.value)
+                    if (modalInfoFromUser.ages.find((a) => a.range === e.target.value)){
+                        const replacementArray = modalInfoFromUser.ages.filter((age) => age.range !== e.target.value)
                         setModalInfoFromUser({...modalInfoFromUser, [e.target.name]: replacementArray})
                     }
                     else{
@@ -139,7 +140,7 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
                 return null;
           }
     }
-
+    console.log(modalInfoFromUser, userData)
     function displayModalForm(){
         //determine data group
         switch(modalPage){

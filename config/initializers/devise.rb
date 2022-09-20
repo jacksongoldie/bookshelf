@@ -14,19 +14,17 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'f9eea38d1a0caf8c20a15d9afe7150a299e42934e302d10dc9731f0775489425f8cc539a127627afb3ad272dd06f5bc894f853b5802a3139b42c6340316c2111'
-        # config.jwt do |jwt|
-        #   jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
-        #   jwt.dispatch_requests = [
-        #     ['POST', %r{^/users/sign_in$}]
-        #   ]
-        #   jwt.revocation_requests = [
-        #     ['DELETE', %r{^/users/sign_out$}]
-        #   ]
-        #   jwt.expiration_time = 30.minutes.to_i
-        # end
+  config.secret_key = '4ba0b8831cd192ea2f64f748a0da81090db71be6c429751ca13ecf0eebadc35df596d87eb4df47d35aecf1cda846545646ab0981f728b41daafb688dd74d6178'
+ 
   config.jwt do |jwt|
-    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
+    jwt.secret = Rails.application.credentials.fetch(:secret_key_base)
+    jwt.dispatch_requests = [
+      ['POST', %r{^/login$}]
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/logout$}]
+    ]
+    jwt.expiration_time = 30.minutes.to_i
   end
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.

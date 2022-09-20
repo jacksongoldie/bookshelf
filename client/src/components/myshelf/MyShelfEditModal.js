@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 
 function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBook, onSetUserBooks, onSetIsDeleting, categories, ages }) {
-console.log(book.user_input_id)
+
     const [userInputsToEdit, setUserInputsToEdit] = useState({})
     //NEEDS TO BE FETCHING OR PROPPING THE BOOK USER INPUTS FOR THIS USER
     useEffect(() => {
@@ -16,15 +16,9 @@ console.log(book.user_input_id)
         .then(setUserInputsToEdit)
       }, [book.user_input_id])
 
-      console.log(userInputsToEdit)
-
       function handleChange(e, controlId){
         switch(controlId){
-            // case 'googleData':
-            //     setGoogleData({...googleData, [e.target.name]: e.target.value});
-            //     break
             case 'userData':
-                //debugger
                 if(e.target.name === 'categories'){
                     if (userInputsToEdit.categories.find((c) => c.name === e.target.value)){
                         const replacementArray = userInputsToEdit.categories.filter((c) => c.name !== e.target.value)
@@ -42,7 +36,6 @@ console.log(book.user_input_id)
                 }
                 break
             case 'userInputsToEdit':
-                debugger;
                 if(e.target.name === 'ages'){
                     if (userInputsToEdit.ages.find((a) => a.range === e.target.value)){
                         const replacementArray = userInputsToEdit.ages.filter((age) => age.range !== e.target.value)
@@ -56,11 +49,14 @@ console.log(book.user_input_id)
                     setUserInputsToEdit({...userInputsToEdit, review: {...userInputsToEdit.review, [e.target.name]: e.target.value}})
                 }
                 break
+            case 'modalInfoFromUser':
+                setUserInputsToEdit({...userInputsToEdit, [e.target.name]: e.target.value})
+                break
             default:
                 return null;
           }
     }
-console.log(userInputsToEdit.categories)
+
     function handleSubmit(e){
         e.preventDefault();
         const update = {
@@ -84,9 +80,13 @@ console.log(userInputsToEdit.categories)
         }
 
     function handleDelete(){
-        console.log('in delete')
+        debugger
+      fetch(`/user_inputs/${book.user_input_id}`, {
+        method: 'DELETE'
+      })
         //WILL NEED TO CHANGE TO NEW ID
-        onDeleteUserBook(book.google_id)
+        .then(r => r.json())
+        .then(onDeleteUserBook(book.google_id))
     }
 
     function handleCancel(){

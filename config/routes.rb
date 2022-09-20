@@ -4,18 +4,24 @@ Rails.application.routes.draw do
     resources :books
   end
   resources :reviews, only: [:index]
-  resources :user_inputs, only: [:show, :create, :update]
+  resources :user_inputs, only: [:show, :create, :update, :destroy]
   resources :ages, only: [:index]
   resources :tags, only: [:index, :create]
   resources :categories, only: [:index]
   resources :books
   resources :authors, only: [:create]
   resources :profiles
-  devise_for :users,
-              controllers: {
-                sessions: 'users/sessions',
-                registrations: 'users/registrations'
-            }
+
+  devise_for :users, path: '', 
+  path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    registration: 'signup'
+  },
+  controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   get '/member-data', to: 'members#show'
 
   # Defines the root path route ("/")

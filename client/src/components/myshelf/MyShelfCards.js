@@ -2,7 +2,7 @@ import MyShelfCard from "./MyShelfCard";
 import Row from 'react-bootstrap/Row';
 
 function MyShelfCards({ userBooks, onSetUserBooks, onDeleteUserBook, categories, ages }) {
-    console.log(userBooks)
+  
     const allUserBooks = userBooks.map((book) => <MyShelfCard book={book} key={book.google_id} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} ages={ages} categories={categories} />);
 
   return (
