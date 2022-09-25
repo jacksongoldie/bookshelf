@@ -1,5 +1,7 @@
 class UserInputsController < ApplicationController
 
+    before_action :authenticate_user!, only: [:create, :update, :destroy]
+    
     def show
         render json: user_input, status: :ok
     end
@@ -7,7 +9,7 @@ class UserInputsController < ApplicationController
     def create
         input =  UserInput.create!({
 ####################CHANGE USER TO CURRENT USER/Before action to make sure user is the logged in user
-            user_id: user_input_params[:user_id],
+            user_id: current_user.id,
             book_id: user_input_params[:book_id],
             spice: user_input_params[:spice],
             violence: user_input_params[:violence],
@@ -68,8 +70,8 @@ class UserInputsController < ApplicationController
     end
 
     def destroy
-        book = current_user.books.find(book_id)
-        current_user.books.delete(book)
+        index = current_user.books.index{|b| b.id == user_input.book_id}
+        current_user.books.delete(current_user.books[index])
         user_input.destroy
         head :no_content
     end

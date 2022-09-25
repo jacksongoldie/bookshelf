@@ -73,15 +73,15 @@ function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChang
                 </Form.Group>
             <Form.Group className="mb-3" controlId="modalInfoFromUser">
             <Form.Label>Spicy Level</Form.Label>
-                <Form.Control type="range" className="form-range" min={1} max={3} name='spice' value={userInputsToEdit.spice} onChange={(e)=>handleChange(e, 'modalInfoFromUser')} />
+                <Form.Control type="range" className="form-range" min={0} max={3} name='spice' value={userInputsToEdit.spice} onChange={(e)=>handleChange(e, 'modalInfoFromUser')} />
                 <Form.Label>{userInputsToEdit.spice}</Form.Label>
                 <br />
             <Form.Label>Violence</Form.Label>
-                <Form.Control type="range" className="form-range" min={1} max={3} name='violence' value={userInputsToEdit.violence} onChange={(e)=>handleChange(e, 'modalInfoFromUser')} />
+                <Form.Control type="range" className="form-range" min={0} max={3} name='violence' value={userInputsToEdit.violence} onChange={(e)=>handleChange(e, 'modalInfoFromUser')} />
                 <Form.Label>{userInputsToEdit.violence}</Form.Label>
                 <br />
             <Form.Label>Language</Form.Label>
-                <Form.Control type="range" className="form-range" min={1} max={3} name='language' value={userInputsToEdit.language} onChange={(e)=>handleChange(e, 'modalInfoFromUser')} />
+                <Form.Control type="range" className="form-range" min={0} max={3} name='language' value={userInputsToEdit.language} onChange={(e)=>handleChange(e, 'modalInfoFromUser')} />
                 <Form.Label>{userInputsToEdit.language}</Form.Label>
             </Form.Group> 
             </>:

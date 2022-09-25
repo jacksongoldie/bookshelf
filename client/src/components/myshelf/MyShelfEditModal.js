@@ -6,15 +6,15 @@ import { useState, useEffect } from 'react';
 
 
 function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBook, onSetUserBooks, onSetIsDeleting, categories, ages }) {
-
+console.log(book)
     const [userInputsToEdit, setUserInputsToEdit] = useState({})
     //NEEDS TO BE FETCHING OR PROPPING THE BOOK USER INPUTS FOR THIS USER
     useEffect(() => {
         console.log('in useeffect')
-        fetch(`/user_inputs/${book.user_input_id}`)
+        fetch(`/user_inputs/${book.current_user_input.id}`)
         .then((r) => r.json())
         .then(setUserInputsToEdit)
-      }, [book.user_input_id])
+      }, [book.current_user_input.id])
 
       function handleChange(e, controlId){
         switch(controlId){
@@ -68,7 +68,7 @@ function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBoo
             //user_input_tags_attributes: userInputsToEdit.tags.length > 0 ? userInputsToEdit.tags.split(' ').map((t) => {return {text: t}}) : [],
             review_attributes: userInputsToEdit.review
         }
-        fetch(`/user_inputs/${book.user_input_id}`, {
+        fetch(`/user_inputs/${book.current_user_input.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

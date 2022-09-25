@@ -6,38 +6,61 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function Account() {
-  const [loggedIn, setLoggedIn] = useState(false);
+function Account({ onSetUser, user }) {
+  console.log(user.id ? 'true' : 'false')
+  //const [loggedIn, setLoggedIn] = useState(user.id ? true : false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
 
-  function onSetLoggedIn(){
-    setLoggedIn((mUV => !mUV))
-  }
+  // function onSetLoggedIn(){
+  //   setLoggedIn((mUV => !mUV))
+  // }
 
   function resetAccountPage(){
-    setLoggedIn(false)
+    //setLoggedIn(false)
     setShowLoginForm(false)
     setShowSignUpForm(false)
   }
   
+  function handleLogout(){
+    fetch("/logout", {
+  method: "DELETE",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: localStorage.getItem("token"),
+  },
+})
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return res.json().then((json) => Promise.reject(json));
+    }
+  })
+  .then((json) => {
+    console.dir(json);
+  })
+  .catch((err) => console.error(err));
+  onSetUser({})
+  }
   return (
     <div>
       <div style={{ margin: '50px'}}>
         <Row className="justify-content-center">
-        { loggedIn ? 
+        { user.id ? 
         <>
         <Col md='auto'>
-        <AccountInfo />
-        <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => {setLoggedIn((mUV) => !mUV); resetAccountPage()}}> Logout </Button>
+        <AccountInfo user={user} />
+        <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => {handleLogout(); resetAccountPage()}}> Logout </Button>
         </Col>
         </>:
         <>
         <Col md='auto'>
-        {showSignUpForm ? <SignUp onSetLoggedIn={onSetLoggedIn} /> : <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowSignUpForm((mUV) => !mUV)}>SignUp</Button>}
-        {showLoginForm ? <Login onSetLoggedIn={onSetLoggedIn} resetAccountPage={resetAccountPage} /> : <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowLoginForm((mUV) => !mUV)}>Login</Button>}
+        {showSignUpForm ? <SignUp onSetUser={onSetUser} resetAccountPage={resetAccountPage} /> : <>{!showLoginForm ? <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowSignUpForm((mUV) => !mUV)}>SignUp</Button> : null}</>}
+
+        {showLoginForm ? <Login onSetUser={onSetUser} resetAccountPage={resetAccountPage} setShowSignUpForm={setShowSignUpForm} /> : <> {!showSignUpForm ? <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowLoginForm((mUV) => !mUV)}>Login</Button> : null}</>}
         </Col>
-        </> }
+        </>}
         </Row>
       </div>
     </div>

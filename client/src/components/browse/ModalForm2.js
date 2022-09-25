@@ -9,15 +9,15 @@ function ModalForm2({ book, handleChange, modalInfoFromUser, setModalPage, ages 
        return( <>
             <Form.Group className="mb-3" controlId="modalInfoFromUser">
                 <Form.Label>Spicy Level</Form.Label>
-                    <Form.Control type="range" className="form-range" min={1} max={3} name='spice' value={modalInfoFromUser.spice} onChange={handleChange} />
+                    <Form.Control type="range" className="form-range" min={0} max={3} name='spice' value={modalInfoFromUser.spice} onChange={handleChange} />
                     <Form.Label>{modalInfoFromUser.spice}</Form.Label>
                     <br />
                 <Form.Label>Violence</Form.Label>
-                    <Form.Control type="range" className="form-range" min={1} max={3} name='violence' value={modalInfoFromUser.violence} onChange={handleChange} />
+                    <Form.Control type="range" className="form-range" min={0} max={3} name='violence' value={modalInfoFromUser.violence} onChange={handleChange} />
                     <Form.Label>{modalInfoFromUser.violence}</Form.Label>
                     <br />
                 <Form.Label>Language</Form.Label>
-                    <Form.Control type="range" className="form-range" min={1} max={3} name='language' value={modalInfoFromUser.language} onChange={handleChange} />
+                    <Form.Control type="range" className="form-range" min={0} max={3} name='language' value={modalInfoFromUser.language} onChange={handleChange} />
                     <Form.Label>{modalInfoFromUser.language}</Form.Label>
             </Form.Group>
         </>

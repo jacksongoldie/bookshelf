@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+    before_action :authenticate_user!
 
     def index
         books = current_user.books.order(title: :asc)
@@ -6,7 +7,7 @@ class BooksController < ApplicationController
     end
 
     def show
-        render json: book, status: :ok
+        render json: book, serializer: BookSerializer, status: :ok
     end
 
     def create

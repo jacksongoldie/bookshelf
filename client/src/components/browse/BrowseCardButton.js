@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import AddFromBrowseModal from './AddFromBrowseModal';
 
-function BrowseCardButton({ book, onSetUserBooks, userBooks, categories, ages }) {
+function BrowseCardButton({ user, book, onSetUserBooks, userBooks, categories, ages }) {
     //will need to be passed: onClick, Heading
     const [show, setShow] = useState(false);
 
@@ -19,7 +19,7 @@ function BrowseCardButton({ book, onSetUserBooks, userBooks, categories, ages })
       :
       <>
       <Button onClick={handleShow} variant="success">Add to MyShelf</Button>
-      <AddFromBrowseModal handleClose={handleClose} show={show} book={book} categories={categories} ages={ages} onSetUserBooks={onSetUserBooks} />
+      <AddFromBrowseModal user={user} handleClose={handleClose} show={show} book={book} categories={categories} ages={ages} onSetUserBooks={onSetUserBooks} />
       </>}
         
     </div>

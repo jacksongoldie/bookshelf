@@ -1,7 +1,7 @@
 class BookSerializer < ActiveModel::Serializer
-  attributes :id, :title, :google_id, :mature, :img, :spice
+  attributes :id, :title, :google_id, :mature, :img, :spice, :violence
   has_many :authors
-  has_many :user_inputs
+  #has_many :user_inputs
 
   def spice
     array = object.user_inputs.map {|i| i.spice}
@@ -11,6 +11,17 @@ class BookSerializer < ActiveModel::Serializer
       return avg
     else 
       return 'this book does not have spice votes'
+    end
+  end
+
+  def violence
+    array = object.user_inputs.map{|i| i.violence}.filter{|v| v > 0}
+    #array = array.compact
+    if array.length > 0
+      avg = array.sum / array.length
+      return avg
+    else 
+      return 'this book does not have violence votes'
     end
   end
   #####MOVE THE ABOVE TO A CUSTOM SERIALIZER AND MAKE VIO/LANG

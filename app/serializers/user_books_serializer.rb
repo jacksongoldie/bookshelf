@@ -1,19 +1,20 @@
 class UserBooksSerializer < ActiveModel::Serializer
-  attributes :id, :title, :img, :mature, :google_id, :authors_string, :user_input_id
-  has_many :user_inputs, each_serializer: UserInputSerializer
+  attributes :id, :title, :img, :mature, :google_id, :authors_string
+  has_one :current_user_input, serializer: UserInputSerializer
+  #has_many :user_inputs, each_serializer: UserInputSerializer
 
   def authors_string
     authors = object.authors.map {|a| a.name}
     authors.join(', ')
   end
 
-  # def user_input
-  #   uI = UserInput.find(user_input_id)
-  #   uI
-  # end
-
-  def user_input_id
-    uI = UserInput.where(book_id: object.id, user_id: 9 )
-    uI[0].id
+  def current_user_input
+    UserInput.where(book_id: object.id, user_id: current_user.id)[0]
   end
+
+  # def user_input_id
+  #   debugger
+  #   uI = UserInput.where(book_id: object.id, user_id: current_user.id )
+  #   uI[0].id
+  # end
 end

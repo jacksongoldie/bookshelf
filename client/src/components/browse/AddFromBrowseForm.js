@@ -6,7 +6,7 @@ import ModalForm3 from './ModalForm3';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages }) {
+function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories, ages }) {
 
     const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
         categories: [],
         tags: []
     })
-    //set category modal questions to empty object and set with name/value??
+
     const [modalInfoFromUser, setModalInfoFromUser] = useState({
         spice: '',
         violence: '',
@@ -74,7 +74,7 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
                             violence: modalInfoFromUser.violence,
                             language: modalInfoFromUser.language,
                             book_id: b.id,
-                            user_id: 9,
+                            user_id: user.id,
                             review_attributes: userReview
                         }
                         fetch(`/user_inputs`,{
@@ -86,7 +86,7 @@ function AddFromBrowseForm({ book, handleClose, onSetUserBooks, categories, ages
                             .then((r) => r.json())
                             .then((u) => {
                                 b.user_inputs.push(u)
-                                b.user_input_id = u.id
+                                b.current_user_input.id = u.id
                                 onSetUserBooks(b)
                             })
                         })
