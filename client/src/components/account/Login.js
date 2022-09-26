@@ -23,9 +23,7 @@ function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
               user: formData
             }),
           }).then((res) => {
-            debugger;
             if (res.ok) {
-              //console.log(res.headers.get("Authorization"));
               localStorage.setItem("token", res.headers.get("Authorization"));
               return res.json();
             } else {
@@ -34,8 +32,6 @@ function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
           })
           .then((json) => onSetUser(json.data))
           .catch((err) => setError(err))
-        //change for error handling
-        //onSetLoggedIn()
     }
 
     function handleChange(e){

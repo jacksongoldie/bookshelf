@@ -63,8 +63,6 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
             })
             .then((r) => r.json())
             .then((b) => {
-                debugger
-    //******CHANGE ID HERE********************************************************************* */
                         const userInputs = {
                             user_input_categories_attributes: userData.categories,
                             user_input_tags_attributes: userData.tags.length > 0 ? userData.tags.split(' ').map((t) => {return {text: t}}) : [],
@@ -101,7 +99,6 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
                 setGoogleData({...googleData, [e.target.name]: e.target.value});
                 break
             case 'userData':
-                //debugger;
                 if(e.target.name === 'categories'){
                     if (userData.categories.find((c) => c.name === e.target.value)){
                         const replacementArray = userData.categories.filter((c) => c.name !== e.target.value)

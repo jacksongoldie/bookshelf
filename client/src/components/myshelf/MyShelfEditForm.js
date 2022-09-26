@@ -3,34 +3,6 @@ import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from 'react';
 
 function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChange, handleSubmit }) {
-
-    console.log(userInputsToEdit)
-
-    // const [googleData, setGoogleData] = useState({
-    //     google_id: book.google_id,
-    //     title: book.title,
-    //     img: book.img ? book.img : null,
-    //     mature: book.mature
-    // })
-    // const [userData, setUserData] = useState({
-    //     categories: userInputsToEdit.categories,
-    //     tags: userInputsToEdit.tags
-    // })
-    // //set category modal questions to empty object and set with name/value??
-    // const [modalInfoFromUser, setModalInfoFromUser] = useState({
-    //     spice: userInputsToEdit.spice,
-    //     violence: userInputsToEdit.violence,
-    //     language: userInputsToEdit.violence,
-    //     ages: userInputsToEdit.ages
-    // });
-    
-    // //review will create new review for book and user on submit
-    // const [userReview, setUserReview] = useState({
-    //     text: userInputsToEdit.text,
-    //     rate: userInputsToEdit.rate
-    // })
-
-
         
   return (
     <div>

@@ -8,16 +8,12 @@ import Col from 'react-bootstrap/Col';
 
 function Account({ onSetUser, user }) {
   console.log(user.id ? 'true' : 'false')
-  //const [loggedIn, setLoggedIn] = useState(user.id ? true : false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
 
-  // function onSetLoggedIn(){
-  //   setLoggedIn((mUV => !mUV))
-  // }
+
 
   function resetAccountPage(){
-    //setLoggedIn(false)
     setShowLoginForm(false)
     setShowSignUpForm(false)
   }

@@ -61,3 +61,4 @@ Fix age, cat, tag serializers so they don't give created at and updated at when 
 ------
 addfrombrowse test
 not suitable for children triggers blocked other ranges
+error handling for fetch reqs

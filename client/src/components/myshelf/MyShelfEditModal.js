@@ -6,9 +6,9 @@ import { useState, useEffect } from 'react';
 
 
 function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBook, onSetUserBooks, onSetIsDeleting, categories, ages }) {
-console.log(book)
+
     const [userInputsToEdit, setUserInputsToEdit] = useState({})
-    //NEEDS TO BE FETCHING OR PROPPING THE BOOK USER INPUTS FOR THIS USER
+
     useEffect(() => {
         console.log('in useeffect')
         fetch(`/user_inputs/${book.current_user_input.id}`)
@@ -30,8 +30,6 @@ console.log(book)
                     }
                 }
                 else{
-                    //get string and split into array elements then save to userInputsToEdit
-                    //debugger
                     setUserInputsToEdit({...userInputsToEdit, [e.target.name]: e.target.value})
                 }
                 break
@@ -80,7 +78,6 @@ console.log(book)
         }
 
     function handleDelete(){
-        debugger
       fetch(`/user_inputs/${book.user_input_id}`, {
         method: 'DELETE'
       })
