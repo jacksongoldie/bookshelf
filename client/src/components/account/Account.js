@@ -6,11 +6,11 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function Account({ onSetUser, user }) {
+function Account({ onSetUser, user, onSetUserBooks }) {
   console.log(user.id ? 'true' : 'false')
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
-
+  const [error, setError] = useState('')
 
 
   function resetAccountPage(){
@@ -20,24 +20,28 @@ function Account({ onSetUser, user }) {
   
   function handleLogout(){
     fetch("/logout", {
-  method: "DELETE",
-  headers: {
+    method: "DELETE",
+    headers: {
     "Content-Type": "application/json",
-    Authorization: localStorage.getItem("token"),
+    "Authorization": localStorage.token
   },
 })
   .then((res) => {
+    console.log(res);
     if (res.ok) {
+
       return res.json();
     } else {
-      return res.json().then((json) => Promise.reject(json));
+      const json = res.json();
+      return Promise.reject(json);
     }
   })
   .then((json) => {
-    console.dir(json);
+    console.dir(json)
+    onSetUser({})
+    onSetUserBooks()
   })
-  .catch((err) => console.error(err));
-  onSetUser({})
+  .catch((err) => console.log(err));
   }
   return (
     <div>
@@ -47,7 +51,7 @@ function Account({ onSetUser, user }) {
         <>
         <Col md='auto'>
         <AccountInfo user={user} />
-        <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => {handleLogout(); resetAccountPage()}}> Logout </Button>
+        <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={handleLogout}> Logout </Button>
         </Col>
         </>:
         <>

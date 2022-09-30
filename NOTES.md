@@ -62,3 +62,10 @@ Fix age, cat, tag serializers so they don't give created at and updated at when 
 addfrombrowse test
 not suitable for children triggers blocked other ranges
 error handling for fetch reqs
+
+testing issues
+---------------
+on editing inputs of saved books, changes to ranges for ages is persisting but not reflecting in state(only on ADDING a range)
+on deleting books from shelf, not working????
+adding book, not updating state
+

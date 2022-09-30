@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/current_user', to: 'current_user#index'
   resources :members, only: [:index, :show]
   resources :members do
     resources :books

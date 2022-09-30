@@ -22,12 +22,14 @@ function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
             body: JSON.stringify({
               user: formData
             }),
-          }).then((res) => {
+          }).then(async (res) => {
             if (res.ok) {
+              console.log(res)
               localStorage.setItem("token", res.headers.get("Authorization"));
               return res.json();
             } else {
-              return res.text().then((text) => Promise.reject(text));
+              const text = await res.text();
+              return await Promise.reject(text);
             }
           })
           .then((json) => onSetUser(json.data))

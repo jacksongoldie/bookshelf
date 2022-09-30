@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function MyShelfButtons({ book, onSetUserBooks, onDeleteUserBook, categories, ages }) {
+  console.log(book)
 
     const [show, setShow] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false)
@@ -33,7 +34,7 @@ function MyShelfButtons({ book, onSetUserBooks, onDeleteUserBook, categories, ag
         <Button onClick={handleDelete} variant="success">🗑️Delete</Button>
         </Col>
       </Row>
-        <MyShelfEditModal isDeleting={isDeleting} ages={ages} categories={categories} onSetIsDeleting={onSetIsDeleting} handleClose={handleClose} show={show} book={book} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} />
+        {book ? <MyShelfEditModal isDeleting={isDeleting} ages={ages} categories={categories} onSetIsDeleting={onSetIsDeleting} handleClose={handleClose} show={show} book={book} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} /> : null}
     </div>
   )
 };

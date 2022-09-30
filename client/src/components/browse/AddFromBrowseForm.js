@@ -53,7 +53,6 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
         .then((a) => {
             const bookToSubmit = {...googleData, book_authors_attributes: a}
             console.log(bookToSubmit)
-            debugger;
             fetch('/books', {
                 method: 'POST',
                 headers: {
@@ -83,8 +82,8 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
                             body: JSON.stringify(userInputs)})
                             .then((r) => r.json())
                             .then((u) => {
-                                b.user_inputs.push(u)
-                                b.current_user_input.id = u.id
+                                console.log(u)
+                                //set current_user_inputs state??
                                 onSetUserBooks(b)
                             })
                         })

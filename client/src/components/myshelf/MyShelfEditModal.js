@@ -13,8 +13,9 @@ function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBoo
         console.log('in useeffect')
         fetch(`/user_inputs/${book.current_user_input.id}`)
         .then((r) => r.json())
-        .then(setUserInputsToEdit)
-      }, [book.current_user_input.id])
+        .then((data) => console.log(data))
+    }, [])
+       //}, [book.current_user_input.id])
 
       function handleChange(e, controlId){
         switch(controlId){
@@ -78,12 +79,10 @@ function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBoo
         }
 
     function handleDelete(){
-      fetch(`/user_inputs/${book.user_input_id}`, {
+        debugger;
+      fetch(`/user_inputs/${book.current_user_input.id}`, {
         method: 'DELETE'
-      })
-        //WILL NEED TO CHANGE TO NEW ID
-        .then(r => r.json())
-        .then(onDeleteUserBook(book.google_id))
+      }).then(onDeleteUserBook(book.id))
     }
 
     function handleCancel(){

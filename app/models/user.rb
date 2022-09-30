@@ -6,9 +6,7 @@ class User < ApplicationRecord
   has_many :user_inputs, dependent: :destroy
   has_one :profile, dependent: :destroy
   
-  devise :database_authenticatable,
-  :jwt_authenticatable,
-  :registerable,
-  jwt_revocation_strategy: self
+  devise :database_authenticatable, :registerable, :validatable,
+         :jwt_authenticatable, jwt_revocation_strategy: self
 
 end

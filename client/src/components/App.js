@@ -14,12 +14,7 @@ function App() {
   const [ages, setAges] = useState([])
 
   useEffect(() => {
-    //fetch(`/members/${user.id}/books`)
-    fetch('/books')
-    .then((r) => r.json())
-    .then(setUserBooks)
-    
-    fetch('/member-data')
+    fetch('/current_user')
     .then(r => r.json())
     .then(setUser)
 
@@ -31,20 +26,30 @@ function App() {
     .then((r) => r.json())
     .then(setAges)
   }, [])
-console.log(userBooks)
+
+  useEffect(() => {
+    fetch('/books')
+    .then((r) => r.json())
+    .then(setUserBooks)
+  }, [user //,userBooks **WILL REFRESH THE PAGE AND KILL THE MODAL 
+  ])
+  //error handling if 401 (logged out user)
+
   function onSetUser(user){
-    console.log(user)
-    debugger
     setUser(user)
   }
   
   function onSetUserBooks(book){
-    debugger
-    setUserBooks([book, ...userBooks])
+    if(!book){
+      setUserBooks([])
+    }
+    else{
+      setUserBooks(() => ([book, ...userBooks]))
+    }
   }
 
   function onDeleteUserBook(bookId){
-    const books = userBooks.filter((book) => book.google_id !== bookId)
+    const books = userBooks.filter((book) => book.id !== bookId)
     setUserBooks(books)
   }
 
@@ -56,7 +61,7 @@ console.log(userBooks)
         <Route path='/' element={<Home />} />
         <Route path='/browse' element={<Browse user={user} onSetUserBooks={onSetUserBooks} userBooks={userBooks} categories={categories} ages={ages} /> } />
         <Route path='/myshelf' element={<MyShelf userBooks={userBooks} ages={ages} categories={categories} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
-        <Route path='/account' element={<Account user={user} onSetUser={onSetUser} /> } />
+        <Route path='/account' element={<Account user={user} onSetUser={onSetUser} onSetUserBooks={onSetUserBooks} /> } />
       </Routes>
     </div>
   );
