@@ -48,9 +48,9 @@ function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="text" name='email' value={formData.email} onChange={handleChange} />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="username">
+            <Form.Group className="mb-3" controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="text" name='password' value={formData.password} onChange={handleChange} />
+                <Form.Control type="password" name='password' value={formData.password} onChange={handleChange} />
                 {error ? <p>{error}</p> : null}
             </Form.Group>
             <Form.Group>

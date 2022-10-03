@@ -54,3 +54,4 @@ gem "active_model_serializers", "~> 0.10.13"
 
 gem "devise-jwt", "~> 0.9.0"
 gem "rack-cors", "~> 1.1"
+gem 'email_validator'

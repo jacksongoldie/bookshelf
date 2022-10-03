@@ -31,8 +31,7 @@ function App() {
     fetch('/books')
     .then((r) => r.json())
     .then(setUserBooks)
-  }, [user //,userBooks **WILL REFRESH THE PAGE AND KILL THE MODAL 
-  ])
+  }, [user])
   //error handling if 401 (logged out user)
 
   function onSetUser(user){

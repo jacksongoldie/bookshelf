@@ -18,7 +18,7 @@ function BrowseCard({ user, book, onSetUserBooks, userBooks, categories, ages })
                     <Card.Text style={{ height: '20em'}}>
                     {book.searchInfo ? book.searchInfo.textSnippet.slice(0,250) : null}
                     </Card.Text>
-                  <BrowseCardButton user={user} book={book} userBooks={userBooks} onSetUserBooks={onSetUserBooks} categories={categories} ages={ages} />  
+                 {user.id ? <BrowseCardButton user={user} book={book} userBooks={userBooks} onSetUserBooks={onSetUserBooks} categories={categories} ages={ages} /> : null }
                 </Stack>
             </Card.Body>
         </Card>

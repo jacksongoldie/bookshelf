@@ -6,7 +6,10 @@ class User < ApplicationRecord
   has_many :user_inputs, dependent: :destroy
   has_one :profile, dependent: :destroy
   
-  devise :database_authenticatable, :registerable, :validatable,
+  devise :database_authenticatable, :timeoutable, :registerable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
+  validates :email, presence: true, uniqueness: true, email: true 
+  # validates :password, length: { minimum: 8 }, unless: "password.nil?"
+  # validates :password, presence: true, if: "id.nil?"
 end

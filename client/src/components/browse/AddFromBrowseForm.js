@@ -36,6 +36,8 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
 
     const [modalPage, setModalPage] = useState(1)
 
+    const [errors, setErrors] = useState([])
+
     function handleSubmit(e){
         e.preventDefault();
         setModalPage(4)
@@ -48,48 +50,68 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
                 'Content-Type':'application/json'
             },
             body: JSON.stringify({name: authors})
-        })
-        .then((r) => r.json())
-        .then((a) => {
-            const bookToSubmit = {...googleData, book_authors_attributes: a}
-            console.log(bookToSubmit)
-            fetch('/books', {
-                method: 'POST',
-                headers: {
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify(bookToSubmit)
             })
-            .then((r) => r.json())
-            .then((b) => {
-                        const userInputs = {
-                            user_input_categories_attributes: userData.categories,
-                            user_input_tags_attributes: userData.tags.length > 0 ? userData.tags.split(' ').map((t) => {return {text: t}}) : [],
-                            //user_input_tags_attributes: userData.tags.length > 0 ? userData.tags : [],
-                            user_input_ages_attributes: modalInfoFromUser.ages,
-                            spice: modalInfoFromUser.spice,
-                            violence: modalInfoFromUser.violence,
-                            language: modalInfoFromUser.language,
-                            book_id: b.id,
-                            user_id: user.id,
-                            review_attributes: userReview
-                        }
-                        fetch(`/user_inputs`,{
+            .then((r) => {
+                if(r.ok){
+                    r.json().then((a) => {
+                        const bookToSubmit = {...googleData, book_authors_attributes: a}
+                        console.log(bookToSubmit)
+                        fetch('/books', {
                             method: 'POST',
                             headers: {
                                 'Content-Type':'application/json'
                             },
-                            body: JSON.stringify(userInputs)})
-                            .then((r) => r.json())
-                            .then((u) => {
-                                console.log(u)
-                                //set current_user_inputs state??
-                                onSetUserBooks(b)
+                            body: JSON.stringify(bookToSubmit)
+                        })
+                        .then((r) => {
+                            if(r.ok){
+                                r.json().then((b) => {
+                                    const userInputs = {
+                                        user_input_categories_attributes: userData.categories,
+                                        user_input_tags_attributes: userData.tags.length > 0 ? userData.tags.split(' ').map((t) => {return {text: t}}) : [],
+                                        //user_input_tags_attributes: userData.tags.length > 0 ? userData.tags : [],
+                                        user_input_ages_attributes: modalInfoFromUser.ages,
+                                        spice: modalInfoFromUser.spice,
+                                        violence: modalInfoFromUser.violence,
+                                        language: modalInfoFromUser.language,
+                                        book_id: b.id,
+                                        user_id: user.id,
+                                        review_attributes: userReview
+                                    }
+                                    fetch(`/user_inputs`,{
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type':'application/json'
+                                        },
+                                        body: JSON.stringify(userInputs)})
+                            .then((r) => {
+                                if(r.ok){
+                                    r.json().then((u) => {
+                                        b.current_user_input = u
+                                        onSetUserBooks(b) 
+                                    })
+                                }
+                                else{
+                                    r.json().then((r) => 
+                                    setErrors(r.errors))
+                                }
                             })
                         })
                     }
-       )
-    }
+                    else{
+                        r.json().then((r) =>    
+                        setErrors(r.errors))
+                    }
+                })
+            })
+        }
+        else{
+            r.json().then((r) => 
+            setErrors(r.errors))
+        }
+    })
+    } 
+
 
     function handleChange(e){
         //determine data group
@@ -160,6 +182,7 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
                 return <><p>Error, please close the form and try again.</p></>
           }
     }
+
   return (
     <div>
         <Form onSubmit={handleSubmit}>

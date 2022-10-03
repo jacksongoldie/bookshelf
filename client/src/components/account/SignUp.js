@@ -14,7 +14,6 @@ function SignUp({ onSetUser, resetAccountPage }) {
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log('in sign up submit')
         fetch("/signup", {
         method: "post",
         headers: {
@@ -23,37 +22,52 @@ function SignUp({ onSetUser, resetAccountPage }) {
         body: JSON.stringify({
           user: formData
         }),
-      })
-        .then((res) => {
-          if (res.ok) {
-            console.log(res.headers.get("Authorization"));
-            localStorage.setItem("token", res.headers.get("Authorization"));
-            return res.json();
-          } else {
-            throw new Error(res);
-          }
-        })
-        .then((json) => onSetUser(json.data))
-        .catch((err) => setError(err));
+      }).then(r => {
+        if(r.ok){
+            r.json().then((user) => {
+                onSetUser(user)
+            })
+        }
+        else{
+            r.json().then((err) => {
+                setError(err.errors)
+            })
+        }
+    })
+        // .then((res) => {
+        //   if (res.ok) {
+        //     console.log(res.headers.get("Authorization"));
+        //     localStorage.setItem("token", res.headers.get("Authorization"));
+        //     res.clone().json().then((json) => onSetUser(json.data))
+        //   } else {
+        //     debugger
+        //     res.json().then((err) => setError(err));
+        //     // const text = res.text();
+        //     // return Promise.reject(text);
+        //   }
+        // })
+        // .then((json) => onSetUser(json.data))
+        // .catch((err) => setError(err));
 
         //change for error handling
         //onSetLoggedIn()
     }
 
     function handleChange(e){
-        setFormData({...formData, [e.target.name]: e.target.value})
+      setError(null)
+      setFormData({...formData, [e.target.name]: e.target.value})
     }
 
   return (
     <div>
       <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="username">
-                <Form.Label>Username</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control type="text" name='email' value={formData.email} onChange={handleChange} />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="username">
+            <Form.Group className="mb-3" controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="text" name='password' value={formData.password} onChange={handleChange} />
+                <Form.Control type="password" name='password' value={formData.password} onChange={handleChange} />
                 {error ? <p>{error}</p> : null}
             </Form.Group>
             <Form.Group>

@@ -34,7 +34,7 @@ function MyShelfButtons({ book, onSetUserBooks, onDeleteUserBook, categories, ag
         <Button onClick={handleDelete} variant="success">🗑️Delete</Button>
         </Col>
       </Row>
-        {book ? <MyShelfEditModal isDeleting={isDeleting} ages={ages} categories={categories} onSetIsDeleting={onSetIsDeleting} handleClose={handleClose} show={show} book={book} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} /> : null}
+        <MyShelfEditModal isDeleting={isDeleting} ages={ages} categories={categories} onSetIsDeleting={onSetIsDeleting} handleClose={handleClose} show={show} book={book} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} />
     </div>
   )
 };

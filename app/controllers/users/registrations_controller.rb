@@ -10,11 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   
     def register_success
-
       render json: current_user.to_json, status: :ok #{ message: 'Signed up sucessfully.' }
     end
   
     def register_failed
-      render json: { message: "Something went wrong." }
+      render json: { errors: ["Invalid Entry"] }, status: :unprocessable_entity
     end
 end

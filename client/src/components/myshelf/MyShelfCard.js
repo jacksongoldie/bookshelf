@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 
 function MyShelfCard({ book, onSetUserBooks, onDeleteUserBook, categories, ages }) {
-  console.log(book.current_user_inputs)
+  console.log(book.current_user_input)
     const star = '⭐'
   return (
     <div>

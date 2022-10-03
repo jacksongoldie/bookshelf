@@ -11,6 +11,7 @@ class Book < ApplicationRecord
 
     accepts_nested_attributes_for :book_authors
 
-    validates :google_id, uniqueness: true
+    validates :google_id, uniqueness: true, presence: true
+    validates :title, presence: true
 end
 

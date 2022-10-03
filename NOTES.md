@@ -67,5 +67,8 @@ testing issues
 ---------------
 on editing inputs of saved books, changes to ranges for ages is persisting but not reflecting in state(only on ADDING a range)
 on deleting books from shelf, not working????
-adding book, not updating state
+adding book, not updating state for inputs?
 
+Deployment
+-----------
+secret key BS ugh

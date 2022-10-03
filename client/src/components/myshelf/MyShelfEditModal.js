@@ -6,14 +6,14 @@ import { useState, useEffect } from 'react';
 
 
 function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBook, onSetUserBooks, onSetIsDeleting, categories, ages }) {
-
+console.log(book.current_user_input.id)
     const [userInputsToEdit, setUserInputsToEdit] = useState({})
 
     useEffect(() => {
         console.log('in useeffect')
         fetch(`/user_inputs/${book.current_user_input.id}`)
         .then((r) => r.json())
-        .then((data) => console.log(data))
+        .then((data) => setUserInputsToEdit(data))
     }, [])
        //}, [book.current_user_input.id])
 

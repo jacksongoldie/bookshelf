@@ -26,7 +26,7 @@ class BooksController < ApplicationController
             }
         end
         current_user.books << book
-        render json: book, status: :created
+        render json: book, serializer: UserBooksSerializer, status: :created
     end
 
     private

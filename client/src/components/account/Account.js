@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function Account({ onSetUser, user, onSetUserBooks }) {
-  console.log(user.id ? 'true' : 'false')
+  console.log(user ? 'true' : 'false')
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const [error, setError] = useState('')
@@ -41,7 +41,7 @@ function Account({ onSetUser, user, onSetUserBooks }) {
     onSetUser({})
     onSetUserBooks()
   })
-  .catch((err) => console.log(err));
+  .catch((err) => setError(err));
   }
   return (
     <div>
@@ -63,6 +63,7 @@ function Account({ onSetUser, user, onSetUserBooks }) {
         </>}
         </Row>
       </div>
+      {error ? <p>{error}</p> : null}
     </div>
   )
 };
