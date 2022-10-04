@@ -1,11 +1,12 @@
 # BookShelf
 
+![Website browse page](/client/src/components/assets/website image.png)
+
 ## Description
 
-This app allows users to browse Google's Book API and save books to their "MyShelf." Users 
+This app allows users to browse Google's Book API and save books to their "MyShelf." Users fill out a form to give feedback on character representation, recommended reader age ranges, and may leave a review. Users may view, edit, and delete their selections. Books collected by all users are kept in the database, even if the user's association with the book is removed.
 
-![Domain model](/home/goldi/Development/code/Mod5/bookshelf/client/src/components/assets/domainmodel.png)
-![Domain model 2](/client/src/components/assets/domainmodel.png)
+![Domain model](/client/src/components/assets/domainmodel.png)
 
 ## Getting Started
 
