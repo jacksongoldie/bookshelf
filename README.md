@@ -5,6 +5,7 @@
 This app allows users to browse Google's Book API and save books to their "MyShelf." Users 
 
 ![Domain model](/home/goldi/Development/code/Mod5/bookshelf/client/src/components/assets/domainmodel.png)
+![Domain model 2](/client/src/components/assets/domainmodel.png)
 
 ## Getting Started
 
