@@ -1,6 +1,6 @@
 # BookShelf
 
-![Website browse page](/client/src/components/assets/website image.png)
+![Website browse page](/client/src/components/assets/browseimage.png)
 
 ## Description
 
