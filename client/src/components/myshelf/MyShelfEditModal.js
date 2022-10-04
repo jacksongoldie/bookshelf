@@ -79,7 +79,6 @@ console.log(book.current_user_input.id)
         }
 
     function handleDelete(){
-        debugger;
       fetch(`/user_inputs/${book.current_user_input.id}`, {
         method: 'DELETE'
       }).then(onDeleteUserBook(book.id))

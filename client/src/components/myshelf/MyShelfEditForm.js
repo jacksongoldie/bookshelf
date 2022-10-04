@@ -37,7 +37,7 @@ function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChang
                         name='ages'
                         id={option.id}
                         label={option.range}
-                        defaultChecked={userInputsToEdit.ages.find((a) => a.id === option.id)}
+                        defaultChecked={userInputsToEdit.ages.find((a) => a.range === option.range)}
                         value={option.range}
                         key={option.id}
                     />)}

@@ -14,8 +14,6 @@ function MyShelfButtons({ book, onSetUserBooks, onDeleteUserBook, categories, ag
     const handleClose = () => setShow(false);
 
     function handleDelete(){
-      //need to fetch the user input and delete?? 
-      //test that user_input destroys user_books association
       setIsDeleting((mUV) => !mUV)
       handleShow();
     }

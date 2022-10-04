@@ -1,8 +1,8 @@
-import MyShelfFilter from './MyShelfFilter';
-import MyShelfSearch from './MyShelfSearch';
+//import MyShelfFilter from './MyShelfFilter';
+//import MyShelfSearch from './MyShelfSearch';
 import MyShelfCards from './MyShelfCards';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+//import Col from 'react-bootstrap/Col';
 
 
 function MyShelf({ userBooks, onSetUserBooks, onDeleteUserBook, categories, ages }) {
@@ -12,8 +12,8 @@ function MyShelf({ userBooks, onSetUserBooks, onDeleteUserBook, categories, ages
     <div>
       <div style={{ margin: '1em' }} className="d-flex justify-content-center">
         <Row>
-        <Col><MyShelfFilter /> </Col>
-        <Col><MyShelfSearch /></Col>
+        {/* <Col><MyShelfFilter /> </Col>
+        <Col><MyShelfSearch /></Col> */}
         </Row>
       </div>
       <div style={{ margin: '1em' }}>
