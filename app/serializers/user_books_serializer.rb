@@ -1,7 +1,6 @@
 class UserBooksSerializer < ActiveModel::Serializer
   attributes :id, :title, :img, :mature, :google_id, :authors_string
   has_one :current_user_input, serializer: UserInputSerializer
-  #has_many :user_inputs, each_serializer: UserInputSerializer
 
   def authors_string
     authors = object.authors.map {|a| a.name}

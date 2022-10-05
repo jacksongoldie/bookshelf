@@ -38,7 +38,4 @@ class BookSerializer < ActiveModel::Serializer
       return 'this book does not have violence votes'
     end
   end
-  #####MOVE THE ABOVE TO A CUSTOM SERIALIZER AND MAKE VIO/LANG
-  ####### WHAT DO WE NEED BACK ON SHOW AND WHAT ON INDEX - FINISH THEM 
-#CREATE A CUSTOM SERIALIZER TO TAKE ALL THE HAS MANY ASSOCIATIONS FOR SHOW ONLY; KEEP THIS SERIALIZER FOR INDEX
 end

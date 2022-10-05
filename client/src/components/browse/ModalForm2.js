@@ -1,9 +1,6 @@
 import Form from 'react-bootstrap/Form';
 
 function ModalForm2({ book, handleChange, modalInfoFromUser, setModalPage, ages }) {
-    console.log(book.volumeInfo.maturityRating)
-    console.log(modalInfoFromUser.ages)
-
 
     const matureRatingQuestions = () => {
        return( <>
@@ -22,7 +19,7 @@ function ModalForm2({ book, handleChange, modalInfoFromUser, setModalPage, ages 
             </Form.Group>
         </>
     )}
-console.log(modalInfoFromUser.ages)
+
     function modalQuestions(){
         switch(book.volumeInfo.maturityRating){
             case "MATURE":
@@ -42,7 +39,7 @@ console.log(modalInfoFromUser.ages)
                             />)}
                         </Form.Control>
                         </Form.Group>
-                        {modalInfoFromUser.ages.find((a) => a.range === 'Not Suitable for Children') ?
+                        {modalInfoFromUser.ages.find((a) => a.range === 'Not for Children') ?
                         matureRatingQuestions() :
                         null}
                         </>)

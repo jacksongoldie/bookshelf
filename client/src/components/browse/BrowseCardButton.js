@@ -3,8 +3,7 @@ import { useState } from 'react';
 import AddFromBrowseModal from './AddFromBrowseModal';
 
 function BrowseCardButton({ user, book, onSetUserBooks, userBooks, categories, ages }) {
-    //will need to be passed: onClick, Heading
-    console.log(userBooks)
+
     const [show, setShow] = useState(false);
 
     const handleShow = () => setShow(true);

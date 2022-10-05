@@ -32,7 +32,6 @@ function App() {
     .then((r) => r.json())
     .then(setUserBooks)
   }, [user])
-  //error handling if 401 (logged out user)
 
   function onSetUser(user){
     setUser(user)
@@ -59,7 +58,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/browse' element={<Browse user={user} onSetUserBooks={onSetUserBooks} userBooks={userBooks} categories={categories} ages={ages} /> } />
-        <Route path='/myshelf' element={<MyShelf userBooks={userBooks} ages={ages} categories={categories} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
+        <Route path='/myshelf' element={<MyShelf user={user} userBooks={userBooks} ages={ages} categories={categories} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
         <Route path='/account' element={<Account user={user} onSetUser={onSetUser} onSetUserBooks={onSetUserBooks} /> } />
       </Routes>
     </div>

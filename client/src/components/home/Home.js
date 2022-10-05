@@ -1,11 +1,11 @@
 import HomeCarousel from "./HomeCarousel";
-import HomeCards from './HomeCards';
+//import HomeCards from './HomeCards';
 
 function Home() {
   return (
     <div>
         <HomeCarousel />
-        <HomeCards />
+        {/* <HomeCards /> */}
     </div>
   )
 };

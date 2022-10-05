@@ -158,7 +158,6 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
                 return null;
           }
     }
-    console.log(modalInfoFromUser, userData)
     function displayModalForm(){
         //determine data group
         switch(modalPage){
@@ -182,7 +181,7 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
                 return <><p>Error, please close the form and try again.</p></>
           }
     }
-
+console.log(errors)
   return (
     <div>
         <Form onSubmit={handleSubmit}>

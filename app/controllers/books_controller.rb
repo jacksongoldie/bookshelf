@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, only:[:index, :create]
 
     def index
         books = current_user.books.order(title: :asc)

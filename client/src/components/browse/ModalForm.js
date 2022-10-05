@@ -2,7 +2,6 @@ import Form from 'react-bootstrap/Form';
 
 function ModalForm1({ handleChange, googleData, userData, categories }) {
 
-console.log(categories)
   return (
     <div>
         <>
@@ -12,7 +11,7 @@ console.log(categories)
         </Form.Group>
         <Form.Group className="mb-3" controlId="userData">
             <Form.Label>Main Character Representation</Form.Label>
-                <Form.Control as='checkbox' multiple name='categories' value={userData.categories} onChange={handleChange}>
+                <Form.Control as='switch' multiple name='categories' value={userData.categories} onChange={handleChange}>
                     {categories.map((option) => <Form.Check 
                         type="switch"
                         name='categories'

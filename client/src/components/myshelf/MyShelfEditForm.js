@@ -1,6 +1,5 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useState, useEffect } from 'react';
 
 function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChange, handleSubmit }) {
         
@@ -27,7 +26,7 @@ function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChang
                 {/* <Form.Label>Tags</Form.Label>
                     <Form.Control type="textarea" name='tags' value={userInputsToEdit.tags.map((t) => `${t.text} `).join('')} onChange={handleChange} /> */}
             </Form.Group>
-            {userInputsToEdit.ages.find((a) => a.range === 'Not Suitable for Children') ?
+            {userInputsToEdit.ages.find((a) => a.range === 'Not for Children') ?
             <>
             <Form.Group className="mb-3" controlId="userInputsToEdit">
             <Form.Label>Recommended Reader Ages</Form.Label>

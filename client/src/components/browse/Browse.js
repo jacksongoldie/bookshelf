@@ -17,9 +17,7 @@ function Browse({ user, onSetUserBooks, userBooks, categories, ages }) {
     .then((r) => r.json())
     .then((data) => {
       setSearchedBooks(data.items)
-      console.log('total items ' + data.totalItems)
     })
-    //ADD CATCH ERRORS
   }, [search, index])
 
   function onSetSearch(input){

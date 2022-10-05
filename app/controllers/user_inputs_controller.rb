@@ -8,7 +8,6 @@ class UserInputsController < ApplicationController
 
     def create
         input =  UserInput.create!({
-####################CHANGE USER TO CURRENT USER/Before action to make sure user is the logged in user
             user_id: current_user.id,
             book_id: user_input_params[:book_id],
             spice: user_input_params[:spice],

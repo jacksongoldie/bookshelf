@@ -8,37 +8,19 @@
 
 puts "Seeding."
 
-u = User.create(email: 'goldiejackson@email.com', password: 'password')
+categories = ['agender', 'asexual', 'bigender', 'bisexual', 'gay', 'genderfluid', 'lesbian', 'non-binary', 'pansexual', 'transgender (ftm)', 'transgender (mtf)', 'two spirit', 'other - not listed' ]
 
-u.create_profile(name:'Jackson', image:'img', likes: 1, bio: 'bio text')
+categories.each do |c|
+    cat = Category.create!(name: c)
+end
 
-c = Category.create(name: 'Category')
-c2 = Category.create(name: 'Category 2')
+ages = ['school-aged', 'tweens', 'teens', 'young adult', 'adult', 'older readers', 'Not for Children']
 
-t = Tag.create(text: 'tag text')
+ages.each do |a|
+    range = Age.create!(range: a)
+end
 
-a = Age.create(range: 'Age Range String')
-a2 = Age.create(range: '12-15')
-
-ages = [a, a2]
-
-b0 = Book.create(title: 'Book', img: '', mature: true, google_id:'00000')
-
-b1 = Book.create(title: 'Book1', img: '', mature: true, google_id:'00001')
-b2 = Book.create(title: 'Book2', img: '', mature: true, google_id:'00002')
-b3 = Book.create(title: 'Book3', img: '', mature: true, google_id:'00003')
-
-u.books.push(b0, b3)
-
-u.books.first.user_inputs.create(user_id:u.id, spice:2, violence:0, ages:ages, categories:[c])
-
-# HOW WILL I SEPARATE THE DATA AND GET IT TO USER -> BOOK -> DATA NOT JUST SAVE TO THE BOOK MASTER
-
-a = Author.create(name: 'Author')
-a2 = Author.create(name: 'Author2')
-
-b2.authors.create(name:'Author3')
-
-b2.users << u
+u1 = User.create!(email: 'user@example.com', password: 'password')
+u2 = User.create!(email: 'user2@example.com', password: 'password')
 
 puts "Done Seeding."
