@@ -11,8 +11,7 @@ function MyShelf({ user, userBooks, onSetUserBooks, onDeleteUserBook, categories
     <div>
       <div style={{ margin: '1em' }} className="d-flex justify-content-center">
         <Row>
-          {!user.id ? <Col><p>Please sign in</p></Col> : null}
-          {userBooks.length === 0 ? <Col><p>You have no books saved to MyShelf</p></Col> : null}
+          {!user.id ? <Col><p>Please sign in</p></Col> : <>{userBooks.length === 0 ? <Col><p>You have no books saved to MyShelf</p></Col> : null}</>}
         {/* <Col><MyShelfFilter /> </Col>
         <Col><MyShelfSearch /></Col> */}
         </Row>

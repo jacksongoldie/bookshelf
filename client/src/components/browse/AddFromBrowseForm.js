@@ -6,7 +6,7 @@ import ModalForm3 from './ModalForm3';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories, ages }) {
+function AddFromBrowseForm({ user, book, handleClose, show, onSetUserBooks, categories, ages }) {
 
     const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
 
     function handleSubmit(e){
         e.preventDefault();
-        setModalPage(4)
+        //setModalPage(4)
 
         const authors = book.volumeInfo.authors ? book.volumeInfo.authors : ['unlisted']
 
@@ -55,7 +55,6 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
                 if(r.ok){
                     r.json().then((a) => {
                         const bookToSubmit = {...googleData, book_authors_attributes: a}
-                        console.log(bookToSubmit)
                         fetch('/books', {
                             method: 'POST',
                             headers: {
@@ -88,7 +87,7 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
                                 if(r.ok){
                                     r.json().then((u) => {
                                         b.current_user_input = u
-                                        onSetUserBooks(b) 
+                                        onSetUserBooks(b)
                                     })
                                 }
                                 else{
@@ -184,6 +183,7 @@ function AddFromBrowseForm({ user, book, handleClose, onSetUserBooks, categories
 console.log(errors)
   return (
     <div>
+        {errors.length > 0 ? errors.map((e) => <p>{e}</p>) : null}
         <Form onSubmit={handleSubmit}>
             {displayModalForm()}
             {modalPage === 2 ? <><Button variant='success' onClick={() => setModalPage((mUV) => mUV - 1)}> back </Button> <Button variant='success' onClick={() => setModalPage((mUV) => mUV + 1)}> next </Button></>: 
@@ -195,7 +195,7 @@ console.log(errors)
             }
             </>
             }
-            {modalPage === 3 ? <Button style={{ margin: '.5em'}} variant='success' type='Submit'>Submit</Button> : null}
+            {modalPage === 3 ? <Button style={{ margin: '.5em'}} variant='success' type='Submit' data-dismiss="static">Submit</Button> : null}
         </Form>
     </div>
   )

@@ -15,7 +15,7 @@ function AddFromBrowseModal({ user, handleClose, show, book, onSetUserBooks, cat
 
         {book.volumeInfo.imageLinks ? <> <img src={book.volumeInfo.imageLinks.thumbnail} className="rounded mx-auto d-block" alt={book.volumeInfo.title + ' thumbnail'} /> </> : <img className="rounded mx-auto d-block" height='200px' src={defaultPhoto} alt='default thumbnail' />}
 
-            <AddFromBrowseForm user={user} handleClose={handleClose} book={book} categories={categories} ages={ages} onSetUserBooks={onSetUserBooks} />
+            <AddFromBrowseForm user={user} show={show} handleClose={handleClose} book={book} categories={categories} ages={ages} onSetUserBooks={onSetUserBooks} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={handleClose}>
