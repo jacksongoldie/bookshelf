@@ -34,8 +34,6 @@ npm install --prefix client
 ```
 to have all the necessary gems and packages.
 
-You may use the db/seeds.rb file to seed the project.
-
 ### License
 [MIT](https://choosealicense.com/licenses/mit/)
 
