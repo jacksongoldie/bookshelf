@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   resources :categories, only: [:index]
   resources :books
   resources :authors, only: [:create]
+  resources :users do
+    resources :profiles
+  end 
   resources :profiles
 
   devise_for :users, path: '', 

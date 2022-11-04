@@ -16,7 +16,7 @@ function BrowseCard({ user, book, onSetUserBooks, userBooks, categories, ages })
                 <Stack gap={2} className="me-auto">
                     <Card.Title style={{ height: '3em'}}>{book.volumeInfo.title.slice(0,45)}</Card.Title>
                     <Card.Text style={{ height: '20em'}}>
-                    {book.volumeInfo ? book.volumeInfo.description.slice(0,250) : null}
+                    {book.volumeInfo ? book.volumeInfo.description.slice(0,250) + "..." : null}
                     </Card.Text>
                  {user.id ? <BrowseCardButton user={user} book={book} userBooks={userBooks} onSetUserBooks={onSetUserBooks} categories={categories} ages={ages} /> : null }
                 </Stack>
