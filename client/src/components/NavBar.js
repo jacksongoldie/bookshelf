@@ -6,9 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 
 
-function NavBar() {
+function NavBar({ profile }) {
+    console.log(profile)
     // use tern to display upload user photo or default img
-    const image = account;
+    const image = profile.image ? profile.image : account;
 
   return (
     <div style={{ borderBottom: '5px solid green', borderTop: '5px solid green' }}>
@@ -39,7 +40,7 @@ function NavBar() {
             </Nav>
             </Navbar.Collapse>
             <LinkContainer to='/account'>
-                <Nav.Link><Image src={image} alt='account icon' width={50} /></Nav.Link>
+                <Nav.Link><Image roundedCircle src={image} alt='account icon' width={50} height={50} /></Nav.Link>
             </LinkContainer>
             </Container>
         </Navbar>

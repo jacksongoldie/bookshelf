@@ -12,17 +12,14 @@ function App() {
   const [user, setUser] = useState({})
   const [categories, setCategories] = useState([])
   const [ages, setAges] = useState([])
-  const [profile, setProfile] = useState({
-    name: '',
-    image: '',
-    bio: '',
-    likes: 0,
-  })
+  const [profile, setProfile] = useState({})
 
   useEffect(() => {
     fetch('/current_user')
     .then(r => r.json())
-    .then(setUser)
+    .then((data) => {
+      setUser(data)
+    })
 
     fetch('/categories')
     .then((r) => r.json())
@@ -41,6 +38,9 @@ function App() {
 
   function onSetUser(user){
     setUser(user)
+  } 
+  function onSetProfile(profile){
+    setProfile(profile)
   }
   
   function onSetUserBooks(book){
@@ -59,13 +59,13 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar profile={profile} />
 
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/browse' element={<Browse user={user} onSetUserBooks={onSetUserBooks} userBooks={userBooks} categories={categories} ages={ages} /> } />
         <Route path='/myshelf' element={<MyShelf user={user} userBooks={userBooks} ages={ages} categories={categories} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
-        <Route path='/account' element={<Account user={user} onSetUser={onSetUser} onSetUserBooks={onSetUserBooks} /> } />
+        <Route path='/account' element={<Account user={user} onSetUser={onSetUser} profile={profile} onSetProfile={onSetProfile} onSetUserBooks={onSetUserBooks} /> } />
       </Routes>
     </div>
   );

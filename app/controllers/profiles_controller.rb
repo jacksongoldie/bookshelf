@@ -9,7 +9,6 @@ class ProfilesController < ApplicationController
     end
 
     def update
-        byebug
         if profile_params[:img]
             image = Cloudinary::Uploader.upload(profile_params[:img], :use_filename => true, :folder => "bookshelf")
             current_user.profile.update!(image: image['url'])

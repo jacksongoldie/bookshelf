@@ -6,8 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function Account({ onSetUser, user, onSetUserBooks }) {
-  console.log(user ? 'true' : 'false')
+function Account({ onSetUser, user, onSetUserBooks, profile, onSetProfile }) {
+  console.log(user.id)
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const [error, setError] = useState('')
@@ -40,6 +40,7 @@ function Account({ onSetUser, user, onSetUserBooks }) {
     console.dir(json)
     onSetUser({})
     onSetUserBooks()
+    onSetProfile({})
   })
   .catch((err) => setError(err));
   }
@@ -50,7 +51,7 @@ function Account({ onSetUser, user, onSetUserBooks }) {
         { user.id ? 
         <>
         <Col md='auto'>
-        <AccountInfo user={user} />
+        <AccountInfo user={user} profile={profile} onSetProfile={onSetProfile} />
         <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={handleLogout}> Logout </Button>
         </Col>
         </>:

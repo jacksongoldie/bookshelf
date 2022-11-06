@@ -10,11 +10,14 @@ const [img, setImg] = useState(null)
 
     function handleSubmit(e){
         e.preventDefault();
-        debugger
         console.log(img)
         const profileToUpdate = new FormData()
         profileToUpdate.append('name', profile.name)
-        profileToUpdate.append('img', img)
+        profileToUpdate.append('bio', profile.bio)
+        profileToUpdate.append('likes', profile.likes)
+        if(img){
+            profileToUpdate.append('img', img)
+        }
         fetch(`/profiles/${profile.id}`, {
             method: 'PATCH',
             body: profileToUpdate})

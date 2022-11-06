@@ -5,9 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ProfileEditModal from './ProfileEditModal';
 
-function AccountInfo({ user }) {
-
-
+function AccountInfo({ user, profile, onSetProfile }) {
+  console.log(user, profile)
 
   const [show, setShow] = useState(false);
 
@@ -18,16 +17,12 @@ function AccountInfo({ user }) {
     //LEFT OFF HERE RESET THIS AS A NESTED ROUTE TO GET PROFILE WITH USER ID AND CHANGE PRIVATE METHOD IN CONTROLLER FOR PROFILE
     fetch(`/users/${user.id}/profiles`)
     .then(r => r.json())
-    .then(setProfile)
+    .then(onSetProfile)
   },[])
 
 
   function handleChange(e){
-      setProfile({...profile, [e.target.name]: e.target.value})
-  }
-
-  function onSetProfile(profile){
-    setProfile(profile)
+      onSetProfile({...profile, [e.target.name]: e.target.value})
   }
 
   return (
