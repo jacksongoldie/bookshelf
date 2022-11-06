@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -6,12 +7,8 @@ import ProfileEditModal from './ProfileEditModal';
 
 function AccountInfo({ user }) {
 
-  const [profile, setProfile] = useState({
-    name: '',
-    image: '',
-    bio: '',
-    likes: 0
-  })
+
+
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(true);
@@ -39,13 +36,14 @@ function AccountInfo({ user }) {
         <br/>
         <Row>
           <Col>
-          <h3>add image tag bootstrap here {profile.img}</h3>
+          <Image fluid thumbnail src={profile.image} alt="profile" width={'150px'}/>
           </Col>
           <Col>
             <Button onClick={handleShow}>Edit Profile</Button>
             <ProfileEditModal handleClose={handleClose} profile={profile} onSetProfile={onSetProfile} show={show} handleChange={handleChange} />
           </Col>
         </Row>
+        <br />
         <Row>
           <p>{profile.bio}</p>
         </Row>

@@ -1,22 +1,29 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useState } from 'react';
 
 function ProfileEditModal({ handleClose, show, profile, handleChange, onSetProfile }) {
-console.log(profile.id)
+console.log(profile)
+
+const [img, setImg] = useState(null)
 
     function handleSubmit(e){
         e.preventDefault();
+        debugger
+        console.log(img)
+        const profileToUpdate = new FormData()
+        profileToUpdate.append('name', profile.name)
+        profileToUpdate.append('img', img)
         fetch(`/profiles/${profile.id}`, {
             method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(profile)})
+            body: profileToUpdate})
             .then(r => r.json())
             .then(onSetProfile)
             handleClose();
         }
+
+    console.log(img)
 
   return (
     <div>
@@ -31,10 +38,10 @@ console.log(profile.id)
                     <Form.Control type="text" name='name' value={profile.name} onChange={handleChange} />
                     <br />
                     <Form.Label>Image</Form.Label>
-                    <Form.Control type="file" name='image' value={profile.image} accept='image/*' onChange={handleChange} />
+                    <Form.Control type="file" name='img' value={undefined} accept='image/*' onChange={(e) => setImg(e.target.files[0])} />
                     <br />
                     <Form.Label>Bio</Form.Label>
-                    <Form.Control type="textarea" name='bio' value={profile.bio} onChange={handleChange} />
+                    <Form.Control as="textarea" name='bio' value={profile.bio} onChange={handleChange} />
                 </Form.Group>
                 <Button type='Submit'>Submit</Button>
                 </Form>

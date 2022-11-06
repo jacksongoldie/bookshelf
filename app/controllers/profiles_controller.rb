@@ -10,7 +10,10 @@ class ProfilesController < ApplicationController
 
     def update
         byebug
-        image = Cloudinary::Uploader.upload(profile_params[:image])
+        if profile_params[:img]
+            image = Cloudinary::Uploader.upload(profile_params[:img], :use_filename => true, :folder => "bookshelf")
+            current_user.profile.update!(image: image['url'])
+        end
         current_user.profile.update!(profile_params)
         render json: current_user.profile, status: :created
     end
@@ -22,6 +25,6 @@ class ProfilesController < ApplicationController
     end
     
     def profile_params
-        params.permit(:name, :bio, :likes, :image)
+        params.permit(:name, :bio, :likes, :image, :img)
     end
 end

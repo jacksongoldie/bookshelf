@@ -12,6 +12,12 @@ function App() {
   const [user, setUser] = useState({})
   const [categories, setCategories] = useState([])
   const [ages, setAges] = useState([])
+  const [profile, setProfile] = useState({
+    name: '',
+    image: '',
+    bio: '',
+    likes: 0,
+  })
 
   useEffect(() => {
     fetch('/current_user')

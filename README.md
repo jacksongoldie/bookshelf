@@ -22,10 +22,7 @@ Gems used:
 - devise
 - fast_jsonapi
 - devise-jwt
-
-npm packages used:
-- react-datepicker
-- react-moment
+- cloudinary
 
 Run
 ```
