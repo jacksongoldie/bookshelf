@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChange, handleSubmit }) {
-        
+
   return (
     <div>
         <Form onSubmit={handleSubmit}>

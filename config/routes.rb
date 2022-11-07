@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   get '/current_user', to: 'current_user#index'
-  resources :members, only: [:index, :show]
-  resources :members do
-    resources :books
-  end
+  #resources :members, only: [:index, :show]
+  #resources :members do
+  #  resources :books
+  #end
   resources :reviews, only: [:index]
   resources :user_inputs, only: [:show, :create, :update, :destroy]
   resources :ages, only: [:index]
@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :profiles
   end 
+  resources :users do
+    resources :books
+  end
   resources :profiles
 
   devise_for :users, path: '', 

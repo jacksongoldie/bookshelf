@@ -13,7 +13,6 @@ function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log('form submit', formData)
         fetch(`/login`, {
             method: "POST",
             headers: {

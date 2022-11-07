@@ -8,6 +8,16 @@ class ProfilesController < ApplicationController
         render json: current_user.profile, status: :ok
     end
 
+    def create
+        byebug
+        current_user.create_profile!(profile_params)
+        if profile_params[:img]
+            image = Cloudinary::Uploader.upload(profile_params[:img], :use_filename => true, :folder => "bookshelf")
+            current_user.profile.update!(image: image['url'])
+        end
+        render json: current_user.profile, status: :created
+    end
+
     def update
         if profile_params[:img]
             image = Cloudinary::Uploader.upload(profile_params[:img], :use_filename => true, :folder => "bookshelf")

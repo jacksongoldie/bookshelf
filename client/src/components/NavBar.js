@@ -9,7 +9,7 @@ import Image from 'react-bootstrap/Image';
 function NavBar({ profile }) {
     console.log(profile)
     // use tern to display upload user photo or default img
-    const image = profile.image ? profile.image : account;
+    const image =  profile ? profile.image ? profile.image : account : account;
 
   return (
     <div style={{ borderBottom: '5px solid green', borderTop: '5px solid green' }}>

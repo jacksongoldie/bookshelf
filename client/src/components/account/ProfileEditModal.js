@@ -5,28 +5,34 @@ import { useState } from 'react';
 
 function ProfileEditModal({ handleClose, show, profile, handleChange, onSetProfile }) {
 console.log(profile)
-
 const [img, setImg] = useState(null)
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log(img)
         const profileToUpdate = new FormData()
         profileToUpdate.append('name', profile.name)
         profileToUpdate.append('bio', profile.bio)
-        profileToUpdate.append('likes', profile.likes)
         if(img){
             profileToUpdate.append('img', img)
         }
-        fetch(`/profiles/${profile.id}`, {
-            method: 'PATCH',
-            body: profileToUpdate})
+        if(!profile.id){
+            fetch(`/profiles`, {
+                method: 'POST',
+                body: profileToUpdate
+            })
             .then(r => r.json())
             .then(onSetProfile)
-            handleClose();
         }
+        else{
+            fetch(`/profiles/${profile.id}`, {
+                method: 'PATCH',
+                body: profileToUpdate})
+                .then(r => r.json())
+                .then(onSetProfile)
+                handleClose();
+        }
+    }
 
-    console.log(img)
 
   return (
     <div>
@@ -46,7 +52,7 @@ const [img, setImg] = useState(null)
                     <Form.Label>Bio</Form.Label>
                     <Form.Control as="textarea" name='bio' value={profile.bio} onChange={handleChange} />
                 </Form.Group>
-                <Button type='Submit'>Submit</Button>
+                <Button variant="success" type='Submit'>Submit</Button>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

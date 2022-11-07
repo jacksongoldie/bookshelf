@@ -14,6 +14,7 @@ function App() {
   const [ages, setAges] = useState([])
   const [profile, setProfile] = useState({})
 
+  console.log(user)
   useEffect(() => {
     fetch('/current_user')
     .then(r => r.json())
@@ -31,10 +32,19 @@ function App() {
   }, [])
 
   useEffect(() => {
-    fetch('/books')
+    fetch(`users/${user.id}/books`)
     .then((r) => r.json())
     .then(setUserBooks)
-  }, [user])
+  }, [user.id])
+
+  useEffect(()=> {
+    fetch(`users/${user.id}/profiles`)
+    .then(r => {
+      if(r.ok){
+        r.json().then(onSetProfile)
+      }
+    })
+  }, [user.id])
 
   function onSetUser(user){
     setUser(user)

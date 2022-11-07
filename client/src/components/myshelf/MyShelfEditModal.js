@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 
 function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBook, onSetUserBooks, onSetIsDeleting, categories, ages }) {
-console.log(book.current_user_input.id)
+console.log(book)
     const [userInputsToEdit, setUserInputsToEdit] = useState({})
 
     useEffect(() => {
