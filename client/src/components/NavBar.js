@@ -30,6 +30,9 @@ function NavBar({ profile }) {
                 <LinkContainer to='/myshelf'>
                     <Nav.Link>MyShelf</Nav.Link>
                 </LinkContainer>
+                <LinkContainer to='/friends'>
+                    <Nav.Link>Friends</Nav.Link>
+                </LinkContainer>
                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item>Action</NavDropdown.Item>
                     <NavDropdown.Item>Another action</NavDropdown.Item>

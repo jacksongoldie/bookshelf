@@ -4,14 +4,16 @@ import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 
 function ProfileEditModal({ handleClose, show, profile, handleChange, onSetProfile }) {
-console.log(profile)
+
 const [img, setImg] = useState(null)
 
     function handleSubmit(e){
         e.preventDefault();
         const profileToUpdate = new FormData()
         profileToUpdate.append('name', profile.name)
-        profileToUpdate.append('bio', profile.bio)
+        if(profile.bio){
+            profileToUpdate.append('bio', profile.bio)
+        }
         if(img){
             profileToUpdate.append('img', img)
         }
@@ -43,14 +45,15 @@ const [img, setImg] = useState(null)
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="profile">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" name='name' value={profile.name} onChange={handleChange} />
+                    <Form.Label>Name </Form.Label>
+                    <Form.Text> (names are unique and how your friends find you)</Form.Text>
+                    <Form.Control required type="text" name='name' value={profile.name} onChange={handleChange} />
                     <br />
                     <Form.Label>Image</Form.Label>
                     <Form.Control type="file" name='img' value={undefined} accept='image/*' onChange={(e) => setImg(e.target.files[0])} />
                     <br />
                     <Form.Label>Bio</Form.Label>
-                    <Form.Control as="textarea" name='bio' value={profile.bio} onChange={handleChange} />
+                    <Form.Control as="textarea" name='bio' value={profile.bio} onChange={handleChange} style={{ height: '100px' }} />
                 </Form.Group>
                 <Button variant="success" type='Submit'>Submit</Button>
                 </Form>

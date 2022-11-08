@@ -5,4 +5,9 @@ class MembersController < ApplicationController
     def show
       render json: current_user.to_json, status: :ok
     end
+    
+    def destroy
+      current_user.destroy
+      head :no_content
+    end
 end

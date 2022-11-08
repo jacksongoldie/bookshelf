@@ -29,7 +29,7 @@ function HomeCarousel() {
             <p>Sign up</p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item style={{cursor:'pointer'}} onClick={()=>handleClick('users')}>
+        <Carousel.Item style={{cursor:'pointer'}} onClick={()=>handleClick('friends')}>
         <Ratio aspectRatio={'21x9'}>
           <img
             className="d-block w-100"

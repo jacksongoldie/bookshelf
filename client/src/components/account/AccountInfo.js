@@ -5,10 +5,19 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ProfileEditModal from './ProfileEditModal';
+import Delete from './Delete';
 
-function AccountInfo({ user, profile, onSetProfile }) {
+function AccountInfo({ user, profile, onSetProfile, onSetUser }) {
 
   const [show, setShow] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  console.log(showDeleteModal)
+  const formData = {
+    name: '',
+    bio: '',
+    likes: 0,
+    image: ''
+  }
 
   const handleShow = () => setShow(true);
   const handleClose = () => {
@@ -18,6 +27,13 @@ function AccountInfo({ user, profile, onSetProfile }) {
 
   function handleChange(e){
       onSetProfile({...profile, [e.target.name]: e.target.value})
+  }
+
+  function handleDelete(){
+    fetch(`/members/${user.id}`,{
+      method: 'DELETE'
+    })
+    .then(onSetUser({}))
   }
 
   return (
@@ -30,7 +46,10 @@ function AccountInfo({ user, profile, onSetProfile }) {
           </Col>
           <Col>
             <Button variant='success' onClick={handleShow}>Edit Profile</Button>
-            <ProfileEditModal handleClose={handleClose} profile={profile} onSetProfile={onSetProfile} show={show} handleChange={handleChange} />
+            <br/>
+            <Button variant='success' onClick={() => setShowDeleteModal((mUV) => !mUV)}>Delete Account</Button>
+            {showDeleteModal ? <Delete onSetUser={onSetUser} handleDelete={handleDelete} show={showDeleteModal} setShowDeleteModal={setShowDeleteModal} /> : null}
+            {profile ? <ProfileEditModal handleClose={handleClose} profile={profile} onSetProfile={onSetProfile} show={show} handleChange={handleChange} /> : <ProfileEditModal profile={formData} handleClose={handleClose} onSetProfile={onSetProfile} show={show} handleChange={handleChange} />}
           </Col>
         </Row>
         <br />

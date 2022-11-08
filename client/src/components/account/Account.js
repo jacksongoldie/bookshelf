@@ -51,7 +51,7 @@ function Account({ onSetUser, user, onSetUserBooks, profile, onSetProfile }) {
         { user.id ? 
         <>
         <Col md='auto'>
-        <AccountInfo user={user} profile={profile} onSetProfile={onSetProfile} />
+        <AccountInfo user={user} onSetUser={onSetUser} profile={profile} onSetProfile={onSetProfile} />
         <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={handleLogout}> Logout </Button>
         </Col>
         </>:

@@ -2,7 +2,11 @@ class BooksController < ApplicationController
     before_action :authenticate_user!, only:[:index, :create]
 
     def index
-        books = Book.all.order(title: :asc)
+        if params[:user_id]
+            books = User.find(params[:user_id]).books.order(title: :asc)
+        else
+            books = Book.all.order(title: :asc)
+        end
         render json: books, each_serializer: UserBooksSerializer, status: :ok
     end
 

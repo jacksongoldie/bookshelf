@@ -9,7 +9,6 @@ class ProfilesController < ApplicationController
     end
 
     def create
-        byebug
         current_user.create_profile!(profile_params)
         if profile_params[:img]
             image = Cloudinary::Uploader.upload(profile_params[:img], :use_filename => true, :folder => "bookshelf")

@@ -3,6 +3,7 @@ import Home from "./home/Home";
 import MyShelf from "./myshelf/MyShelf";
 import Browse from './browse/Browse';
 import Account from "./account/Account";
+import Friends from './friends/Friends';
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -76,6 +77,7 @@ function App() {
         <Route path='/browse' element={<Browse user={user} onSetUserBooks={onSetUserBooks} userBooks={userBooks} categories={categories} ages={ages} /> } />
         <Route path='/myshelf' element={<MyShelf user={user} userBooks={userBooks} ages={ages} categories={categories} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
         <Route path='/account' element={<Account user={user} onSetUser={onSetUser} profile={profile} onSetProfile={onSetProfile} onSetUserBooks={onSetUserBooks} /> } />
+        <Route path='/friends' element={<Friends />} />
       </Routes>
     </div>
   );
