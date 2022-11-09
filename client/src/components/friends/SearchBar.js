@@ -2,24 +2,20 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function BrowseSearch({ onSetSearch }) {
+function SearchBar({ setSearchedUsers }) {
 
     const [input, setInput] = useState('')
 
     function handleSubmit(e){
         e.preventDefault();
-        onSetSearch(input)
-    }
-
-    function handleChange(e){
-        setInput(e.target.value)
+        console.log(input)
     }
 
   return (
     <div>
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="keyword">
-                <Form.Control type="text" placeholder="Search books by keywords..." name='keyword' value={input} onChange={handleChange} />
+                <Form.Control type="text" placeholder="Search users by username..." name='input' value={input} onChange={(e)=>setInput(e.target.value)} />
             </Form.Group>
             <Button variant="success" type="submit">
                 Search
@@ -29,4 +25,4 @@ function BrowseSearch({ onSetSearch }) {
   )
 };
 
-export default BrowseSearch;
+export default SearchBar;

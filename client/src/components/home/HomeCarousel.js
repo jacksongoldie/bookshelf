@@ -26,7 +26,7 @@ function HomeCarousel() {
           />
           </Ratio>
           <Carousel.Caption style={captionStyle}>
-            <h1>Welcome to the Bookshelf App!</h1>
+            <h1>Welcome to Bookshelf!</h1>
             <h3 as='h2'>Sign up</h3>
           </Carousel.Caption>
         </Carousel.Item>

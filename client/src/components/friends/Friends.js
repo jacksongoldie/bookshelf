@@ -1,11 +1,19 @@
+import { useState, useEffect } from 'react';
 import MyShelf from "../myshelf/MyShelf";
+import SearchBar from "./SearchBar";
 
 function Friends() {
+
+  const [users, setUsers] = useState([])
+  const [searchedUsers, setSearchedUsers] = useState([])
+
+  useEffect(() => {
+    fetch(`/members`)
+  }, [])
+
   return (
-    <div>
-        put in a search bar to search by name use .where
-        friend cards -> see friend's MyShelf 
-        onClick use myshelf comp inside a modal
+    <div style={{ margin: '50px' }}>
+        <SearchBar setSearchedUsers={setSearchedUsers} />
     </div>
   )
 };
