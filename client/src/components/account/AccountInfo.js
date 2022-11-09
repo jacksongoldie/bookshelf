@@ -25,15 +25,11 @@ function AccountInfo({ user, profile, onSetProfile, onSetUser }) {
     onSetProfile(profile ? profile : {})
   }
 
-  function handleChange(e){
-      onSetProfile({...profile, [e.target.name]: e.target.value})
-  }
-
   function handleDelete(){
     fetch(`/members/${user.id}`,{
       method: 'DELETE'
     })
-    .then(onSetUser({}))
+    .then(onSetUser({}), onSetProfile({}))
   }
 
   return (
@@ -45,11 +41,16 @@ function AccountInfo({ user, profile, onSetProfile, onSetUser }) {
           <Image fluid thumbnail src={profile ? profile.image ? profile.image: account : account} alt="profile" width={'150px'}/>
           </Col>
           <Col>
+            <Row>
+            <Col>
             <Button variant='success' onClick={handleShow}>Edit Profile</Button>
-            <br/>
+            </Col>
+            <Col>
             <Button variant='success' onClick={() => setShowDeleteModal((mUV) => !mUV)}>Delete Account</Button>
+            </Col>
+            </Row>
             {showDeleteModal ? <Delete onSetUser={onSetUser} handleDelete={handleDelete} show={showDeleteModal} setShowDeleteModal={setShowDeleteModal} /> : null}
-            {profile ? <ProfileEditModal handleClose={handleClose} profile={profile} onSetProfile={onSetProfile} show={show} handleChange={handleChange} /> : <ProfileEditModal profile={formData} handleClose={handleClose} onSetProfile={onSetProfile} show={show} handleChange={handleChange} />}
+            {profile ? <ProfileEditModal handleClose={handleClose} profile={profile} onSetProfile={onSetProfile} show={show} /> : <ProfileEditModal profile={formData} handleClose={handleClose} onSetProfile={onSetProfile} show={show} />}
           </Col>
         </Row>
         <br />

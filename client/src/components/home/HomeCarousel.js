@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function HomeCarousel() {
 
   const navigate = useNavigate();
+  const captionStyle = { textShadow: '1px 1px white' }
 
   function handleClick(navEnding){
     console.log('use navigation', navEnding)
@@ -24,9 +25,9 @@ function HomeCarousel() {
             alt="First slide"
           />
           </Ratio>
-          <Carousel.Caption>
-            <h5>Welcome to the Bookshelf App!</h5>
-            <p>Sign up</p>
+          <Carousel.Caption style={captionStyle}>
+            <h1>Welcome to the Bookshelf App!</h1>
+            <h3 as='h2'>Sign up</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item style={{cursor:'pointer'}} onClick={()=>handleClick('friends')}>
@@ -39,9 +40,9 @@ function HomeCarousel() {
             height='800'
           />
         </Ratio>
-          <Carousel.Caption>
-            <h5>Find a Friend's Bookshelf</h5>
-            <p>Search public profiles and see what your friends are reading!</p>
+          <Carousel.Caption style={captionStyle}>
+            <h1>Find a Friend's Bookshelf</h1>
+            <h3>Search public profiles and see what your friends are reading!</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item style={{cursor:'pointer'}} onClick={()=>handleClick('browse')}>
@@ -54,9 +55,9 @@ function HomeCarousel() {
             height='800'
           />
           </Ratio>
-          <Carousel.Caption>
-            <h5>Browse all Books</h5>
-            <p>Powered by Google Books, start saving to MyShelf now!</p>
+          <Carousel.Caption style={captionStyle}>
+            <h1>Browse all Books</h1>
+            <h3>Powered by Google Books, start saving to MyShelf now!</h3>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

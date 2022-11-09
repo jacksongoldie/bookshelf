@@ -1,7 +1,7 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-function Delete({ showDeleteModal, setShowDeleteModal, show, handleDelete }) {
+function Delete({ setShowDeleteModal, show, handleDelete }) {
     //const handleShow = () => setShow(true);
   const handleClose = () => {
     setShowDeleteModal((mUV) => !mUV)
