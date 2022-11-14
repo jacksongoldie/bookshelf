@@ -12,6 +12,7 @@ function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
     const [error, setError] = useState(null)
 
     function handleSubmit(e){
+      debugger
         e.preventDefault();
         fetch(`/login`, {
             method: "POST",
@@ -31,7 +32,7 @@ function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
               return await Promise.reject(text);
             }
           })
-          .then((json) => onSetUser(json.data))
+          .then((json) => {onSetUser(json.data); console.log(json)})
           .catch((err) => setError(err))
     }
 

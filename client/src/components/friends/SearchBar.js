@@ -2,13 +2,13 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function SearchBar({ setSearchedUsers }) {
+function SearchBar({ searchUsers }) {
 
     const [input, setInput] = useState('')
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log(input)
+        searchUsers(input)
     }
 
   return (

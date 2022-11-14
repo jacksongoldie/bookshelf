@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function Account({ onSetUser, user, onSetUserBooks, profile, onSetProfile }) {
-  console.log(user.id)
+  console.log(profile)
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const [error, setError] = useState('')

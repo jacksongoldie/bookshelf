@@ -31,21 +31,20 @@ function App() {
     .then((r) => r.json())
     .then(setAges)
   }, [])
-
-  useEffect(() => {
+  
+  useEffect(()=> {
     fetch(`users/${user.id}/books`)
     .then((r) => r.json())
     .then(setUserBooks)
-  }, [user.id])
 
-  useEffect(()=> {
-    fetch(`users/${user.id}/profiles`)
+    fetch(`users/${user.id}/profiles/show`)
     .then(r => {
       if(r.ok){
         r.json().then(onSetProfile)
       }
     })
   }, [user.id])
+  
 
   function onSetUser(user){
     setUser(user)

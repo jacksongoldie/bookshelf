@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from 'react';
 
 function ProfileEditModal({ handleClose, show, profile, onSetProfile }) {
-
+console.log(profile)
 const [img, setImg] = useState(null)
 const [formData, setFormData] = useState({})
 const [errors, setErrors] = useState([])

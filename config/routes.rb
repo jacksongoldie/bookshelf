@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get '/current_user', to: 'current_user#index'
-  resources :members, only: [:index, :show, :destroy]
+  resources :members, only: [:show, :destroy]
   #resources :members do
   #  resources :books
   #end
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :ages, only: [:index]
   resources :tags, only: [:index, :create]
   resources :categories, only: [:index]
-  resources :books
+  resources :books, only: [:index, :show]
   resources :authors, only: [:create]
   resources :users do
     resources :profiles
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :books
   end
-  resources :profiles
+  resources :profiles, only: [:index, :create, :update]
 
   devise_for :users, path: '', 
   path_names: {

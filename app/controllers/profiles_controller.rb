@@ -3,10 +3,10 @@ class ProfilesController < ApplicationController
     def show
         render json: profile, status: :ok
     end
-
+    
     def index
-        render json: current_user.profile, status: :ok
-    end
+        render json: Profile.all, status: :ok
+      end
 
     def create
         current_user.create_profile!(profile_params)

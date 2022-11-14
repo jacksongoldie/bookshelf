@@ -1,6 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
     respond_to :json
-    #before_action :authenticate_user!
+    before_action :authenticate_user!
 
     # The Sessions Controller is where a user will authenticate his/her credentials and it will assign the JWT to the user if successful.
 
