@@ -31,7 +31,7 @@ function App() {
     .then((r) => r.json())
     .then(setAges)
   }, [])
-  
+
   useEffect(()=> {
     fetch(`users/${user.id}/books`)
     .then((r) => r.json())
@@ -76,7 +76,7 @@ function App() {
         <Route path='/browse' element={<Browse user={user} onSetUserBooks={onSetUserBooks} userBooks={userBooks} categories={categories} ages={ages} /> } />
         <Route path='/myshelf' element={<MyShelf user={user} userBooks={userBooks} ages={ages} categories={categories} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
         <Route path='/account' element={<Account user={user} onSetUser={onSetUser} profile={profile} onSetProfile={onSetProfile} onSetUserBooks={onSetUserBooks} /> } />
-        <Route path='/friends' element={<Friends />} />
+        <Route path='/friends' element={<Friends user={user} />} />
       </Routes>
     </div>
   );

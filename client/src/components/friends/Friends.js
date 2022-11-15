@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import FriendCards from './FriendCards';
+import FriendMyShelf from './FriendMyShelf';
 import SearchBar from "./SearchBar";
 
-function Friends() {
+function Friends({ user }) {
 
   const [users, setUsers] = useState([])
+  const [selectedUser, setSelectedUser] = useState({})
   const [errors, setErrors] = useState([])
+  const [books, setBooks] = useState([])
 
   useEffect(()=> {
     fetch(`/profiles`)
@@ -31,13 +34,28 @@ function Friends() {
     }
   }
 
+  function onSetBooks(books, profile){
+    setBooks(books)
+    setSelectedUser(profile)
+  }
+console.log(selectedUser)
   return (
     <div style={{ margin: '50px' }}>
+    <div>
+    {/* <div style={{ margin: '50px' }}> */}
+      {books.length > 0 ? 
+      <FriendMyShelf books={books} onSetBooks={onSetBooks} selectedUser={selectedUser} /> :
+      <>
+      {user.id ? 
+        <div style={{ marginTop: '50px' }}>
         <SearchBar searchUsers={searchUsers} />
-        <br />
-        <p>{errors}</p>
-        <FriendCards users={users} />
-    </div>
+        <FriendCards users={users} onSetBooks={onSetBooks} />
+        </div> :
+        <p>Please sign in</p>}  
+       </> }
+      </div>
+      </div>
+      
   )
 };
 

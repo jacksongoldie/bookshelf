@@ -16,6 +16,7 @@ useEffect(() =>{
 console.log(formData, profile)
     function handleSubmit(e){
         e.preventDefault();
+        setErrors([])
         const profileToUpdate = new FormData()
         profileToUpdate.append('name', formData.name)
         profileToUpdate.append('bio', formData.bio)
@@ -29,7 +30,7 @@ console.log(formData, profile)
             })
             .then(r => {
                 if(r.ok){
-                    r.json().then(onSetProfile)
+                    r.json().then(onSetProfile, handleClose())
                 }
                 else{
                     r.json().then(setErrors)
@@ -41,13 +42,11 @@ console.log(formData, profile)
                 body: profileToUpdate})
                 .then(r => {
                     if(r.ok){
-                        r.json().then(onSetProfile)
+                        r.json().then(onSetProfile, handleClose())
                     }
                     else{
-                        r.json().then(setErrors)
+                        r.json().then((r)=> setErrors(r.errors))
                     }})
-                .then(onSetProfile)
-                handleClose();
         }
     }
 
@@ -55,7 +54,7 @@ console.log(formData, profile)
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
- 
+ console.log(errors)
   return (
     <div>
         <Modal show={show} onHide={handleClose}>
@@ -74,7 +73,7 @@ console.log(formData, profile)
                     <br />
                     <Form.Label>Bio</Form.Label>
                     <Form.Control as="textarea" name='bio' value={formData.bio} onChange={handleChange} style={{ height: '100px' }} />
-                    <Form.Text>{errors.errors ? <> {errors.errors.map((e) => <p>{e}</p>)}</> : null}</Form.Text>
+                    <Form.Text>{errors ? <> {errors.map((e) => <p>{e}</p>)}</> : null}</Form.Text>
                 </Form.Group>
                 <Button variant="success" type='Submit'>Submit</Button>
                 </Form>

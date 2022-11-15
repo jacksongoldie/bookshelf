@@ -2,6 +2,15 @@ class UserInputsController < ApplicationController
 
     before_action :authenticate_user!, only: [:create, :update, :destroy]
     
+    def index
+        if params[:user_id]
+            uI = User.find(params[:user_id]).user_inputs
+        else
+            uI = UserInput.all.order
+        end
+        render json: uI, include: :book, status: :ok
+    end
+
     def show
         render json: user_input, status: :ok
     end

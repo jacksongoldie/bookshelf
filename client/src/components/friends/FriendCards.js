@@ -1,12 +1,16 @@
 import FriendCard from "./FriendCard";
+import Row from 'react-bootstrap/Row';
 
-function FriendCards({ users }) {
+function FriendCards({ users, onSetBooks }) {
 
-    const card = users.map((u) => <FriendCard profile={u} key={u.id} />)
+    const cards = users.map((u) => <FriendCard profile={u} key={u.id} onSetBooks={onSetBooks} />)
+
   return (
     <div>
-        <h2>FriendCards</h2>
-        {card}
+        <Row xs={1} md={3} lg={4} xl={5}>
+        {cards ? cards : null}
+        
+        </Row>
     </div>
   )
 };

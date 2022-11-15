@@ -11,7 +11,7 @@ function BrowseCard({ user, book, onSetUserBooks, userBooks, categories, ages })
     <div>
         <Col>
         <Card style={{ width: '14em', margin: '2em'}}>
-        {book.volumeInfo.imageLinks ? <Card.Img style={{ height: '350px' }} variant="top" src={book.volumeInfo.imageLinks.thumbnail} /> : <Card.Img variant="top" src={defaultPhoto} />}
+        {book.volumeInfo.imageLinks ? <Card.Img style={{ height: '4em' }} variant="top" src={book.volumeInfo.imageLinks.thumbnail} /> : <Card.Img variant="top" src={defaultPhoto} />}
             <Card.Body>
                 <Stack gap={2} className="me-auto">
                     <Card.Title style={{ height: '3em'}}>{book.volumeInfo.title.slice(0,45)}</Card.Title>

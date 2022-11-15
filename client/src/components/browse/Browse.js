@@ -43,6 +43,6 @@ function Browse({ user, onSetUserBooks, userBooks, categories, ages }) {
         </div>
     </div>
   )
-};
+}; 
 
 export default Browse;
