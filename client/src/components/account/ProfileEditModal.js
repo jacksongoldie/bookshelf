@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from 'react';
 
 function ProfileEditModal({ handleClose, show, profile, onSetProfile }) {
-console.log(profile)
+
 const [img, setImg] = useState(null)
 const [formData, setFormData] = useState({})
 const [errors, setErrors] = useState([])
@@ -13,7 +13,6 @@ useEffect(() =>{
     setFormData(profile)
 }, [profile])
 
-console.log(formData, profile)
     function handleSubmit(e){
         e.preventDefault();
         setErrors([])
@@ -54,7 +53,7 @@ console.log(formData, profile)
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
- console.log(errors)
+
   return (
     <div>
         <Modal show={show} onHide={handleClose}>

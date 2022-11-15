@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function MyShelfButtons({ book, onSetUserBooks, onDeleteUserBook, categories, ages }) {
-  console.log(book)
 
     const [show, setShow] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false)

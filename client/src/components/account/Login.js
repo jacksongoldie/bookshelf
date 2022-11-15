@@ -24,7 +24,6 @@ function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
             }),
           }).then(async (res) => {
             if (res.ok) {
-              console.log(res)
               localStorage.setItem("token", res.headers.get("Authorization"));
               return res.json();
             } else {
@@ -32,7 +31,7 @@ function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
               return await Promise.reject(text);
             }
           })
-          .then((json) => {onSetUser(json.data); console.log(json)})
+          .then((json) => {onSetUser(json.data)})
           .catch((err) => setError(err))
     }
 

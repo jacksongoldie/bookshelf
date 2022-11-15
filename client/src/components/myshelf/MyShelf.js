@@ -7,7 +7,6 @@ import Col from 'react-bootstrap/Col';
 
 function MyShelf({ user, userBooks, onSetUserBooks, onDeleteUserBook, categories, ages }) {
 
-  console.log(userBooks)
 
   return (
     <div>

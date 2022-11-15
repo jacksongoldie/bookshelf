@@ -15,7 +15,6 @@ function App() {
   const [ages, setAges] = useState([])
   const [profile, setProfile] = useState({})
 
-  console.log(user)
   useEffect(() => {
     fetch('/current_user')
     .then(r => r.json())

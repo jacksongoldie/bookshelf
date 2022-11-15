@@ -180,7 +180,7 @@ function AddFromBrowseForm({ user, book, handleClose, show, onSetUserBooks, cate
                 return <><p>Error, please close the form and try again.</p></>
           }
     }
-console.log(errors)
+
   return (
     <div>
         {errors.length > 0 ? errors.map((e) => <p>{e}</p>) : null}

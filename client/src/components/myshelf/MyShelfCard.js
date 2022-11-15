@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 
 function MyShelfCard({ book, onSetUserBooks, onDeleteUserBook, categories, ages }) {
-  console.log(book.current_user_input)
+ console.log(book)
     const star = '⭐'
   return (
     <div>
@@ -15,11 +15,11 @@ function MyShelfCard({ book, onSetUserBooks, onDeleteUserBook, categories, ages 
         <Card.Title>{book.title}</Card.Title>
           {book.img ? <Card.Img style={{ height: '150px', width: '150px' }} src={book.img} /> : <Card.Img variant="top" src={null} />}
           <Stack>
-          {book.review ? 
+          {book.current_user_input.review ? 
             <>
-            <Card.Text>{book.review.rate ? star.repeat(book.review.rate) : null}</Card.Text>
+            <Card.Text>{book.current_user_input.review.rate ? star.repeat(book.current_user_input.review.rate) : null}</Card.Text>
             <Card.Text>
-              {book.review.text ? book.review.text.slice(0,250) : null}
+              {book.current_user_input.review.text ? book.current_user_input.review.text.slice(0,250) : null}
             </Card.Text>
             </>
           : null}

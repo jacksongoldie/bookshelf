@@ -11,7 +11,6 @@ function AccountInfo({ user, profile, onSetProfile, onSetUser }) {
 
   const [show, setShow] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false)
-  console.log(showDeleteModal)
   const formData = {
     name: '',
     bio: '',

@@ -34,23 +34,6 @@ function SignUp({ onSetUser, resetAccountPage }) {
             })
         }
     })
-        // .then((res) => {
-        //   if (res.ok) {
-        //     console.log(res.headers.get("Authorization"));
-        //     localStorage.setItem("token", res.headers.get("Authorization"));
-        //     res.clone().json().then((json) => onSetUser(json.data))
-        //   } else {
-        //     debugger
-        //     res.json().then((err) => setError(err));
-        //     // const text = res.text();
-        //     // return Promise.reject(text);
-        //   }
-        // })
-        // .then((json) => onSetUser(json.data))
-        // .catch((err) => setError(err));
-
-        //change for error handling
-        //onSetLoggedIn()
     }
 
     function handleChange(e){

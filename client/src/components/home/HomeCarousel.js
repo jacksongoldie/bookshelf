@@ -11,7 +11,6 @@ function HomeCarousel() {
   const captionStyle = { textShadow: '1px 1px white' }
 
   function handleClick(navEnding){
-    console.log('use navigation', navEnding)
     navigate(navEnding)
   }
   return (

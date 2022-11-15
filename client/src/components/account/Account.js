@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function Account({ onSetUser, user, onSetUserBooks, profile, onSetProfile }) {
-  console.log(profile)
+
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const [error, setError] = useState('')
@@ -26,10 +26,8 @@ function Account({ onSetUser, user, onSetUserBooks, profile, onSetProfile }) {
     "Authorization": localStorage.token
   },
 })
-  .then((res) => {
-    console.log(res);
+  .then((res) => {;
     if (res.ok) {
-
       return res.json();
     } else {
       const json = res.json();

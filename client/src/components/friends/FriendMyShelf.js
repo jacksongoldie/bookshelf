@@ -11,6 +11,9 @@ function FriendMyShelf({ selectedUser, books, onSetBooks }) {
         <Col>
       <h2>{selectedUser.name}'s Myshelf</h2>
       </Col>
+      <Col>
+      {/* {selectedUser.likes > 0 ? <Button>❤ ${selectedUser.likes}</Button> : <Button>♡</Button>} */}
+      </Col>
       <Col> 
       <Button variant='success' onClick={()=>onSetBooks([])}>Go Back</Button>
       </Col>

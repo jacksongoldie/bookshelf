@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 function Friends({ user }) {
 
   const [users, setUsers] = useState([])
+  const [searchedUsers, setSearchedUsers] = useState([])
   const [selectedUser, setSelectedUser] = useState({})
   const [errors, setErrors] = useState([])
   const [books, setBooks] = useState([])
@@ -14,7 +15,9 @@ function Friends({ user }) {
     fetch(`/profiles`)
     .then(r => {
       if(r.ok){
-        r.json().then(setUsers)
+        r.json().then((u)=>{
+          setUsers(u)
+        })
       }
       else{
         r.json().then(setErrors)
@@ -26,10 +29,10 @@ function Friends({ user }) {
     setErrors([])
     const newArray = users.filter((u)=> u.name.toLowerCase().includes(input.toLowerCase()))
     if(newArray.length > 0){
-      setUsers(newArray)
+      setSearchedUsers(newArray)
     }
     else{
-      setUsers([])
+      setSearchedUsers([])
       setErrors(['Hmm. No one here.'])
     }
   }
@@ -38,7 +41,7 @@ function Friends({ user }) {
     setBooks(books)
     setSelectedUser(profile)
   }
-console.log(selectedUser)
+  
   return (
     <div style={{ margin: '50px' }}>
     <div>
@@ -49,7 +52,8 @@ console.log(selectedUser)
       {user.id ? 
         <div style={{ marginTop: '50px' }}>
         <SearchBar searchUsers={searchUsers} />
-        <FriendCards users={users} onSetBooks={onSetBooks} />
+        {errors ? <p>{errors}</p> : null}
+        <FriendCards users={searchedUsers} onSetBooks={onSetBooks} />
         </div> :
         <p>Please sign in</p>}  
        </> }
