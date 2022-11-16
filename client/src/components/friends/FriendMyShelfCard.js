@@ -22,7 +22,7 @@ function FriendMyShelfCard({ book }) {
             </Row>
             <Row>
             {book.review.rate ? <Card.Text>{'⭐'.repeat(book.review.rate)}</Card.Text> : ' '}
-            {book.review.text ? <Card.Text>book.review.text</Card.Text> : null}
+            {book.review.text ? <Card.Text>{book.review.text}</Card.Text> : null}
             </Row>
         </Card>
     </div>

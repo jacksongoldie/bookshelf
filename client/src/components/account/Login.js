@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 
-function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
+function Login({ setUserBooks, onSetUser, resetAccountPage }) {
 
     const [formData, setFormData] = useState({
         email: '',
@@ -12,7 +12,6 @@ function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
     const [error, setError] = useState(null)
 
     function handleSubmit(e){
-      debugger
         e.preventDefault();
         fetch(`/login`, {
             method: "POST",
@@ -31,7 +30,10 @@ function Login({ onSetUser,  resetAccountPage, setShowSignUpForm }) {
               return await Promise.reject(text);
             }
           })
-          .then((json) => {onSetUser(json.data)})
+          .then((json) => {onSetUser(json.data)
+          fetch(`users/${json.data.id}/books`)
+          .then((r) => r.json())
+          .then(setUserBooks)})
           .catch((err) => setError(err))
     }
 

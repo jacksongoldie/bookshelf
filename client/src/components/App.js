@@ -42,19 +42,19 @@ function App() {
         r.json().then(onSetProfile)
       }
     })
-  }, [user.id])
+
+  }, [user])
   
 
   function onSetUser(user){
     setUser(user)
   } 
+
   function onSetProfile(profile){
     setProfile(profile)
   }
   
   function onSetUserBooks(book){
-    debugger
-    //LEFT OFF HERE DON'T LET EDIT CREATE TWO INSTANCES IN STATE
     if(!book){
       setUserBooks([])
     }
@@ -74,6 +74,10 @@ function App() {
     }
   }
 
+  function filterUserBooks(newBooks){
+    setUserBooks(newBooks)
+  }
+
   function onDeleteUserBook(bookId){
     const books = userBooks.filter((book) => book.id !== bookId)
     setUserBooks(books)
@@ -86,8 +90,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/browse' element={<Browse user={user} onSetUserBooks={onSetUserBooks} userBooks={userBooks} categories={categories} ages={ages} /> } />
-        <Route path='/myshelf' element={<MyShelf user={user} userBooks={userBooks} ages={ages} categories={categories} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
-        <Route path='/account' element={<Account isLoading={isLoading} user={user} onSetUser={onSetUser} profile={profile} onSetProfile={onSetProfile} onSetUserBooks={onSetUserBooks} /> } />
+        <Route path='/myshelf' element={<MyShelf user={user} userBooks={userBooks} ages={ages} categories={categories} filterUserBooks={filterUserBooks} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
+        <Route path='/account' element={<Account isLoading={isLoading} user={user} onSetUser={onSetUser} profile={profile} onSetProfile={onSetProfile} setUserBooks={setUserBooks} onSetUserBooks={onSetUserBooks} /> } />
         <Route path='/friends' element={<Friends user={user} />} />
       </Routes>
     </div>

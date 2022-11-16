@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function Account({ isLoading, onSetUser, user, onSetUserBooks, profile, onSetProfile }) {
+function Account({ setUserBooks, onSetUser, user, onSetUserBooks, profile, onSetProfile }) {
 
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
@@ -34,7 +34,6 @@ function Account({ isLoading, onSetUser, user, onSetUserBooks, profile, onSetPro
     }
   })
   .then((json) => {
-    console.dir(json)
     onSetUser({})
     onSetUserBooks()
     onSetProfile({})
@@ -56,7 +55,7 @@ function Account({ isLoading, onSetUser, user, onSetUserBooks, profile, onSetPro
       <Col md='auto'>
       {showSignUpForm ? <SignUp onSetUser={onSetUser} resetAccountPage={resetAccountPage} /> : <>{!showLoginForm ? <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowSignUpForm((mUV) => !mUV)}>SignUp</Button> : null}</>}
 
-      {showLoginForm ? <Login onSetUser={onSetUser} resetAccountPage={resetAccountPage} setShowSignUpForm={setShowSignUpForm} /> : <> {!showSignUpForm ? <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowLoginForm((mUV) => !mUV)}>Login</Button> : null}</>}
+      {showLoginForm ? <Login onSetUser={onSetUser} setUserBooks={setUserBooks} resetAccountPage={resetAccountPage} /> : <> {!showSignUpForm ? <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowLoginForm((mUV) => !mUV)}>Login</Button> : null}</>}
       </Col>
       </>}
       </Row>
