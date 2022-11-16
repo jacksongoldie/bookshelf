@@ -6,12 +6,11 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function Account({ onSetUser, user, onSetUserBooks, profile, onSetProfile }) {
+function Account({ isLoading, onSetUser, user, onSetUserBooks, profile, onSetProfile }) {
 
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const [error, setError] = useState('')
-
 
   function resetAccountPage(){
     setShowLoginForm(false)
@@ -45,23 +44,25 @@ function Account({ onSetUser, user, onSetUserBooks, profile, onSetProfile }) {
   return (
     <div>
       <div style={{ margin: '50px'}}>
-        <Row className="justify-content-center">
-        { user.id ? 
-        <>
-        <Col md='auto'>
-        <AccountInfo user={user} onSetUser={onSetUser} profile={profile} onSetProfile={onSetProfile} />
-        <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={handleLogout}> Logout </Button>
-        </Col>
-        </>:
-        <>
-        <Col md='auto'>
-        {showSignUpForm ? <SignUp onSetUser={onSetUser} resetAccountPage={resetAccountPage} /> : <>{!showLoginForm ? <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowSignUpForm((mUV) => !mUV)}>SignUp</Button> : null}</>}
+      <Row className="justify-content-center">
+      { user.id ? 
+      <>
+      <Col md='auto'>
+      <AccountInfo user={user} onSetUser={onSetUser} profile={profile} onSetProfile={onSetProfile} />
+      <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={handleLogout}> Logout </Button>
+      </Col>
+      </>:
+      <>
+      <Col md='auto'>
+      {showSignUpForm ? <SignUp onSetUser={onSetUser} resetAccountPage={resetAccountPage} /> : <>{!showLoginForm ? <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowSignUpForm((mUV) => !mUV)}>SignUp</Button> : null}</>}
 
-        {showLoginForm ? <Login onSetUser={onSetUser} resetAccountPage={resetAccountPage} setShowSignUpForm={setShowSignUpForm} /> : <> {!showSignUpForm ? <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowLoginForm((mUV) => !mUV)}>Login</Button> : null}</>}
-        </Col>
-        </>}
-        </Row>
-      </div>
+      {showLoginForm ? <Login onSetUser={onSetUser} resetAccountPage={resetAccountPage} setShowSignUpForm={setShowSignUpForm} /> : <> {!showSignUpForm ? <Button style={{ margin:'.5em' }} size='lg' variant='success' onClick={() => setShowLoginForm((mUV) => !mUV)}>Login</Button> : null}</>}
+      </Col>
+      </>}
+      </Row>
+    </div>
+      
+      
       {error ? <p>{error}</p> : null}
     </div>
   )

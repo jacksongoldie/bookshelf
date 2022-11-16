@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :ages, only: [:index]
   resources :tags, only: [:index, :create]
   resources :categories, only: [:index]
-  resources :books, only: [:index, :show]
+  resources :books, only: [:index, :show, :create]
   resources :authors, only: [:create]
   resources :users do
     resources :profiles

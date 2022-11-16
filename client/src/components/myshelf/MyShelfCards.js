@@ -7,7 +7,7 @@ function MyShelfCards({ userBooks, onSetUserBooks, onDeleteUserBook, categories,
 
   return (
     <div>
-        <Row xs={1} md={3} lg={4} xl={5}>
+        <Row xs={1} md={2} lg={3} xl={3}>
           {allUserBooks}
         </Row>
     </div>

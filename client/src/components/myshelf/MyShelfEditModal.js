@@ -73,7 +73,11 @@ function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBoo
             },
             body: JSON.stringify(update)})
             .then(r => r.json())
-            .then(setUserInputsToEdit)
+            .then((input) => {
+                setUserInputsToEdit(input)
+                const newBook = {...book, current_user_input: input}
+                onSetUserBooks(newBook)
+            })
             handleClose();
         }
 

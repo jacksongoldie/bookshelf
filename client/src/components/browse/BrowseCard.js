@@ -6,15 +6,16 @@ import Stack from 'react-bootstrap/Stack';
 
 
 function BrowseCard({ user, book, onSetUserBooks, userBooks, categories, ages }) {
+  console.log(book)
 
   return (
     <div>
         <Col>
         <Card style={{ width: '14em', margin: '2em'}}>
-        {book.volumeInfo.imageLinks ? <Card.Img style={{ height: '4em' }} variant="top" src={book.volumeInfo.imageLinks.thumbnail} /> : <Card.Img variant="top" src={defaultPhoto} />}
+        {book.volumeInfo.imageLinks ? <Card.Img style={{ height: '300px' }} variant="top" src={book.volumeInfo.imageLinks.thumbnail} /> : <Card.Img variant="top" src={defaultPhoto} />}
             <Card.Body>
                 <Stack gap={2} className="me-auto">
-                    <Card.Title style={{ height: '3em'}}>{book.volumeInfo.title.slice(0,45)}</Card.Title>
+                    <Card.Title style={{ height: '3em'}}>{book.volumeInfo.title ? book.volumeInfo.title.slice(0,45) : null}</Card.Title>
                     <Card.Text style={{ height: '20em'}}>
                     {book.volumeInfo.description ? book.volumeInfo.description.slice(0,250) + "..." : null}
                     </Card.Text>

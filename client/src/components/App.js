@@ -14,12 +14,16 @@ function App() {
   const [categories, setCategories] = useState([])
   const [ages, setAges] = useState([])
   const [profile, setProfile] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetch('/current_user')
     .then(r => r.json())
     .then((data) => {
       setUser(data)
+      fetch(`users/${data.id}/books`)
+      .then((r) => r.json())
+      .then(setUserBooks, setIsLoading(false))
     })
 
     fetch('/categories')
@@ -32,10 +36,6 @@ function App() {
   }, [])
 
   useEffect(()=> {
-    fetch(`users/${user.id}/books`)
-    .then((r) => r.json())
-    .then(setUserBooks)
-
     fetch(`users/${user.id}/profiles/show`)
     .then(r => {
       if(r.ok){
@@ -53,8 +53,21 @@ function App() {
   }
   
   function onSetUserBooks(book){
+    debugger
+    //LEFT OFF HERE DON'T LET EDIT CREATE TWO INSTANCES IN STATE
     if(!book){
       setUserBooks([])
+    }
+    else if(userBooks.find((b)=>b.id === book.id)){
+      const update = userBooks.map((b) => {
+        if(b.id === book.id){
+          return book
+        }
+        else{
+          return b
+        }
+      })
+      setUserBooks(update)
     }
     else{
       setUserBooks(() => ([book, ...userBooks]))
@@ -74,7 +87,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/browse' element={<Browse user={user} onSetUserBooks={onSetUserBooks} userBooks={userBooks} categories={categories} ages={ages} /> } />
         <Route path='/myshelf' element={<MyShelf user={user} userBooks={userBooks} ages={ages} categories={categories} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook}/> } />
-        <Route path='/account' element={<Account user={user} onSetUser={onSetUser} profile={profile} onSetProfile={onSetProfile} onSetUserBooks={onSetUserBooks} /> } />
+        <Route path='/account' element={<Account isLoading={isLoading} user={user} onSetUser={onSetUser} profile={profile} onSetProfile={onSetProfile} onSetUserBooks={onSetUserBooks} /> } />
         <Route path='/friends' element={<Friends user={user} />} />
       </Routes>
     </div>

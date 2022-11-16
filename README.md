@@ -22,6 +22,7 @@ Gems used:
 - devise
 - fast_jsonapi
 - devise-jwt
+- net-http
 - cloudinary
 
 Run
