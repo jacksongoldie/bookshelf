@@ -1,5 +1,6 @@
 {
     "name": "example-project",
+    "homepage": "meetingrooms.goldie-jackson.com",
     "description": "Build scripts for Heroku",
     "engines": {
         "node": ">= 14"
