@@ -6,7 +6,7 @@ import Stack from 'react-bootstrap/Stack';
 
 
 function BrowseCard({ user, book, onSetUserBooks, userBooks, categories, ages }) {
-  console.log(book)
+  
 
   return (
     <div>

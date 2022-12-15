@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 function MyShelfCards({ filtered, userBooks, onSetUserBooks, onDeleteUserBook, categories, ages }) {
   
 
-    console.log(filtered)
+ 
 
     // function displayFilteredBooks(){
     //   debugger

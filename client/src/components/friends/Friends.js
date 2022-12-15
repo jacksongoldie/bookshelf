@@ -12,7 +12,7 @@ function Friends({ user }) {
   const [books, setBooks] = useState([])
 
   useEffect(()=> {
-    fetch(`/profiles`)
+    fetch(`https://bookshelf-ghnp.onrender.com/profiles`)
     .then(r => {
       if(r.ok){
         r.json().then((u)=>{

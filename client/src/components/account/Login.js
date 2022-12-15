@@ -13,7 +13,7 @@ function Login({ setUserBooks, onSetUser, resetAccountPage }) {
 
     function handleSubmit(e){
         e.preventDefault();
-        fetch(`/login`, {
+        fetch(`https://bookshelf-ghnp.onrender.com/login`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -31,7 +31,7 @@ function Login({ setUserBooks, onSetUser, resetAccountPage }) {
             }
           })
           .then((json) => {onSetUser(json.data)
-          fetch(`users/${json.data.id}/books`)
+          fetch(`https://bookshelf-ghnp.onrender.com/users/${json.data.id}/books`)
           .then((r) => r.json())
           .then(setUserBooks)})
           .catch((err) => setError(err))

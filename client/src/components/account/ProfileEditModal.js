@@ -23,7 +23,7 @@ useEffect(() =>{
             profileToUpdate.append('img', img)
         }
         if(!profile.id){
-            fetch(`/profiles`, {
+            fetch(`https://bookshelf-ghnp.onrender.com/profiles`, {
                 method: 'POST',
                 body: profileToUpdate
             })
@@ -36,7 +36,7 @@ useEffect(() =>{
                 }})
             }
         else{
-            fetch(`/profiles/${profile.id}`, {
+            fetch(`https://bookshelf-ghnp.onrender.com/profiles/${profile.id}`, {
                 method: 'PATCH',
                 body: profileToUpdate})
                 .then(r => {

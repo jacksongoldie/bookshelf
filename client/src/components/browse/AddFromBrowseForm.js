@@ -44,7 +44,7 @@ function AddFromBrowseForm({ user, book, handleClose, show, onSetUserBooks, cate
 
         const authors = book.volumeInfo.authors ? book.volumeInfo.authors : ['unlisted']
 
-        fetch('/authors', {
+        fetch('https://bookshelf-ghnp.onrender.com/authors', {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json'
@@ -55,7 +55,7 @@ function AddFromBrowseForm({ user, book, handleClose, show, onSetUserBooks, cate
                 if(r.ok){
                     r.json().then((a) => {
                         const bookToSubmit = {...googleData, book_authors_attributes: a}
-                        fetch('/books', {
+                        fetch('https://bookshelf-ghnp.onrender.com/books', {
                             method: 'POST',
                             headers: {
                                 'Content-Type':'application/json'
@@ -77,7 +77,7 @@ function AddFromBrowseForm({ user, book, handleClose, show, onSetUserBooks, cate
                                         user_id: user.id,
                                         review_attributes: userReview
                                     }
-                                    fetch(`/user_inputs`,{
+                                    fetch(`https://bookshelf-ghnp.onrender.com/user_inputs`,{
                                         method: 'POST',
                                         headers: {
                                             'Content-Type':'application/json'

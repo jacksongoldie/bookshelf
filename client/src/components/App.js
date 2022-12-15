@@ -17,26 +17,26 @@ function App() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/current_user')
+    fetch('https://bookshelf-ghnp.onrender.com/current_user')
     .then(r => r.json())
     .then((data) => {
       setUser(data)
-      fetch(`users/${data.id}/books`)
+      fetch(`https://bookshelf-ghnp.onrender.comusers/${data.id}/books`)
       .then((r) => r.json())
       .then(setUserBooks, setIsLoading(false))
     })
 
-    fetch('/categories')
+    fetch('https://bookshelf-ghnp.onrender.com/categories')
     .then((r) => r.json())
     .then(setCategories)
 
-    fetch('/ages')
+    fetch('https://bookshelf-ghnp.onrender.com/ages')
     .then((r) => r.json())
     .then(setAges)
   }, [])
 
   useEffect(()=> {
-    fetch(`users/${user.id}/profiles/show`)
+    fetch(`https://bookshelf-ghnp.onrender.comusers/${user.id}/profiles/show`)
     .then(r => {
       if(r.ok){
         r.json().then(onSetProfile)

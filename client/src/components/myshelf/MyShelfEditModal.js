@@ -10,7 +10,7 @@ function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBoo
     const [userInputsToEdit, setUserInputsToEdit] = useState({})
 
     useEffect(() => {
-        fetch(`/user_inputs/${book.current_user_input.id}`)
+        fetch(`https://bookshelf-ghnp.onrender.com/user_inputs/${book.current_user_input.id}`)
         .then((r) => r.json())
         .then((data) => setUserInputsToEdit(data))
     }, [])
@@ -66,7 +66,7 @@ function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBoo
             //user_input_tags_attributes: userInputsToEdit.tags.length > 0 ? userInputsToEdit.tags.split(' ').map((t) => {return {text: t}}) : [],
             review_attributes: userInputsToEdit.review
         }
-        fetch(`/user_inputs/${book.current_user_input.id}`, {
+        fetch(`https://bookshelf-ghnp.onrender.com/user_inputs/${book.current_user_input.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBoo
         }
 
     function handleDelete(){
-      fetch(`/user_inputs/${book.current_user_input.id}`, {
+      fetch(`https://bookshelf-ghnp.onrender.com/user_inputs/${book.current_user_input.id}`, {
         method: 'DELETE'
       }).then(onDeleteUserBook(book.id))
     }
