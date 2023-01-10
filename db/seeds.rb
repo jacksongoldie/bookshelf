@@ -7,7 +7,6 @@
 #   Character.create(name: "Luke", movie: movies.first)
 Category.all.destroy_all
 Age.all.destroy_all
-User.all.destroy_all
 
 
 puts "Seeding."
@@ -24,7 +23,5 @@ ages.each do |a|
     range = Age.create!(range: a)
 end
 
-u1 = User.create!(email: 'user@example.com', password: 'password')
-u2 = User.create!(email: 'user2@example.com', password: 'password')
 
 puts "Done Seeding."
