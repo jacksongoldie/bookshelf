@@ -9,7 +9,7 @@ function BrowseCards({ user, books, onSetUserBooks, userBooks, categories, ages 
 
   return (
     <div>
-      <Row xs={1} md={3} lg={4} xl={5}>
+      <Row xs={1} md={3} lg={4} xl={4}>
         {books ? browseCardsToDisplay() : null}
       </Row>
     </div>
