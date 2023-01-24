@@ -25,7 +25,7 @@ function AccountInfo({ user, profile, onSetProfile, onSetUser }) {
   }
 
   function handleDelete(){
-    fetch(`https://bookshelf-ghnp.onrender.com/members/${user.id}`,{
+    fetch(`/members/${user.id}`,{
       method: 'DELETE'
     })
     .then(onSetUser({}), onSetProfile({}))

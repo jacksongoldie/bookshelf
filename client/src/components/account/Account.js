@@ -18,7 +18,7 @@ function Account({ setUserBooks, onSetUser, user, onSetUserBooks, profile, onSet
   }
   
   function handleLogout(){
-    fetch("https://bookshelf-ghnp.onrender.com/logout", {
+      fetch("/logout", {
     method: "DELETE",
     headers: {
     "Content-Type": "application/json",

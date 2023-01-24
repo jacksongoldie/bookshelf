@@ -14,7 +14,7 @@ function SignUp({ onSetUser, resetAccountPage }) {
 
     function handleSubmit(e){
         e.preventDefault();
-        fetch("https://bookshelf-ghnp.onrender.com/signup", {
+        fetch("/signup", {
         method: "post",
         headers: {
           "Content-Type": "application/json",

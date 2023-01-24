@@ -72,7 +72,7 @@ function MyShelfEditForm({ book, categories, userInputsToEdit, ages, handleChang
                 </Form.Group>}
             <Form.Group className="mb-3" controlId="userInputsToEdit">
                 <Form.Label>Review</Form.Label>
-                    <Form.Control type="textarea" name='text' value={userInputsToEdit.review.text} onChange={(e)=>handleChange(e, 'userInputsToEdit')} />
+                    <Form.Control type="textarea" class="form-control rounded-0" name='text' value={userInputsToEdit.review.text} onChange={(e)=>handleChange(e, 'userInputsToEdit')} />
                     <Form.Label>Rate</Form.Label>
                     <Form.Control type="range" className="form-range" min={1} max={5} name='rate' value={userInputsToEdit.review.rate} onChange={(e)=>handleChange(e, 'userInputsToEdit')} />
                     <Form.Label>{userInputsToEdit.review.rate}</Form.Label>

@@ -9,7 +9,7 @@ function FriendCard({ profile, onSetBooks }) {
     const [errors, setErrors] = useState('')
 
     function handleClick(){
-        fetch(`https://bookshelf-ghnp.onrender.com/users/${profile.user_id}/user_inputs`)
+        fetch(`/users/${profile.user_id}/user_inputs`)
         .then(r => {
             if(r.ok){
                 r.json().then((r) => onSetBooks(r, profile))

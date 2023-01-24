@@ -1,22 +1,7 @@
 import MyShelfCard from "./MyShelfCard";
 import Row from 'react-bootstrap/Row';
 
-function MyShelfCards({ filtered, userBooks, onSetUserBooks, onDeleteUserBook, categories, ages }) {
-  
-
- 
-
-    // function displayFilteredBooks(){
-    //   debugger
-    //   if(filtered.length > 0){
-        
-         
-    //     })
-    //   }
-    //   else{
-    //     return userBooks.map((book) => <MyShelfCard book={book} key={book.id} onSetUserBooks={onSetUserBooks} onDeleteUserBook={onDeleteUserBook} ages={ages} categories={categories} />)
-    //   }
-    // }
+function MyShelfCards({ userBooks, onSetUserBooks, onDeleteUserBook, categories, ages }) {
     
 
   return (

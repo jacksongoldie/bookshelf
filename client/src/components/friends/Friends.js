@@ -12,7 +12,7 @@ function Friends({ user }) {
   const [books, setBooks] = useState([])
 
   useEffect(()=> {
-    fetch(`https://bookshelf-ghnp.onrender.com/profiles`)
+    fetch(`/profiles`)
     .then(r => {
       if(r.ok){
         r.json().then((u)=>{
@@ -26,7 +26,6 @@ function Friends({ user }) {
   },[])
 
   function searchUsers(input){
-    setErrors([])
     const newArray = users.filter((u)=> u.name.toLowerCase().includes(input.toLowerCase()))
     if(newArray.length > 0){
       setSearchedUsers(newArray)
@@ -51,7 +50,7 @@ function Friends({ user }) {
       <>
       {user.id ? 
         <div style={{ marginTop: '50px' }}>
-        <SearchBar searchUsers={searchUsers} />
+        <SearchBar setErrors={setErrors} searchUsers={searchUsers} />
         {errors ? <p>{errors}</p> : null}
         <FriendCards users={searchedUsers} onSetBooks={onSetBooks} />
         </div> :
