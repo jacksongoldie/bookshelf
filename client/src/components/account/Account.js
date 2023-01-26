@@ -41,8 +41,8 @@ function Account({ setUserBooks, onSetUser, user, onSetUserBooks, profile, onSet
   .catch((err) => setError(err));
   }
   return (
-    <div>
-      <div style={{ margin: '50px'}}>
+    <div style={{ margin: '50px'}}>
+      <div style={{ margin: '1em' }} className="d-flex justify-content-center">
       <Row className="justify-content-center">
       { user.id ? 
       <>
