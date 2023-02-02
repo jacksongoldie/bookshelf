@@ -43,7 +43,6 @@ function Friends({ user }) {
   
   return (
     <div style={{ margin: '50px' }}>
-    <div style={{ margin: '1em' }} className="d-flex justify-content-center">
     {/* <div style={{ margin: '50px' }}> */}
       {books.length > 0 ? 
       <FriendMyShelf books={books} onSetBooks={onSetBooks} selectedUser={selectedUser} /> :
@@ -56,7 +55,6 @@ function Friends({ user }) {
         </div> :
         <p>Please sign in</p>}  
        </> }
-      </div>
       </div>
       
   )
