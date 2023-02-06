@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "homepage": "https://bookshelf.goldie-jackson.com",
   "private": true,
+  "proxy": "https://bookshelf-ghnp.onrender.com",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",

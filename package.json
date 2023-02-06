@@ -1,16 +1,32 @@
 {
-    "name": "example-project",
-    "description": "Build scripts for Heroku",
-    "engines": {
-        "node": ">= 14"
-    },
-    "scripts": {
-        "build": "npm install --prefix client && npm run build --prefix client",
-        "clean": "rm -rf public",
-        "deploy": "cp -a client/build/. public/",
-        "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
-    },
-    "dependencies": {
-        "pg": "^8.9.0"
-    }
+  "name": "example-project",
+  "description": "Build scripts for Heroku",
+  "engines": {
+    "node": ">= 14"
+  },
+  "scripts": {
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "clean": "rm -rf public",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
+  },
+  "dependencies": {
+    "pg": "^8.9.0"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacksongoldie/bookshelf.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacksongoldie/bookshelf/issues"
+  },
+  "homepage": "https://github.com/jacksongoldie/bookshelf#readme"
 }
