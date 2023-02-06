@@ -8,9 +8,9 @@ function MyShelfCard({ book, onSetUserBooks, onDeleteUserBook, categories, ages 
 
     const star = '⭐'
   return (
-    <div>
-      <Col style={{ margin:'1em' }}>
-        <Card border="success" style={{ width: '18em', margin: '1em' }}>
+    <div style={{ margin:'2em' }}> 
+      <Col> 
+        <Card border="success" style={{ width: '18rem' }}>
         <Card.Body>
         <Card.Title>{book.title}</Card.Title>
           {book.img ? <Card.Img style={{ height: '150px', width: '150px' }} src={book.img} /> : <Card.Img variant="top" src={null} />}
@@ -24,7 +24,7 @@ function MyShelfCard({ book, onSetUserBooks, onDeleteUserBook, categories, ages 
             </>
           : null}
           </Stack>
-          <MyShelfButtons book={book} onSetUserBooks={onSetUserBooks} ages={ages} categories={categories} onDeleteUserBook={onDeleteUserBook} />
+          <MyShelfButtons style={{ marginTop: '1em' }} book={book} onSetUserBooks={onSetUserBooks} ages={ages} categories={categories} onDeleteUserBook={onDeleteUserBook} />
         </Card.Body>
         </Card>
       </Col>

@@ -16,9 +16,9 @@ function BrowsePagination({ books, index, onSetIndex, currentPage, onSetCurrentP
   return (
     <div>
         {currentPage > 1 ? <> 
-        <Button onClick={handleBackClick}>Back</Button></> : null}
+        <Button variant="success" onClick={handleBackClick}>Back</Button></> : null}
         {books === undefined || books.length < 24 ? null : <><h3>Page {currentPage}</h3> 
-        <Button onClick={handleForwardClick}>Next</Button></>}
+        <Button variant="success" onClick={handleForwardClick}>Next</Button></>}
     </div>
   )
 };
