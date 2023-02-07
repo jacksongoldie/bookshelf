@@ -44,7 +44,7 @@ useEffect(() =>{
                         r.json().then(onSetProfile, handleClose())
                     }
                     else{
-                        r.json().then(setErrors)
+                        r.json().then((r)=> setErrors(r.errors))
                     }})
         }
     }
