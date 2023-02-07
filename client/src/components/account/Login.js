@@ -24,19 +24,21 @@ function Login({ setUserBooks, onSetUser, resetAccountPage }) {
           }).then(async (res) => {
             if (res.ok) {
               localStorage.setItem("token", res.headers.get("Authorization"));
-              return res.json();
+              return res.json().then((json) => 
+              {
+                onSetUser(json.data)
+                fetch(`/users/${json.data.id}/books`)
+                .then((r) => r.json())
+                .then(setUserBooks)
+              });
             } else {
               const text = await res.text();
               return await Promise.reject(text);
             }
           })
-          .then((json) => {onSetUser(json.data)
-          fetch(`/users/${json.data.id}/books`)
-          .then((r) => r.json())
-          .then(setUserBooks)})
           .catch((err) => setError(err))
     }
-
+ 
     function handleChange(e){
         setError(null)
         setFormData({...formData, [e.target.name]: e.target.value})

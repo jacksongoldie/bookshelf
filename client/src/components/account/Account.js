@@ -18,7 +18,7 @@ function Account({ setUserBooks, onSetUser, user, onSetUserBooks, profile, onSet
   }
   
   function handleLogout(){
-      fetch("/logout", {
+    fetch("/logout", {
     method: "DELETE",
     headers: {
     "Content-Type": "application/json",
@@ -27,17 +27,19 @@ function Account({ setUserBooks, onSetUser, user, onSetUserBooks, profile, onSet
 })
   .then((res) => {;
     if (res.ok) {
-      return res.json();
+      return res.json().then(
+      onSetUser({}),
+      onSetUserBooks([]),
+      onSetProfile({}));
     } else {
-      const json = res.json();
-      return Promise.reject(json);
+      setError('Hmm. Something went wrong.')
     }
   })
-  .then((json) => {
-    onSetUser({})
-    onSetUserBooks()
-    onSetProfile({})
-  })
+  //SOMETHING ISN'T RIGHT HERE - TRY REPLACING IF/ELSE ABOVE AND MOVE THE BELOW .THEN
+  // .then(
+  //   onSetUser({}),
+  //   onSetUserBooks([]),
+  //   onSetProfile({}))
   .catch((err) => setError(err));
   }
   return (
