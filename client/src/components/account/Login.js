@@ -32,7 +32,7 @@ function Login({ setUserBooks, onSetUser, resetAccountPage }) {
                 .then(setUserBooks)
               });
             } else {
-              setError('Hmm. Something went wrong.');
+              setError('Invalid Entry');
             }
           })
           .catch((err) => setError(err))
