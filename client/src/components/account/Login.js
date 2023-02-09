@@ -18,9 +18,9 @@ function Login({ setUserBooks, onSetUser, resetAccountPage }) {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify([{
+            body: JSON.stringify({
               user: formData
-            }]),
+            }),
           }).then(async (res) => {
             if (res.ok) {
               localStorage.setItem("token", res.headers.get("Authorization"));
@@ -32,8 +32,9 @@ function Login({ setUserBooks, onSetUser, resetAccountPage }) {
                 .then(setUserBooks)
               });
             } else {
-              setError('Invalid Entry');
-            }
+              const text = await res.text();
+              return await Promise.reject(text);
+            } 
           })
           .catch((err) => setError(err))
     }
