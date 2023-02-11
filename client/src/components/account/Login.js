@@ -32,8 +32,9 @@ function Login({ setUserBooks, onSetUser, resetAccountPage }) {
                 .then(setUserBooks)
               });
             } else {
-              const text = await res.text();
-              return await Promise.reject(text);
+              setError('Hmm. Something went wrong.')
+              // const text = await res.text();
+              // return await Promise.reject(text);
             } 
           })
           .catch((err) => setError(err))
