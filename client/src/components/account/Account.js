@@ -27,7 +27,7 @@ function Account({ setUserBooks, onSetUser, user, onSetUserBooks, profile, onSet
 })
   .then((res) => {;
     if (res.ok) {
-      return res.json().then(
+      res.json().then(
       onSetUser({}),
       onSetUserBooks([]),
       onSetProfile({}));
@@ -40,7 +40,7 @@ function Account({ setUserBooks, onSetUser, user, onSetUserBooks, profile, onSet
   //   onSetUser({}),
   //   onSetUserBooks([]),
   //   onSetProfile({}))
-  .catch((err) => setError(err));
+  //.catch((err) => setError(err));
   }
   return (
     <div style={{ margin: '50px'}}>

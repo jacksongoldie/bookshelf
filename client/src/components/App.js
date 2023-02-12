@@ -20,31 +20,38 @@ function App() {
     fetch('/current_user')
     .then(r => r.json())
     .then((data) => {
+      if(data.id){ 
       setUser(data)
       fetch(`/users/${data.id}/books`)
       .then((r) => r.json())
       .then(setUserBooks, setIsLoading(false))
+      }
+      else{
+        return console.log('not')
+      }
     })
 
     fetch('/categories')
     .then((r) => r.json())
-    .then(setCategories)
+    .then((json) => !json ? setCategories([]) : setCategories(json))
 
     fetch('/ages')
     .then((r) => r.json())
-    .then(setAges)
+    .then((json) => !json ? setAges([]) : setAges(json))
   }, [])
 
   useEffect(()=> {
     fetch(`/users/${user.id}/profiles/show`)
     .then(r => {
       if(r.ok){
-        r.json().then(onSetProfile)
+        r.json().then((json) => setProfile(json))
+      }
+      else{
+        console.log('oops')
       }
     })
 
   }, [user])
-  
 
   function onSetUser(user){
     setUser(user)

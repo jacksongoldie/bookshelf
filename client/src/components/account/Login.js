@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
+import { responsivePropType } from 'react-bootstrap/esm/createUtilityClasses';
 
 function Login({ setUserBooks, onSetUser, resetAccountPage }) {
 
@@ -13,6 +14,7 @@ function Login({ setUserBooks, onSetUser, resetAccountPage }) {
 
     function handleSubmit(e){
         e.preventDefault();
+        let user = null
           fetch(`/login`, {  
             method: "POST",
             headers: {
@@ -21,23 +23,26 @@ function Login({ setUserBooks, onSetUser, resetAccountPage }) {
             body: JSON.stringify({
               user: formData
             }),
-          }).then(async (res) => {
+          }).then((res) => {
             if (res.ok) {
-              localStorage.setItem("token", res.headers.get("Authorization"));
-              return res.json().then((json) => 
-              {
+              localStorage.setItem("token", res.headers.get("Authorization"))
+              res.json().then((json)=> {
+                console.log(json)
                 onSetUser(json.data)
                 fetch(`/users/${json.data.id}/books`)
                 .then((r) => r.json())
                 .then(setUserBooks)
-              });
+              })
+              
             } else {
               setError('Hmm. Something went wrong.')
               // const text = await res.text();
               // return await Promise.reject(text);
             } 
           })
-          .catch((err) => setError(err))
+          //.then(console.log())
+          
+          
     }
  
     function handleChange(e){
