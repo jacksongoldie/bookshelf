@@ -28,8 +28,8 @@ function Login({ setUserBooks, onSetUser, resetAccountPage }) {
               localStorage.setItem("token", res.headers.get("Authorization"))
               res.json().then((json)=> {
                 console.log(json)
-                onSetUser(json.data)
-                fetch(`/users/${json.data.id}/books`)
+                onSetUser(json[0].data)
+                fetch(`/users/${json[0].data.id}/books`)
                 .then((r) => r.json())
                 .then(setUserBooks)
               })
