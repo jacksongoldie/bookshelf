@@ -6,10 +6,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def respond_with(resource, _opts = {})
       register_success && return if resource.persisted?
   
-      register_failed
+      register_failed                                                     
     end
   
     def register_success
+      debugger
       render json: current_user.to_json, status: :ok #{ message: 'Signed up sucessfully.' }
     end
   
