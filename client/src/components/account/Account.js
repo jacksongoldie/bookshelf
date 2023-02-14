@@ -25,7 +25,7 @@ function Account({ setUserBooks, onSetUser, user, onSetUserBooks, profile, onSet
     "Authorization": localStorage.token
   },
 })
-  .then((res) => {;
+  .then((res) => {
     if (res.ok) {
       res.json().then(
       onSetUser({}),
