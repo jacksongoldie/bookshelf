@@ -28,8 +28,9 @@ useEffect(() =>{
                 body: profileToUpdate
             })
             .then(r => {
+                //console.log(r)
                 if(r.ok){
-                    r.json().then(onSetProfile, handleClose())
+                    r.json().then((data) => onSetProfile(data), handleClose())
                 }
                 else{
                     r.json().then((r)=> setErrors(r.errors))

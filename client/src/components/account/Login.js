@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import { responsivePropType } from 'react-bootstrap/esm/createUtilityClasses';
 
 function Login({ setUserBooks, onSetUser, resetAccountPage }) {
 
@@ -14,7 +13,6 @@ function Login({ setUserBooks, onSetUser, resetAccountPage }) {
 
     function handleSubmit(e){
         e.preventDefault();
-        let user = null
           fetch(`/login`, {  
             method: "POST",
             headers: {

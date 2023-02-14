@@ -9,10 +9,13 @@ class ProfilesController < ApplicationController
       end
 
     def create
-        current_user.create_profile!(profile_params)
+        current_user.create_profile!({
+            "name": profile_params[:name],
+            "bio": profile_params[:bio]
+        })
         if profile_params[:img]
-            image = Cloudinary::Uploader.upload(profile_params[:img], :use_filename => true, :folder => "bookshelf")
-            current_user.profile.update!(image: image['url'])
+            image = Cloudinary::Uploader.upload(profile_params[:img], :use_filename => true, :use_temp_files => true, :folder => "bookshelf")
+            current_user.profile.update!(image: image['secure_url'])
         end
         render json: current_user.profile, status: :created
     end
@@ -33,6 +36,6 @@ class ProfilesController < ApplicationController
     end
     
     def profile_params
-        params.permit(:name, :bio, :likes, :image, :img)
+        params.permit(:name, :bio, :image, :likes, :img)
     end
 end
