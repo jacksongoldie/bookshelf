@@ -25,7 +25,6 @@ function SignUp({ onSetUser, resetAccountPage }) {
       }).then(r => {
         if(r.ok){
             r.json().then((user) => {
-              console.log(user)
                 onSetUser(user)
             })
         }
