@@ -10,7 +10,7 @@ function MyShelfEditModal({ show, handleClose, book, isDeleting, onDeleteUserBoo
     const [userInputsToEdit, setUserInputsToEdit] = useState({})
 
     useEffect(() => {
-        fetch(`/user_inputs/${book.current_user_input.id}`)
+        fetch(`https://bookshelf-ghnp.onrender.com/user_inputs/${book.current_user_input.id}`)
         .then((r) => r.json())
         .then((data) => setUserInputsToEdit(data))
     }, [])
